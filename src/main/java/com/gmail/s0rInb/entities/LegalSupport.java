@@ -1,5 +1,8 @@
 package com.gmail.s0rInb.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.gmail.s0rInb.entities.Files.AppealProcuratorFile;
+import com.gmail.s0rInb.entities.Files.AppealProcuratorFileTest;
 import com.gmail.s0rInb.entities.dictionary.ConsultationType;
 import com.gmail.s0rInb.entities.dictionary.LegalSupportResult;
 import com.gmail.s0rInb.entities.dictionary.WhoLegalSupport;
@@ -9,11 +12,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "legal_support")
 @Getter
 @Setter
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class LegalSupport {
 
 	@Id
@@ -48,6 +53,8 @@ public class LegalSupport {
 	
 	@Column(name = "appeal_procurator")
 	private Boolean appealProcurator;
+
+
 
 	@Column(name = "appeal_procurator_date")
 	private LocalDate appealProcuratorHealthDate;
@@ -89,5 +96,8 @@ public class LegalSupport {
 
 	@Size(max = 2048)
 	@Column(name = "legal_support_result_text")
-	private String legal_support_result_text;
+	private String legalSupportResultText;
+
+//	@OneToMany(mappedBy = "legalSupport")
+//	private Set<AppealProcuratorFileTest> appealProcuratorFileTests;
 }

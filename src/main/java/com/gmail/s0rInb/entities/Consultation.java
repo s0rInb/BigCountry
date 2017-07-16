@@ -1,5 +1,6 @@
 package com.gmail.s0rInb.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.gmail.s0rInb.entities.dictionary.ConsultationType;
 import com.gmail.s0rInb.entities.dictionary.WhoSentToConsultation;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @Table(name = "consultation")
 @Getter
 @Setter
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Consultation {
 
 	@Id

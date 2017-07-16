@@ -146,7 +146,7 @@
     }
 
     var template = getTemplate(nameOrTemplate, dust.config.cache);
-
+    //debugger;
     if (template) {
       return template(chunk, Context.wrap(context, template.templateName));
     } else {
