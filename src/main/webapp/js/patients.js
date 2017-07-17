@@ -1,0 +1,3 @@
+initForm(entityClass, entityId){
+
+}

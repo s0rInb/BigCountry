@@ -1,10 +1,9 @@
 $.fn.select2.defaults.set( "theme", "bootstrap" );
 
 function submitForm(entityClass, entityId, getDisabled) {
-	var formData = form2js(entityClass+'-'+entityId, '.', true, processSelect2MultiSelect, false, getDisabled);
+	var formData = form2js(entityClass+'-'+(entityId!=null?entityId:''), '.', true, processSelect2MultiSelect, false, getDisabled);
 	var json = JSON.stringify(formData, null, '\t');
 	var submittedResponse;
-	debugger;
 	$.ajax({
 		async: false,
 		type: "post",
@@ -16,6 +15,7 @@ function submitForm(entityClass, entityId, getDisabled) {
 		success: function (data, status, jqXHR) {
 			// generalSettings.jQuery.defaultAjaxSuccessHandler(data, status, jqXHR);
 			$('#form-' + entityClass + entityId).trigger("submitted");
+			window.location.hash = data.entityClass+"?id="+data.entity.id;
 			submittedResponse = data;
 			// if (entityClass === "task")
 			// 	getCountOverdueTasksForStaff();

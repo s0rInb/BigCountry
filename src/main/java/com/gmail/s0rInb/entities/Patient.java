@@ -1,9 +1,12 @@
 package com.gmail.s0rInb.entities;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gmail.s0rInb.entities.Files.AppealProcuratorFile;
-import com.gmail.s0rInb.entities.Files.InfoConsentFile;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.gmail.s0rInb.Utils.LocalDateDeserializer;
+import com.gmail.s0rInb.Utils.LocalDateSerializer;
 import com.gmail.s0rInb.entities.dictionary.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -23,14 +26,13 @@ import java.util.Set;
 @Table(name = "patient")
 @Getter
 @Setter
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.ANY, setterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Patient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Transient
-	@Setter(AccessLevel.NONE)
 	private String patientId;
 
 	@Size(max = 320)
@@ -62,11 +64,13 @@ public class Patient {
 	private Boolean infoConsent;
 
 	@Column(name = "info_consent_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate infoConsentDate;
 
-	@OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
-	@JsonManagedReference
-	private Set<InfoConsentFile> infoConsentFiles;
+//	@OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
+//	@JsonManagedReference
+//	private Set<InfoConsentFile> infoConsentFiles;
 
 	@ManyToOne
 	@JoinColumn(name = "expert_center_id")
@@ -110,6 +114,8 @@ public class Patient {
 	private String contactInfo;
 
 	@Column(name = "hot_line_call_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate hotLineCallDate;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "consultation_id")
@@ -123,6 +129,9 @@ public class Patient {
 				(getName()!=null?getName().substring(0,1):"") +
 				(getPatronymic()!=null?getPatronymic().substring(0,1):"") +
 				id.toString();
+	}
+	public void setPatientId(String patientId) {
+		this.patientId = getPatientId();
 	}
 	public Integer getAge() {
 		return getBirthday()!=null?(LocalDate.ofEpochDay(LocalDate.now().toEpochDay()-getBirthday().toEpochDay()).getYear()):null;

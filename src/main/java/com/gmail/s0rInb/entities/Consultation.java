@@ -1,6 +1,10 @@
 package com.gmail.s0rInb.entities;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.gmail.s0rInb.Utils.LocalDateDeserializer;
+import com.gmail.s0rInb.Utils.LocalDateSerializer;
 import com.gmail.s0rInb.entities.dictionary.ConsultationType;
 import com.gmail.s0rInb.entities.dictionary.WhoSentToConsultation;
 import lombok.Getter;
@@ -54,12 +58,18 @@ public class Consultation {
 	private WhoSentToConsultation whoSentToConsultation;
 
 	@Column(name = "full_document_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate fullDocumentDate;
 
 	@Column(name = "full_document_send_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate fullDocumentSendDate;
 
 	@Column(name = "consultation_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate consultationDate;
 
 	@Size(max = 320)
@@ -67,15 +77,21 @@ public class Consultation {
 	private String additionalResearch;
 
 	@Column(name = "conclusion_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate conclusionDate;
 
 	@Column(name = "send_region_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate sendRegionDate;
 
 	@Column(name = "medical_commission")
 	private Boolean medicalCommission;
 
 	@Column(name = "medical_commission_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate medicalCommissionDate;
 
 	@Column(name = "medical_commission_result")

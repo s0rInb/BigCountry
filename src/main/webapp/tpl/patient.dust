@@ -2,24 +2,25 @@
 
 <div id="patient-{entity.id}">
     <form>
-        <div>
-            <p>Пациент</p>
+        <div class="block-main">
+            <h1>Пациент</h1>
             <input hidden name="id" value="{entity.id}">
-            <div class="col-sm-12">
-                <div class="form-group form-group-sm" id="corpresumes">
-                    <div class="col-sm-6">
-                        <div id="corpresumeuploader"
-                             uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> sdbsd'>
+            {!<div class="col-sm-12">!}
+                {!<div class="form-group form-group-sm" id="corpresumes">!}
+                    {!<div class="col-sm-6">!}
+                        {!<div id="corpresumeuploader"!}
+                             {!uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> sdbsd'>!}
 
-                        </div>
-                    </div>
-                    <div class="col-sm-6" id="corpresumes-container">
-                        <div hidden id="corpresume-loading-error"
-                             style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        {!</div>!}
+                    {!</div>!}
+                    {!<div class="col-sm-6" id="corpresumes-container">!}
+                        {!<div hidden id="corpresume-loading-error"!}
+                             {!style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">!}
+                        {!</div>!}
+                    {!</div>!}
+                {!</div>!}
+            {!</div>!}
+            <h3>Общая информация</h3>
             <div class="form-group col-md-4">
                 <label for="surname">Фамилия</label>
                 <input class="form-control" id="surname" placeholder="Фамилия" value="{entity.surname}" name="surname">
@@ -34,6 +35,27 @@
                        name="patronymic">
             </div>
             <div class="form-group col-md-4">
+                <label for="phone">Телефон</label>
+                <input class="form-control" id="phone" placeholder="Телефон" value="{entity.phone}"
+                       name="phone">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="address">Адрес</label>
+                <input class="form-control" id="address" placeholder="Адрес" value="{entity.address}"
+                       name="address">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="email">Адрес электронной почты</label>
+                <input class="form-control" id="email" placeholder="Адрес электронной почты" value="{entity.email}"
+                       name="email">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="diagnosis">Диагноз</label>
+                <select class="form-control" name="diagnosis.id" id="diagnosis">
+                    <option value="{entity.diagnosis.id}" selected="selected">{entity.diagnosis.name}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
                 <label for="subjectRF">Субъект РФ</label>
                 <select class="form-control" name="subjectRF.id" id="subjectRF">
                     <option value="{entity.subjectRF.id}" selected="selected">{entity.subjectRF.name}</option>
@@ -44,63 +66,37 @@
                 <input class="form-control" id="patronymic" placeholder="Город" value="{entity.city}"
                        name="city">
             </div>
-            <div class="form-group col-md-4">
-                <label for="medAgentFullName">Медицинский представитель</label>
-                <input class="form-control" id="medAgentFullName" placeholder="Медицинский представитель"
-                       value="{entity.medAgentFullName}"
-                       name="medAgentFullName">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="diagnosis">Диагноз</label>
-                <select class="form-control" name="diagnosis.id" id="diagnosis">
-                    <option value="{entity.diagnosis.id}" selected="selected">{entity.diagnosis.name}</option>
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="phone">Телефон</label>
-                <input class="form-control" id="phone" placeholder="Телефон" value="{entity.phone}"
-                       name="phone">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="email">Адрес электронной почты</label>
-                <input class="form-control" id="email" placeholder="Адрес электронной почты" value="{entity.email}"
-                       name="email">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="address">Адрес</label>
-                <input class="form-control" id="address" placeholder="Адрес" value="{entity.address}"
-                       name="address">
-            </div>
-            <div class="form-group col-md-4">
+            <h3>Обращение</h3>
+            <div class="form-group col-md-3">
                 <label for="whoCall">Кто обратился на горячую линию</label>
                 <select class="form-control" name="whoCall.id" id="whoCall">
                     <option value="{entity.whoCall.id}" selected="selected">{entity.whoCall.name}</option>
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="hotLineCallDate">Дата обращения на горячую линию</label>
                 <input class="form-control" id="hotLineCallDate" placeholder="Дата обращения на горячую линию"
                        value="{entity.hotLineCallDate}"
                        name="hotLineCallDate">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="contactInfo">Контактные данные обратившегося</label>
                 <input class="form-control" id="contactInfo" placeholder="Контактные данные обратившегося"
                        value="{entity.contactInfo}"
                        name="contactInfo">
             </div>
-            <button type="submit" class="btn btn-default">Сохранить</button>
-        </div>
-        <div style="margin-top: 100px">
-            <p>Консультация</p>
-            <div class="form-group col-md-4">
-                <label for="consultationConsultationType">Тип консультации для направления в федеральный центр</label>
-                <select class="form-control" name="consultation.consultationType.id" id="consultationConsultationType">
-                    <option value="{entity.consultation.consultationType.id}" selected="selected">
-                        {entity.consultation.consultationType.name}
-                    </option>
-                </select>
+            <div class="form-group col-md-3">
+                <label for="medAgentFullName">Медицинский представитель</label>
+                <input class="form-control" id="medAgentFullName" placeholder="Медицинский представитель"
+                       value="{entity.medAgentFullName}"
+                       name="medAgentFullName">
             </div>
+        <button type="submit" class="btn btn-success">Сохранить</button>
+
+        </div>
+        <div class="block-main">
+            <h1>Консультация</h1>
+            <h3>Лечащий врач</h3>
             <div class="form-group col-md-4">
                 <label for="consultationDoctorSurname">Фамилия лечащего врача</label>
                 <input class="form-control" id="consultationDoctorSurname" placeholder="Фамилия лечащего врача"
@@ -120,10 +116,10 @@
                        name="consultation.doctorPatronymic">
             </div>
             <div class="form-group col-md-4">
-                <label for="consultationDoctorLPU">Лечащий врач_ЛПУ</label>
-                <input class="form-control" id="consultationDoctorLPU" placeholder="Лечащий врач_ЛПУ"
-                       value="{entity.consultation.doctorLPU}"
-                       name="consultation.doctorLPU">
+                <label for="consultationDoctorContactInfo">Контакты лечащего врача</label>
+                <input class="form-control" id="consultationDoctorContactInfo" placeholder="Контакты лечащего врача"
+                       value="{entity.consultation.doctorContactInfo}"
+                       name="consultation.doctorContactInfo">
             </div>
             <div class="form-group col-md-4">
                 <label for="consultationDoctorPosition">Должность лечащего врача</label>
@@ -132,10 +128,25 @@
                        name="consultation.doctorPosition">
             </div>
             <div class="form-group col-md-4">
-                <label for="consultationDoctorContactInfo">Контакты лечащего врача</label>
-                <input class="form-control" id="consultationDoctorContactInfo" placeholder="Контакты лечащего врача"
-                       value="{entity.consultation.doctorContactInfo}"
-                       name="consultation.doctorContactInfo">
+                <label for="consultationDoctorLPU">Лечащий врач ЛПУ</label>
+                <input class="form-control" id="consultationDoctorLPU" placeholder="Лечащий врач ЛПУ"
+                       value="{entity.consultation.doctorLPU}"
+                       name="consultation.doctorLPU">
+            </div>
+            <h3>Консультация</h3>
+            <div class="form-group col-md-4">
+                <label for="consultationConsultationType">Тип консультации для направления в федеральный центр</label>
+                <select class="form-control" name="consultation.consultationType.id" id="consultationConsultationType">
+                    <option value="{entity.consultation.consultationType.id}" selected="selected">
+                        {entity.consultation.consultationType.name}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="consultationConsultationDate">Дата консультации</label>
+                <input class="form-control" id="consultationConsultationDate" placeholder="Дата консультации"
+                       value="{entity.consultation.consultationDate}"
+                       name="consultation.consultationDate">
             </div>
             <div class="form-group col-md-4">
                 <label for="consultationWhoSentToConsultation">Кто направил на консультацию</label>
@@ -146,6 +157,7 @@
                     </option>
                 </select>
             </div>
+            <h3>Заочная</h3>
             <div class="form-group col-md-4">
                 <label for="consultationFullDocumentDate">Дата получения полного пакета документов</label>
                 <input class="form-control" id="consultationFullDocumentDate"
@@ -161,38 +173,27 @@
                        name="consultation.fullDocumentSendDate">
             </div>
             <div class="form-group col-md-4">
-                <label for="consultationConsultationDate">Дата консультации</label>
-                <input class="form-control" id="consultationConsultationDate" placeholder="Дата консультации"
-                       value="{entity.consultation.consultationDate}"
-                       name="consultation.consultationDate">
-            </div>
-            <div class="form-group col-md-4">
                 <label for="consultationAdditionalResearch">Дополнительные исследования</label>
                 <input class="form-control" id="consultationAdditionalResearch"
                        placeholder="Дополнительные исследования"
                        value="{entity.consultation.additionalResearch}"
                        name="consultation.additionalResearch">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="consultationConclusionDate">Дата получения заключения</label>
                 <input class="form-control" id="consultationConclusionDate" placeholder="Дата получения заключения"
                        value="{entity.consultation.conclusionDate}"
                        name="consultation.conclusionDate">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="consultationSendRegionDate">Дата отправки заключения в регион</label>
                 <input class="form-control" id="consultationSendRegionDate"
                        placeholder="Дата отправки заключения в регион"
                        value="{entity.consultation.sendRegionDate}"
                        name="consultation.sendRegionDate">
             </div>
-            <div class="form-group col-md-4">
-                <label for="consultationMedicalCommissionDate">Дата врачебной комиссии</label>
-                <input class="form-control" id="consultationMedicalCommissionDate" placeholder="Дата врачебной комиссии"
-                       value="{entity.consultation.medicalCommissionDate}"
-                       name="consultation.medicalCommissionDate">
-            </div>
-            <div class="form-group col-md-4">
+            <h3>Врачебная комиссия</h3>
+            <div class="form-group col-md-3">
                 <label for="consultationMedicalCommission">Назначение врачебной комиссии</label>
                 <select class="form-control" name="consultation.medicalCommission" id="consultationMedicalCommission">
                     <option value="true" {?entity.consultation.medicalCommission}
@@ -205,7 +206,13 @@
                     </option>
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
+                <label for="consultationMedicalCommissionDate">Дата врачебной комиссии</label>
+                <input class="form-control" id="consultationMedicalCommissionDate" placeholder="Дата врачебной комиссии"
+                       value="{entity.consultation.medicalCommissionDate}"
+                       name="consultation.medicalCommissionDate">
+            </div>
+            <div class="form-group col-md-3">
                 <label for="consultationMedicalCommissionResult">Заключение врачебной комиссии</label>
                 <select class="form-control" name="consultation.medicalCommissionResult"
                         id="consultationMedicalCommissionResult">
@@ -219,7 +226,7 @@
                     </option>
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="consultationMedicalCommissionConfirm">Подтверждение врачебной комиссии</label>
                 <select class="form-control" name="consultation.medicalCommissionConfirm"
                         id="consultationMedicalCommissionConfirm">
@@ -233,11 +240,11 @@
                     </option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-default">Сохранить</button>
+            <button type="submit" class="btn btn-success">Сохранить</button>
         </div>
-        <div style="margin-top: 100px">
-            <p>Суд</p>
-            <div class="form-group col-md-4">
+        <div class="block-main">
+            <h1>Юридическая поддержка</h1>
+            <div class="form-group col-md-6">
                 <label for="legalSupportNeedLegalSupport">Потребность в юридической поддержке</label>
                 <select class="form-control" name="legalSupport.needLegalSupport"
                         id="legalSupportNeedLegalSupport">
@@ -251,7 +258,7 @@
                     </option>
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="legalSupportWhoLegalSupport">Кем оказана юридическая помощь</label>
                 <select class="form-control" name="legalSupport.whoLegalSupport.id" id="legalSupportWhoLegalSupport">
                     <option value="{entity.legalSupport.whoLegalSupport.id}" selected="selected">
@@ -259,6 +266,7 @@
                     </option>
                 </select>
             </div>
+            <h3>Обращение в Минздрав</h3>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealMinHealth">Обращение в Минздрав</label>
                 <select class="form-control" name="legalSupport.appealMinHealth"
@@ -269,48 +277,6 @@
                     </option>
                     <option value="false" {?entity.legalSupport.appealMinHealth}{:else}
                             selected="selected"{/entity.legalSupport.appealMinHealth}>
-                        Нет
-                    </option>
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="legalSupportAppealRusHealth">Обращение в Росздравнадзор</label>
-                <select class="form-control" name="legalSupport.appealRusHealth"
-                        id="legalSupportAppealRusHealth">
-                    <option value="true" {?entity.legalSupport.appealRusHealth}
-                            selected="selected"{/entity.legalSupport.appealRusHealth}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.appealRusHealth}{:else}
-                            selected="selected"{/entity.legalSupport.appealRusHealth}>
-                        Нет
-                    </option>
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="legalSupportAppealProcurator">Обращение в Прокуратуру</label>
-                <select class="form-control" name="legalSupport.appealProcurator"
-                        id="legalSupportAppealProcurator">
-                    <option value="true" {?entity.legalSupport.appealProcurator}
-                            selected="selected"{/entity.legalSupport.appealProcurator}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.appealProcurator}{:else}
-                            selected="selected"{/entity.legalSupport.appealProcurator}>
-                        Нет
-                    </option>
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="legalSupportAppealCourt">Обращение в суд</label>
-                <select class="form-control" name="legalSupport.appealCourt"
-                        id="legalSupportAppealCourt">
-                    <option value="true" {?entity.legalSupport.appealCourt}
-                            selected="selected"{/entity.legalSupport.appealCourt}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.appealCourt}{:else}
-                            selected="selected"{/entity.legalSupport.appealCourt}>
                         Нет
                     </option>
                 </select>
@@ -327,6 +293,21 @@
                        value="{entity.legalSupport.resultMinHealthDate}"
                        name="legalSupport.resultMinHealthDate">
             </div>
+            <h3>Обращение в Росздравнадзор</h3>
+            <div class="form-group col-md-4">
+                <label for="legalSupportAppealRusHealth">Обращение в Росздравнадзор</label>
+                <select class="form-control" name="legalSupport.appealRusHealth"
+                        id="legalSupportAppealRusHealth">
+                    <option value="true" {?entity.legalSupport.appealRusHealth}
+                            selected="selected"{/entity.legalSupport.appealRusHealth}>
+                        Да
+                    </option>
+                    <option value="false" {?entity.legalSupport.appealRusHealth}{:else}
+                            selected="selected"{/entity.legalSupport.appealRusHealth}>
+                        Нет
+                    </option>
+                </select>
+            </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealRusHealthDate">Дата обращения в Росздравнадзор</label>
                 <input class="form-control" id="legalSupportAppealRusHealthDate" placeholder="Дата врачебной комиссии"
@@ -339,6 +320,21 @@
                        value="{entity.legalSupport.resultRusHealthDate}"
                        name="legalSupport.resultRusHealthDate">
             </div>
+            <h3>Обращение в Прокуратуру</h3>
+            <div class="form-group col-md-4">
+                <label for="legalSupportAppealProcurator">Обращение в Прокуратуру</label>
+                <select class="form-control" name="legalSupport.appealProcurator"
+                        id="legalSupportAppealProcurator">
+                    <option value="true" {?entity.legalSupport.appealProcurator}
+                            selected="selected"{/entity.legalSupport.appealProcurator}>
+                        Да
+                    </option>
+                    <option value="false" {?entity.legalSupport.appealProcurator}{:else}
+                            selected="selected"{/entity.legalSupport.appealProcurator}>
+                        Нет
+                    </option>
+                </select>
+            </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealProcuratorHealthDate">Дата обращения в Прокуратуру</label>
                 <input class="form-control" id="legalSupportAppealProcuratorHealthDate" placeholder="Дата врачебной комиссии"
@@ -350,6 +346,21 @@
                 <input class="form-control" id="legalSupportResultProcuratorHealthDate" placeholder="Дата врачебной комиссии"
                        value="{entity.legalSupport.resultProcuratorHealthDate}"
                        name="legalSupport.resultProcuratorHealthDate">
+            </div>
+            <h3>Обращение в Суд</h3>
+            <div class="form-group col-md-4">
+                <label for="legalSupportAppealCourt">Обращение в суд</label>
+                <select class="form-control" name="legalSupport.appealCourt"
+                        id="legalSupportAppealCourt">
+                    <option value="true" {?entity.legalSupport.appealCourt}
+                            selected="selected"{/entity.legalSupport.appealCourt}>
+                        Да
+                    </option>
+                    <option value="false" {?entity.legalSupport.appealCourt}{:else}
+                            selected="selected"{/entity.legalSupport.appealCourt}>
+                        Нет
+                    </option>
+                </select>
             </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealCourtDate">Дата обращения в суд</label>
@@ -376,8 +387,8 @@
                        name="legalSupport.countCourt">
             </div>
             <div class="form-group col-md-4">
-                <label for="legalSupportResultCourt">Количество судов</label>
-                <input class="form-control" id="legalSupportResultCourt" placeholder="Количество судов"
+                <label for="legalSupportResultCourt">Результат суда</label>
+                <input class="form-control" id="legalSupportResultCourt" placeholder="Результат суда"
                        value="{entity.legalSupport.resultCourt}"
                        name="legalSupport.resultCourt">
             </div>
@@ -401,13 +412,29 @@
                     </option>
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-12">
                 <label for="legalSupportDrug">Итог обращения</label>
-                <input class="form-control" id="legalSupportDrug" placeholder="Итог обращения"
+                <textarea class="form-control" id="legalSupportDrug" placeholder="Итог обращения"
                        value="{entity.legalSupport.legalSupportResultText}"
-                       name="legalSupport.legalSupportResultText">
+                          name="legalSupport.legalSupportResultText">{entity.legalSupport.legalSupportResultText}</textarea>
             </div>
-            <button type="submit" class="btn btn-default">Сохранить</button>
+            <button type="submit" class="btn btn-success">Сохранить</button>
+        </div>
+        <div class="">
+            <h1>Загрузите файлы</h1>
+        <div class="form-group form-group-sm" id="files">
+            <div class="col-sm-3">
+                <div id="infoConsent"
+                     uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+            </div>
+            <div class="col-sm-9" id="files-container">
+                <div hidden id="file-loading-error"
+                     style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+            </div>
+        </div>
         </div>
     </form>
 </div>
+
+<button class="btn btn-danger" onclick="deletePatient({entity.id})">Удалить карту пациента</button>
+

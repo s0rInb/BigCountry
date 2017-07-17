@@ -1,9 +1,10 @@
 package com.gmail.s0rInb.entities;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.gmail.s0rInb.entities.Files.AppealProcuratorFile;
-import com.gmail.s0rInb.entities.Files.AppealProcuratorFileTest;
-import com.gmail.s0rInb.entities.dictionary.ConsultationType;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.gmail.s0rInb.Utils.LocalDateDeserializer;
+import com.gmail.s0rInb.Utils.LocalDateSerializer;
 import com.gmail.s0rInb.entities.dictionary.LegalSupportResult;
 import com.gmail.s0rInb.entities.dictionary.WhoLegalSupport;
 import lombok.Getter;
@@ -37,18 +38,26 @@ public class LegalSupport {
 	private Boolean appealMinHealth;
 
 	@Column(name = "appeal_min_health_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate appealMinHealthDate;
 
 	@Column(name = "result_min_health_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate resultMinHealthDate;
 
 	@Column(name = "appeal_rus_health")
 	private Boolean appealRusHealth;
 
 	@Column(name = "appeal_rus_health_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate appealRusHealthDate;
 
 	@Column(name = "result_rus_health_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate resultRusHealthDate;
 	
 	@Column(name = "appeal_procurator")
@@ -57,15 +66,21 @@ public class LegalSupport {
 
 
 	@Column(name = "appeal_procurator_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate appealProcuratorHealthDate;
 
 	@Column(name = "result_procurator_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate resultProcuratorHealthDate;
 	
 	@Column(name = "appeal_court")
 	private Boolean appealCourt;
 
 	@Column(name = "appeal_court_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate appealCourtDate;
 
 	@Size(max = 2048)
@@ -73,6 +88,8 @@ public class LegalSupport {
 	private String baseCourt;
 
 	@Column(name = "planned_court_date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate plannedCourtDate;
 
 	@Column(name = "count_court")
