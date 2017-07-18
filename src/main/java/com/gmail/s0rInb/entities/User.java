@@ -1,11 +1,18 @@
 package com.gmail.s0rInb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
+@Getter
+@Setter
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,27 +28,30 @@ public class User {
 	@Column(name="last_name", nullable = false)
 	private String lastName;
 
-	public Long getId() {
-		return id;
-	}
+	@Size(max = 100)
+	@NotNull
+	@Column(name="username", nullable = false)
+	private String username;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@Size(max = 100)
+	@NotNull
+	@Column(name="password", nullable = false)
+	private String password;
 
-	public String getFirstName() {
-		return firstName;
-	}
+	@Column
+	@Size(max = 256)
+	@JsonIgnore
+	private String salt;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+	@Column
+	@Size(max = 256)
+	@JsonIgnore
+	private String hash;
+//
+	@Column(name = "password_inputs")
+	@JsonIgnore
+	private Integer passwordInputs;
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = {CascadeType.ALL})
+	private Set<UserValue> userValues;
 }

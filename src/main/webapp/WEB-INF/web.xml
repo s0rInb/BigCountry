@@ -9,49 +9,50 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/root-context.xml</param-value>
     </context-param>
-     <!--Фильтры Spring MVC-->
-    <!--<filter>-->
-        <!--<filter-name>CharacterEncodingFilter</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
-        <!--<init-param>-->
-            <!--<param-name>encoding</param-name>-->
-            <!--<param-value>UTF-8</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>forceEncoding</param-name>-->
-            <!--<param-value>true</param-value>-->
-        <!--</init-param>-->
-    <!--</filter>-->
-    <!--<filter>-->
-        <!--<filter-name>HttpMethodFilter</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter>-->
-        <!--<filter-name>Spring OpenEntityManagerInViewFilter</filter-name>-->
-        <!--<filter-class>-->
-            <!--org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter-->
-        <!--</filter-class>-->
-    <!--</filter>-->
 
-    <!--<filter-mapping>-->
-        <!--<filter-name>CharacterEncodingFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>HttpMethodFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>Spring OpenEntityManagerInViewFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+     <!--Фильтры Spring MVC-->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>HttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
+        <filter-class>
+            org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+        </filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>HttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!-- Создание контейнера Spring, разделяемого всеми сервлетами
     и фильтрами -->
-    <!--<listener>-->
-        <!--<listener-class>-->
-            <!--org.springframework.web.context.ContextLoaderListener-->
-        <!--</listener-class>-->
-    <!--</listener>-->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
     <!-- Обработка запросов приложения -->
     <servlet>
         <servlet-name>webApp</servlet-name>
@@ -60,6 +61,10 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>WEB-INF/root-context.xml</param-value>
         </init-param>
+        <!--<init-param>-->
+            <!--<param-name>contextConfigLocation</param-name>-->
+            <!--<param-value>WEB-INF/root-context.xml WEB-INF/security.xml</param-value>-->
+        <!--</init-param>-->
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -67,15 +72,23 @@
         <servlet-name>webApp</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+    <!--<filter>-->
+        <!--<filter-name>springSecurityFilterChain</filter-name>-->
+        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>springSecurityFilterChain</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
     <!-- Конфигурация Spring Security -->
-    <!--    <filter>
-            <filter-name>springSecurityFilterChain</filter-name>
-            <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        </filter>
-        <filter-mapping>
-            <filter-name>springSecurityFilterChain</filter-name>
-            <url-pattern>/*</url-pattern>
-        </filter-mapping>-->
+        <!--<filter>-->
+            <!--<filter-name>springSecurityFilterChain</filter-name>-->
+            <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+        <!--</filter>-->
+        <!--<filter-mapping>-->
+            <!--<filter-name>springSecurityFilterChain</filter-name>-->
+            <!--<url-pattern>/*</url-pattern>-->
+        <!--</filter-mapping>-->
     <!--
         <servlet>
             <servlet-name>Test Application</servlet-name>

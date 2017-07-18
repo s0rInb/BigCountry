@@ -19,4 +19,5 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     @Query("select new map(u.id as id) from User u")
     List<User> findList();
 
+    User findByUsername(String username);
 }

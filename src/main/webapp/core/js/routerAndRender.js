@@ -45,22 +45,46 @@ function renderPage(router) {
         renderTpl(router.path[0],router.args.id)
 }
 function renderTpl(tplName, elementID, callback) {
-	$.getJSON('/api/' + tplName + (elementID!=null?('/' + elementID):''), function (model) {
-		model = JSOG.decode(model);
+	if(tplName!="login") {
+		$.getJSON('/api/' + tplName + (elementID != null ? ('/' + elementID) : ''), function (model) {
+			model = JSOG.decode(model);
+			$.ajax({
+				url: '/tpl/' + tplName + '.dust',
+				success: function (data) {
+					dust.renderSource(data, model, function (err, out) {
+						$('#page').empty();
+						$('#page').append(out);
+						if (callback) {
+							callback();
+						}
+					});
+					$("form").submit(function (event) {
+						console.log("Handler for .submit() called.");
+						event.preventDefault();
+						submitForm(tplName, elementID, false);
+					});
+				},
+				cache: false
+			});
+			$.getScript('/js/' + tplName + '.js', function () {
+				initForm(tplName, elementID);
+			});
+		});
+	} else{
 		$.ajax({
 			url: '/tpl/' + tplName + '.dust',
 			success: function (data) {
-				dust.renderSource(data, model, function (err, out) {
+				dust.renderSource(data, null, function (err, out) {
 					$('#page').empty();
 					$('#page').append(out);
 					if (callback) {
 						callback();
 					}
 				});
-				$( "form" ).submit(function( event ) {
-					console.log( "Handler for .submit() called." );
+				$("form").submit(function (event) {
+					console.log("Handler for .submit() called.");
 					event.preventDefault();
-					submitForm(tplName,elementID,false);
+					submitForm(tplName, null, false);
 				});
 			},
 			cache: false
@@ -68,6 +92,6 @@ function renderTpl(tplName, elementID, callback) {
 		$.getScript('/js/' + tplName + '.js', function () {
 			initForm(tplName, elementID);
 		});
-	});
+	}
 
 };

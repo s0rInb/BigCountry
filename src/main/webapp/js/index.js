@@ -13,12 +13,14 @@ function submitForm(entityClass, entityId, getDisabled) {
 		contentType: 'application/json',
 		mimeType: 'application/json',
 		success: function (data, status, jqXHR) {
+			if(window.location.hash!="login"){
 			// generalSettings.jQuery.defaultAjaxSuccessHandler(data, status, jqXHR);
 			$('#form-' + entityClass + entityId).trigger("submitted");
 			window.location.hash = data.entityClass+"?id="+data.entity.id;
 			submittedResponse = data;
 			// if (entityClass === "task")
 			// 	getCountOverdueTasksForStaff();
+		}
 		}
 	});
 	return submittedResponse;
