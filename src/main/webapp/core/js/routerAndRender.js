@@ -35,7 +35,6 @@ function Router() {
 	} else {
 		router["path"] = ["login"];
 	}
-	debugger;
 	return router;
 }
 function renderHeader(router) {

@@ -91,6 +91,18 @@
                        value="{entity.medAgentFullName}"
                        name="medAgentFullName">
             </div>
+
+            <div class="form-group form-group-sm" id="files-patient">
+                <div class="col-sm-3">
+                    <div id="infoConsent-patient"
+                         uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+                </div>
+                <div class="col-sm-9" id="files-container-patient">
+                    <div hidden id="file-loading-error-patient"
+                         style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+                </div>
+            </div>
+
         <button type="submit" class="btn btn-success">Сохранить</button>
 
         </div>
@@ -240,6 +252,18 @@
                     </option>
                 </select>
             </div>
+
+            <div class="form-group form-group-sm" id="files-consultation">
+                <div class="col-sm-3">
+                    <div id="infoConsent-consultation"
+                         uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+                </div>
+                <div class="col-sm-9" id="files-container-consultation">
+                    <div hidden id="file-loading-error-consultation"
+                         style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-success">Сохранить</button>
         </div>
         <div class="block-main">
@@ -418,21 +442,33 @@
                        value="{entity.legalSupport.legalSupportResultText}"
                           name="legalSupport.legalSupportResultText">{entity.legalSupport.legalSupportResultText}</textarea>
             </div>
+
+            <div class="form-group form-group-sm" id="files-legalSupport">
+                <div class="col-sm-3">
+                    <div id="infoConsent-legalSupport"
+                         uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+                </div>
+                <div class="col-sm-9" id="files-container-legalSupport">
+                    <div hidden id="file-loading-error-legalSupport"
+                         style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-success">Сохранить</button>
         </div>
-        <div class="">
-            <h1>Загрузите файлы</h1>
-        <div class="form-group form-group-sm" id="files">
-            <div class="col-sm-3">
-                <div id="infoConsent"
-                     uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
-            </div>
-            <div class="col-sm-9" id="files-container">
-                <div hidden id="file-loading-error"
-                     style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
-            </div>
-        </div>
-        </div>
+        {!<div class="">!}
+            {!<h1>Загрузите файлы</h1>!}
+        {!<div class="form-group form-group-sm" id="files">!}
+            {!<div class="col-sm-3">!}
+                {!<div id="infoConsent"!}
+                     {!uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>!}
+            {!</div>!}
+            {!<div class="col-sm-9" id="files-container">!}
+                {!<div hidden id="file-loading-error"!}
+                     {!style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>!}
+            {!</div>!}
+        {!</div>!}
+        {!</div>!}
     </form>
 </div>
 

@@ -150,6 +150,16 @@ public class AppController {
 		response.setEntityClass("fileLinks");
 		return response;
 	}
+	@RequestMapping(method = RequestMethod.POST, value = "/deleteFileLinks/{id}", produces = "application/json")
+	@ResponseBody
+	public Response deleteFileLinks(@PathVariable("id") Long id) throws IOException {
+		FileLink one = fileRepository.findOne(id);
+		fileRepository.delete(id);
+		Files.delete(Paths.get(one.getPath()));
+		Response response = new Response();
+		response.setEntityClass("fileLinks");
+		return response;
+	}
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST, consumes = {"multipart/form-data"},produces = "application/json")
 	@ResponseBody
 	public HttpStatus uploadFile(@RequestParam("patientId") Long patientId,
