@@ -23,7 +23,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 //			"192.168.14.24",
 //			"34.249.149.28",
 //			"192.168.19.21"
-			"localhost:9292"
+//			"localhost:9292"
 	);
 
 	@Autowired

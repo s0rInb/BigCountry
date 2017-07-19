@@ -4,6 +4,7 @@
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
        http://www.springframework.org/schema/tx
@@ -11,7 +12,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
        http://www.springframework.org/schema/data/jpa
-       http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd">
+       http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
        <!--xmlns:jee="http://www.springframework.org/schema/jee"-->
        <!--xmlns:context="http://www.springframework.org/schema/context"-->
        <!--xmlns:aop="http://www.springframework.org/schema/aop"-->
@@ -28,13 +29,13 @@
        <!--default-lazy-init="false">-->
 
     <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/IDP" />-->
-
+    <context:property-placeholder location="WEB-INF/application.properties"/>
     <bean id="dataSource"
          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="org.postgresql.Driver" />
     <property name="url" value="jdbc:postgresql://localhost:5432/BigCountry" />
-    <property name="username" value="Leporidae" />
-    <property name="password" value="19921997" />
+    <property name="username" value="${dbUsername}" />
+    <property name="password" value="${dbPassword}" />
 
     </bean>
 
