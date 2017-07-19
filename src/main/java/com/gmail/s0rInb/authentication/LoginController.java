@@ -1,6 +1,7 @@
 package com.gmail.s0rInb.authentication;
 
 import com.gmail.s0rInb.controller.Response;
+import com.gmail.s0rInb.entities.Patient;
 import com.gmail.s0rInb.entities.User;
 import com.gmail.s0rInb.entities.UserSession;
 import com.gmail.s0rInb.repository.UserSessionRepository;
@@ -8,10 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -89,8 +87,7 @@ public class LoginController {
     @ResponseBody
     public Response doLogin(HttpServletRequest request,
 							HttpServletResponse httpResponse,
-							@RequestParam(value = "login", required = true) String login,
-							@RequestParam(value = "password", required = true) String password) {
+							@RequestBody final User userFromFront) {
 
         Response response = new Response();
         UserSession userSession = null;
@@ -117,10 +114,10 @@ public class LoginController {
             }
         }
         //если сессии не было и не было кук - аутентифицируем
-        if ((!login.equals("") && !login.equals("undefined")) && (!password.equals("") && !password.equals("undefined"))) {
+        if ((!userFromFront.getUsername().equals("") && !userFromFront.getUsername().equals("undefined")) && (!userFromFront.getPassword().equals("") && !userFromFront.getPassword().equals("undefined"))) {
             try {
                // logger.info("login: " + login + ", from IP: " + getIp(request) + ", user-agent: " + request.getHeader("user-agent"));
-                user = authenticationService.authenticate(login, password);
+                user = authenticationService.authenticate(userFromFront.getUsername(), userFromFront.getPassword());
 //				UserValue userValues = userValueService.findByUserIdAndUserValueName(user.getId(), "locale");
 //				if (userValues == null) {
 //					UserValue userValue = new UserValue();

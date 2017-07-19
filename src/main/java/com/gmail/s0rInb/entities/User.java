@@ -30,20 +30,20 @@ public class User {
 
 	@Size(max = 100)
 	@NotNull
-	@Column(name="username", nullable = false)
+	@Column(name="username")
 	private String username;
 
 	@Size(max = 100)
 	@NotNull
-	@Column(name="password", nullable = false)
+	@Column(name="password")
 	private String password;
 
-	@Column
+	@Column(nullable = false)
 	@Size(max = 256)
 	@JsonIgnore
 	private String salt;
 
-	@Column
+	@Column(nullable = false)
 	@Size(max = 256)
 	@JsonIgnore
 	private String hash;
