@@ -33,8 +33,9 @@ function Router() {
 			});
 		}
 	} else {
-		router["path"] = ["main"];
+		router["path"] = ["login"];
 	}
+	debugger;
 	return router;
 }
 function renderHeader(router) {
