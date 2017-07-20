@@ -39,6 +39,7 @@ function Router() {
 }
 function renderHeader(router) {
 	renderPage(router);
+	initIndex();
 }
 
 function renderPage(router) {

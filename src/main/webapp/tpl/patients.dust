@@ -1,4 +1,5 @@
-<div><button type="button" class="btn btn-default btn-lg" onclick="window.location.hash='patient'">Новый пациент</button>
+<button type="button" class="btn btn-default btn-lg" onclick="window.location.hash='patient'">Новый пациент</button>
+<div class="scroll">
 <table class="table">
     <thead>
     <th>Номер строки</th>

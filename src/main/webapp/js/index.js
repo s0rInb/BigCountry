@@ -1,5 +1,11 @@
 $.fn.select2.defaults.set( "theme", "bootstrap" );
 
+function initIndex(){
+    $('#logOut').click(function () {
+        $.post('api/logout');
+    });
+}
+
 function submitForm(entityClass, entityId, getDisabled) {
 	var formData = form2js(entityClass+'-'+(entityId!=null?entityId:''), '.', true, processSelect2MultiSelect, false, getDisabled);
 	var json = JSON.stringify(formData, null, '\t');
