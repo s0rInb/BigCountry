@@ -27,6 +27,10 @@
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/webapp/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
     <!-- Localization of hibernate messages during validation!-->
     <!--<bean id="validationMessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">-->
         <!--<property name="basename" value="classpath:localization" />-->

@@ -2,7 +2,13 @@ $.fn.select2.defaults.set( "theme", "bootstrap" );
 
 function initIndex(){
     $('#logOut').click(function () {
-        $.post('api/logout');
+        $.get('api/logout');
+        window.location.hash = "";
+    });
+
+    $(".nav a").on("click", function(){
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
     });
 }
 
@@ -22,8 +28,12 @@ function submitForm(entityClass, entityId, getDisabled) {
 			if(window.location.hash!="login"){
 			// generalSettings.jQuery.defaultAjaxSuccessHandler(data, status, jqXHR);
 			$('#form-' + entityClass + entityId).trigger("submitted");
-			window.location.hash = data.entityClass+"?id="+data.entity.id;
-			submittedResponse = data;
+			if(!(data.entityClass == 'userSession' && data.entity.id == undefined)) {
+                window.location.hash = data.entityClass + "?id=" + data.entity.id;
+                submittedResponse = data;
+            } else {
+                window.location.hash = "patients";
+			}
 			// if (entityClass === "task")
 			// 	getCountOverdueTasksForStaff();
 		}

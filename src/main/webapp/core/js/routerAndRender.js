@@ -2,12 +2,17 @@ $(function() {
 	renderHeader(Router());
 	window.onhashchange = function () {
 		renderPage(Router());
-	}
-}).ajaxError(function (event, jqXHR) {
+	};
+})/*.ajaxError(function (event, jqXHR) {
 	if (jqXHR.responseJSON && jqXHR.responseJSON.status == 401) {
 		//Тут ловишь ajax error'ы централизовано
 	}
-});
+    debugger;
+    if (jqXHR.responseJSON && jqXHR.responseJSON.status == 403) {
+		debugger;
+        location.hash="/";
+    }
+});*/
 
 function Router() {
 	var router = {};
@@ -70,7 +75,10 @@ function renderTpl(tplName, elementID, callback) {
 			$.getScript('/js/' + tplName + '.js', function () {
 				initForm(tplName, elementID);
 			});
-		});
+		}).error(function(data) {
+			if (data.status==403) {
+            location.hash="";
+        }});
 	} else{
 		$.ajax({
 			url: '/tpl/' + tplName + '.dust',

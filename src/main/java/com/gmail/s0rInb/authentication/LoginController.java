@@ -1,7 +1,6 @@
 package com.gmail.s0rInb.authentication;
 
 import com.gmail.s0rInb.controller.Response;
-import com.gmail.s0rInb.entities.Patient;
 import com.gmail.s0rInb.entities.User;
 import com.gmail.s0rInb.entities.UserSession;
 import com.gmail.s0rInb.repository.UserSessionRepository;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Collections;
 import java.util.Date;
 
 
@@ -164,7 +162,7 @@ public class LoginController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "api/logout")
+    @RequestMapping(method = RequestMethod.GET, value = "/logout")
     public ModelAndView doLogout(HttpServletRequest request,
 								 HttpServletResponse httpResponse){
         removeCookie(request,httpResponse);
