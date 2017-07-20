@@ -71,10 +71,12 @@ function renderTpl(tplName, elementID, callback) {
 					});
 				},
 				cache: false
-			});
-			$.getScript('/js/' + tplName + '.js', function () {
-				initForm(tplName, elementID);
-			});
+			}).done(function () {
+                $.getScript('/js/' + tplName + '.js', function () {
+                    initForm(tplName, elementID);
+                });
+            });
+            $('nav').show();
 		}).error(function(data) {
 			if (data.status==403) {
             location.hash="";
@@ -89,7 +91,7 @@ function renderTpl(tplName, elementID, callback) {
 					if (callback) {
 						callback();
 					}
-				});
+                });
 				$("form").submit(function (event) {
 					console.log("Handler for .submit() called.");
 					event.preventDefault();
@@ -97,10 +99,11 @@ function renderTpl(tplName, elementID, callback) {
 				});
 			},
 			cache: false
-		});
-		$.getScript('/js/' + tplName + '.js', function () {
-			initForm(tplName, elementID);
-		});
-	}
-
+        }).done(function () {
+            $.getScript('/js/' + tplName + '.js', function () {
+                initForm(tplName, elementID);
+            });
+        });
+        $('nav').hide();
+    }
 };

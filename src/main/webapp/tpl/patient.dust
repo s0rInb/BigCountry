@@ -5,21 +5,6 @@
         <div class="block-main">
             <h1>Пациент</h1>
             <input hidden name="id" value="{entity.id}">
-            {!<div class="col-sm-12">!}
-                {!<div class="form-group form-group-sm" id="corpresumes">!}
-                    {!<div class="col-sm-6">!}
-                        {!<div id="corpresumeuploader"!}
-                             {!uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> sdbsd'>!}
-
-                        {!</div>!}
-                    {!</div>!}
-                    {!<div class="col-sm-6" id="corpresumes-container">!}
-                        {!<div hidden id="corpresume-loading-error"!}
-                             {!style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">!}
-                        {!</div>!}
-                    {!</div>!}
-                {!</div>!}
-            {!</div>!}
             <h3>Общая информация</h3>
             <div class="form-group col-md-4">
                 <label for="surname">Фамилия</label>
@@ -33,6 +18,18 @@
                 <label for="patronymic">Отчество</label>
                 <input class="form-control" id="patronymic" placeholder="Отчество" value="{entity.patronymic}"
                        name="patronymic">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="birthday">Дата рождения</label>
+                <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}" name="birthday">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="age">Возраст</label>
+                <input class="form-control" id="age" placeholder="Возраст" value="{entity.age}" name="age">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="sex">Пол</label>
+                <input class="form-control" id="sex" placeholder="Отчество" value="{entity.sex}" name="sex">
             </div>
             <div class="form-group col-md-4">
                 <label for="phone">Телефон</label>
@@ -91,8 +88,32 @@
                        value="{entity.medAgentFullName}"
                        name="medAgentFullName">
             </div>
+            <div class="form-group col-md-3">
+                <label for="infoConsent">Информированное согласие получено</label>
+                <input class="form-control" id="infoConsent" placeholder="Информированное согласие получено"
+                       value="{entity.infoConsent}"
+                       name="infoConsent">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="infoConsentDate">Дата информированного согласия</label>
+                <input class="form-control" id="infoConsentDate" placeholder="Дата информированного согласия"
+                       value="{entity.infoConsentDate}"
+                       name="infoConsentDate">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="expertCenter">Экспертный центр</label>
+                <select class="form-control" name="expertCenter.id" id="expertCenter">
+                    <option value="{entity.expertCenter.id}" selected="selected">{entity.expertCenter.name}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="doctorExpertCenter">Врач из экспертного центра</label>
+                <select class="form-control" name="doctorExpertCenter.id" id="doctorExpertCenter" multiple="multiple">
+                    <option value="{entity.doctorExpertCenter.id}" selected="selected">{entity.doctorExpertCenter.name}</option>
+                </select>
+            </div>
 
-            <div class="form-group form-group-sm" id="files-patient">
+            <div class="form-group form-group-sm col-sm-12" id="files-patient">
                 <div class="col-sm-3">
                     <div id="infoConsent-patient"
                          uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
@@ -253,7 +274,7 @@
                 </select>
             </div>
 
-            <div class="form-group form-group-sm" id="files-consultation">
+            <div class="form-group form-group-sm col-sm-12" id="files-consultation">
                 <div class="col-sm-3">
                     <div id="infoConsent-consultation"
                          uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
@@ -443,7 +464,7 @@
                           name="legalSupport.legalSupportResultText">{entity.legalSupport.legalSupportResultText}</textarea>
             </div>
 
-            <div class="form-group form-group-sm" id="files-legalSupport">
+            <div class="form-group form-group-sm col-sm-12" id="files-legalSupport">
                 <div class="col-sm-3">
                     <div id="infoConsent-legalSupport"
                          uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
@@ -456,21 +477,9 @@
 
             <button type="submit" class="btn btn-success">Сохранить</button>
         </div>
-        {!<div class="">!}
-            {!<h1>Загрузите файлы</h1>!}
-        {!<div class="form-group form-group-sm" id="files">!}
-            {!<div class="col-sm-3">!}
-                {!<div id="infoConsent"!}
-                     {!uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>!}
-            {!</div>!}
-            {!<div class="col-sm-9" id="files-container">!}
-                {!<div hidden id="file-loading-error"!}
-                     {!style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>!}
-            {!</div>!}
-        {!</div>!}
-        {!</div>!}
     </form>
 </div>
 
 <button class="btn btn-danger" onclick="deletePatient({entity.id})">Удалить карту пациента</button>
+<button class="btn btn-warning right" onclick="beckToPatients()">Выйти из карточки пациента</button>
 

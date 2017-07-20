@@ -6,6 +6,8 @@ function initForm(entityClass, entityId) {
     $("#consultationConsultationType").select2(returnSelect2options("/api/consultationType"));
     $("#consultationWhoSentToConsultation").select2(returnSelect2options("/api/whoSentToCons"));
     $("#legalSupportWhoLegalSupport").select2(returnSelect2options("/api/whoLegalSupport"));
+    $("#expertCenter").select2(returnSelect2options("/api/expertCenter"));
+    $("#doctorExpertCenter").select2(returnSelect2options("/api/doctorExpertCenter"));
     $("#hotLineCallDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#consultationFullDocumentDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#consultationFullDocumentSendDate").datepicker({dateFormat: 'yy-mm-dd'});
@@ -224,4 +226,8 @@ function deletePatient(entityId) {
             window.location.hash = "patients"
         }
     })
+}
+
+function beckToPatients () {
+    window.location.hash = "patients"
 }
