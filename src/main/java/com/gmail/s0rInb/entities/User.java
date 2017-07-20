@@ -36,6 +36,7 @@ public class User {
 	@Size(max = 100)
 	@NotNull
 	@Column(name="password")
+	@Transient
 	private String password;
 
 	@Column(nullable = false)

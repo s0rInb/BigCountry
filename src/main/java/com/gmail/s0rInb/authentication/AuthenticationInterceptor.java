@@ -28,14 +28,12 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	private UserSessionRepository userSessionRepository;
-
+	@Autowired
+	private ScopeComponent scopeComponent;
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 							 HttpServletResponse response, Object handler) throws Exception {
 		String uri = request.getRequestURI();
-//		if (request.getRequestURI().equals("/api/getTreeTableOperatingIndexesByCompanyWithOutSession")) {
-//			return true;
-//		}
 
 		String referer = Optional.ofNullable(request.getHeader(HTTP_REFERER)).orElse("");
 		if (AVAILVABLE_REFERERS_WHITHOUT_CHECK.stream().anyMatch(referer::contains)) {

@@ -35,10 +35,13 @@ import java.util.List;
 import static org.hibernate.internal.util.io.StreamCopier.BUFFER_SIZE;
 
 @Controller
-public class AppController {
+public class AppController extends BaseController{
     final Logger logger = LoggerFactory.getLogger(AppController.class);
 	private final static String VIDEO_UPLOAD = System.getProperty("videoUploadDir");
+	@Override
+	protected void init() {
 
+	}
 	@Autowired
     UserService userService;
 	@Autowired
@@ -101,8 +104,9 @@ public class AppController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/patients", produces = "application/json")
     @ResponseBody
-    public Response getUsers(HttpServletRequest request)
+    public Response getPatients(HttpServletRequest request)
             throws IOException{
+    	logger.info("getPatients");
         List<Patient> result = patientService.findAll();
         Response response = new Response();
         response.setData(result);
@@ -111,6 +115,7 @@ public class AppController {
     @RequestMapping(method = RequestMethod.GET, value = "/patient/{id}", produces = "application/json")
     @ResponseBody
     public Response getPatient(@PathVariable("id") Long id) {
+		logger.info("getPatient");
         Patient result = patientService.findById(id);
         Response response = new Response();
         response.setEntity(result);
@@ -120,6 +125,7 @@ public class AppController {
     @RequestMapping(method = RequestMethod.GET, value = "/patient", produces = "application/json")
     @ResponseBody
     public Response getPatientNull() {
+		logger.info("getPatientNull");
         Patient result = patientService.findById(0L);
         Response response = new Response();
         response.setEntity(result);
@@ -129,6 +135,7 @@ public class AppController {
     @RequestMapping(method = RequestMethod.POST, value = "patientUpdate", produces = "application/json")
     @ResponseBody
     public Response updatePatient(@RequestBody final Patient patient){
+		logger.info("updatePatient");
         Response response = new Response();
         Patient patient1 = patientService.save(patient);
         response.setEntity(patient1);
@@ -138,12 +145,14 @@ public class AppController {
     @RequestMapping(method = RequestMethod.GET, value = "patientDelete/{id}", produces = "application/json")
     @ResponseBody
     public HttpStatus deletePatient(@PathVariable("id") Long id) {
+		logger.info("deletePatient");
         patientService.delete(patientService.findById(id));
         return HttpStatus.OK;
     }
 	@RequestMapping(method = RequestMethod.GET, value = "/fileLinks/{id}", produces = "application/json")
 	@ResponseBody
 	public Response getFileLinks(@PathVariable("id") Long id) {
+		logger.info("getFileLinks");
 		List<FileLink> result = fileRepository.findAllByPatientId(id);
 		Response response = new Response();
 		response.setEntity(result);
@@ -153,6 +162,7 @@ public class AppController {
 	@RequestMapping(method = RequestMethod.POST, value = "/deleteFileLinks/{id}", produces = "application/json")
 	@ResponseBody
 	public Response deleteFileLinks(@PathVariable("id") Long id) throws IOException {
+		logger.info("deleteFileLinks");
 		FileLink one = fileRepository.findOne(id);
 		fileRepository.delete(id);
 		Files.delete(Paths.get(one.getPath()));
@@ -166,7 +176,7 @@ public class AppController {
 											@RequestParam("fileType") String fileType,
 											@RequestParam("name") String name,
 											@RequestPart("file") MultipartFile file) {
-
+		logger.info("uploadFile");
 		if (file.isEmpty()) {
 			logger.info("file is empty: HttpStatus.NO_CONTENT");
 			return HttpStatus.NO_CONTENT;
@@ -205,6 +215,7 @@ public class AppController {
 	}
 	@RequestMapping(value = "getFile",method = RequestMethod.GET)
 	public void getFile(@RequestParam("id") Long id,HttpServletResponse response, HttpServletRequest request) throws IOException {
+		logger.info("getFile");
 		FileLink fileLink = fileRepository.findOne(id);
 		FileSystemResource fileSystemResource = new FileSystemResource(fileLink.getPath());
 		File downloadFile = new File(fileSystemResource.getPath());

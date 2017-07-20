@@ -1,10 +1,13 @@
 package com.gmail.s0rInb.authentication;
 
+import com.gmail.s0rInb.controller.AppController;
 import com.gmail.s0rInb.controller.Response;
 import com.gmail.s0rInb.entities.User;
 import com.gmail.s0rInb.entities.UserSession;
 import com.gmail.s0rInb.repository.UserSessionRepository;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
@@ -23,7 +26,7 @@ import java.util.Date;
 
 @Controller
 public class LoginController {
-//    final Logger logger = LogManager.getLogger("Login");
+	final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private AuthenticationService authenticationService;
     @Autowired
@@ -86,7 +89,7 @@ public class LoginController {
     public Response doLogin(HttpServletRequest request,
 							HttpServletResponse httpResponse,
 							@RequestBody final User userFromFront) {
-
+		logger.info("doLogin");
         Response response = new Response();
         UserSession userSession = null;
         User user;
