@@ -1,5 +1,3 @@
-
-
 <div id="patient-{entity.id}">
     <form>
         <div class="block-main">
@@ -21,16 +19,28 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="birthday">Дата рождения</label>
-                <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}" name="birthday">
+                <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}"
+                       name="birthday">
             </div>
             <div class="form-group col-md-4">
                 <label for="age">Возраст</label>
-                <input class="form-control" id="age" placeholder="Возраст" value="{entity.age}" name="age">
+                <input class="form-control" id="age" readonly placeholder="Возраст" value="{entity.age}" name="age">
             </div>
             <div class="form-group col-md-4">
                 <label for="sex">Пол</label>
-                <input class="form-control" id="sex" placeholder="Отчество" value="{entity.sex}" name="sex">
+                <select class="form-control" name="sex"
+                        id="sex">
+                    <option value="male" {?entity.sex}
+                            selected="selected"{/entity.sex}>
+                        Мужской
+                    </option>
+                    <option value="female" {?entity.sex}{:else}
+                            selected="selected"{/entity.sex}>
+                        Женский
+                    </option>
+                </select>
             </div>
+
             <div class="form-group col-md-4">
                 <label for="phone">Телефон</label>
                 <input class="form-control" id="phone" placeholder="Телефон" value="{entity.phone}"
@@ -83,16 +93,17 @@
                        name="contactInfo">
             </div>
             <div class="form-group col-md-3">
-                <label for="medAgentFullName">Медицинский представитель</label>
-                <input class="form-control" id="medAgentFullName" placeholder="Медицинский представитель"
-                       value="{entity.medAgentFullName}"
-                       name="medAgentFullName">
-            </div>
-            <div class="form-group col-md-3">
                 <label for="infoConsent">Информированное согласие получено</label>
-                <input class="form-control" id="infoConsent" placeholder="Информированное согласие получено"
-                       value="{entity.infoConsent}"
-                       name="infoConsent">
+                <select class="form-control" name="infoConsent" id="infoConsent">
+                    <option value="true" {?entity.infoConsent}
+                            selected="selected"{/entity.infoConsent}>
+                        Да
+                    </option>
+                    <option value="false" {?entity.infoConsent}{:else}
+                            selected="selected"{/entity.infoConsent}>
+                        Нет
+                    </option>
+                </select>
             </div>
             <div class="form-group col-md-3">
                 <label for="infoConsentDate">Дата информированного согласия</label>
@@ -109,7 +120,8 @@
             <div class="form-group col-md-3">
                 <label for="doctorExpertCenter">Врач из экспертного центра</label>
                 <select class="form-control" name="doctorExpertCenter.id" id="doctorExpertCenter" multiple="multiple">
-                    <option value="{entity.doctorExpertCenter.id}" selected="selected">{entity.doctorExpertCenter.name}</option>
+                    <option value="{entity.doctorExpertCenter.id}"
+                            selected="selected">{entity.doctorExpertCenter.name}</option>
                 </select>
             </div>
 
@@ -124,7 +136,7 @@
                 </div>
             </div>
 
-        <button type="submit" class="btn btn-success">Сохранить</button>
+            <button type="submit" class="btn btn-success">Сохранить</button>
 
         </div>
         <div class="block-main">
@@ -227,7 +239,7 @@
             </div>
             <h3>Врачебная комиссия</h3>
             <div class="form-group col-md-3">
-                <label for="consultationMedicalCommission">Назначение врачебной комиссии</label>
+                <label for="consultationMedicalCommission">Назначена ли врачебная комиссия</label>
                 <select class="form-control" name="consultation.medicalCommission" id="consultationMedicalCommission">
                     <option value="true" {?entity.consultation.medicalCommission}
                             selected="selected"{/entity.consultation.medicalCommission}>
@@ -247,17 +259,9 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="consultationMedicalCommissionResult">Заключение врачебной комиссии</label>
-                <select class="form-control" name="consultation.medicalCommissionResult"
-                        id="consultationMedicalCommissionResult">
-                    <option value="true" {?entity.consultation.medicalCommissionResult}
-                            selected="selected"{/entity.consultation.medicalCommissionResult}>
-                        Подтверждено
-                    </option>
-                    <option value="false" {?entity.consultation.medicalCommissionResult}{:else}
-                            selected="selected"{/entity.consultation.medicalCommissionResult}>
-                        Отклонено
-                    </option>
-                </select>
+                <input class="form-control" id="consultationMedicalCommissionResult" placeholder="Рекомендованное МНН"
+                       value="{entity.consultation.medicalCommissionResult}"
+                       name="consultation.medicalCommissionResult">
             </div>
             <div class="form-group col-md-3">
                 <label for="consultationMedicalCommissionConfirm">Подтверждение врачебной комиссии</label>
@@ -334,7 +338,8 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportResultMinHealthDate">Дата получения ответа из Минздрава</label>
-                <input class="form-control" id="legalSupportResultMinHealthDate" placeholder="Дата получения ответа из Минздрава"
+                <input class="form-control" id="legalSupportResultMinHealthDate"
+                       placeholder="Дата получения ответа из Минздрава"
                        value="{entity.legalSupport.resultMinHealthDate}"
                        name="legalSupport.resultMinHealthDate">
             </div>
@@ -382,13 +387,15 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealProcuratorHealthDate">Дата обращения в Прокуратуру</label>
-                <input class="form-control" id="legalSupportAppealProcuratorHealthDate" placeholder="Дата врачебной комиссии"
+                <input class="form-control" id="legalSupportAppealProcuratorHealthDate"
+                       placeholder="Дата врачебной комиссии"
                        value="{entity.legalSupport.appealProcuratorHealthDate}"
                        name="legalSupport.appealProcuratorHealthDate">
             </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportResultProcuratorHealthDate">Дата получения ответа из Прокуратуры</label>
-                <input class="form-control" id="legalSupportResultProcuratorHealthDate" placeholder="Дата врачебной комиссии"
+                <input class="form-control" id="legalSupportResultProcuratorHealthDate"
+                       placeholder="Дата врачебной комиссии"
                        value="{entity.legalSupport.resultProcuratorHealthDate}"
                        name="legalSupport.resultProcuratorHealthDate">
             </div>
@@ -451,7 +458,8 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportLegalSupportResult">Итог обращения</label>
-                <select class="form-control" name="legalSupport.legalSupportResult.id" id="legalSupportLegalSupportResult">
+                <select class="form-control" name="legalSupport.legalSupportResult.id"
+                        id="legalSupportLegalSupportResult">
                     <option value="{entity.legalSupport.legalSupportResult.id}" selected="selected">
                         {entity.legalSupport.legalSupportResult.name}
                     </option>
@@ -460,7 +468,7 @@
             <div class="form-group col-md-12">
                 <label for="legalSupportDrug">Итог обращения</label>
                 <textarea class="form-control" id="legalSupportDrug" placeholder="Итог обращения"
-                       value="{entity.legalSupport.legalSupportResultText}"
+                          value="{entity.legalSupport.legalSupportResultText}"
                           name="legalSupport.legalSupportResultText">{entity.legalSupport.legalSupportResultText}</textarea>
             </div>
 

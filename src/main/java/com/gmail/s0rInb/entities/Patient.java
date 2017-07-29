@@ -17,6 +17,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Set;
 
 /**
@@ -53,6 +54,8 @@ public class Patient {
 	@Column(name = "sex")
 	private String sex;
 
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	@Column(name = "birthday")
 	private LocalDate birthday;
 
@@ -134,6 +137,6 @@ public class Patient {
 		this.patientId = getPatientId();
 	}
 	public Integer getAge() {
-		return getBirthday()!=null?(LocalDate.ofEpochDay(LocalDate.now().toEpochDay()-getBirthday().toEpochDay()).getYear()):null;
+		return getBirthday()!=null?(Period.between(getBirthday(),LocalDate.now()).getYears()):null;
 	}
 }

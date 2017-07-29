@@ -12,7 +12,6 @@ function initForm(entityClass, entityId) {
     $("#consultationFullDocumentDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#consultationFullDocumentSendDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#consultationConsultationDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#consultationAdditionalResearch").datepicker({dateFormat: 'yy-mm-dd'});
     $("#consultationConclusionDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#consultationSendRegionDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#consultationMedicalCommissionDate").datepicker({dateFormat: 'yy-mm-dd'});
@@ -24,6 +23,8 @@ function initForm(entityClass, entityId) {
     $("#legalSupportResultProcuratorHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#legalSupportAppealCourtDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#legalSupportPlannedCourtDate").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#birthday").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#infoConsentDate").datepicker({dateFormat: 'yy-mm-dd'});
     var infoConsentPatient = $("#infoConsent-patient");
     infoConsentPatient.uploadFile({
         url: "/api/uploadFile",
@@ -215,6 +216,9 @@ function initForm(entityClass, entityId) {
             })
         }
     })
+	$("#birthday").change(function (){var ageDifMs = Date.now() - new Date($("#birthday").val()).getTime();
+		var ageDate = new Date(ageDifMs); // miliseconds from epoch
+		$("#age").val(Math.abs(ageDate.getUTCFullYear() - 1970));});
 }
 
 
