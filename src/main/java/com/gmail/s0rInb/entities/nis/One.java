@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -13,10 +14,6 @@ public class One {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@OneToOne
-	@JoinColumn(name = "par_nis_id")
-	private Nis parNis;
 
 	private String name;
 
@@ -40,5 +37,22 @@ public class One {
 
 	private String anotherText;
 
+	public void setDoctorText(String doctorText) {
+		if(Objects.equals(this.getApplicant(), "doctor")) {
+			this.doctorText = doctorText;
+		} else{
+			this.doctorText=null;
+		}
+	}
+
+	public void setAnotherText(String anotherText) {
+		if(Objects.equals(this.getApplicant(), "another")) {
+			this.anotherText = anotherText;
+		} else{
+			this.anotherText=null;
+		}
+	}
 	private String reg;
+
+
 }

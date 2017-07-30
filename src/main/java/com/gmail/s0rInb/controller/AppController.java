@@ -1,9 +1,12 @@
 package com.gmail.s0rInb.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gmail.s0rInb.Utils.FileStorageExceptions;
 import com.gmail.s0rInb.entities.FileLink;
 import com.gmail.s0rInb.entities.Patient;
+import com.gmail.s0rInb.entities.nis.AdverseEvent;
 import com.gmail.s0rInb.repository.FileRepository;
+import com.gmail.s0rInb.service.AdverseEventService;
 import com.gmail.s0rInb.service.PatientService;
 import com.gmail.s0rInb.service.UserService;
 import org.apache.commons.io.IOUtils;
@@ -48,59 +51,9 @@ public class AppController extends BaseController{
     PatientService patientService;
     @Autowired
     FileRepository fileRepository;
-//    @RequestMapping(method = RequestMethod.GET, value = "/user/{id}", produces = "application/json")
-//    @ResponseBody
-//    public Response getStaff(@PathVariable("id") Long id) {
-//        User result = userService.findById(id);
-//        Response response = new Response();
-//        response.setEntity(result);
-//        response.setEntityClass("user");
-//        return response;
-//    }
-//
-//    @RequestMapping(method = RequestMethod.GET, value = "/usersAll", produces = "application/json")
-//    @ResponseBody
-//    public Response getUsers(HttpServletRequest request,
-//                             @RequestParam(value = "start", required = false) int start,
-//                             @RequestParam(value = "length", required = false) int rows,
-//                             @RequestParam(value = "order[0][column]", required = false) int orderColNum,
-//                             @RequestParam(value = "order[0][dir]", required = false) String order)
-//            throws IOException{
-//        int page = start / rows;
-//
-//        String sortBy = request.getParameter("columns[" + orderColNum + "][data]");
-//        logger.info("Listing users for grid with page: {}, rows: {}", page + 1, rows);
-//        logger.info("Listing users for grid with sort: {}, order: {}", sortBy, order);
-//        Sort sort = null;
-//        if (order != null) {
-//            if (order.equals("desc")) {
-//                sort = new Sort(Sort.Direction.DESC, sortBy);
-//            } else
-//                sort = new Sort(Sort.Direction.ASC, sortBy);
-//        }
-//        PageRequest pageRequest;
-//        if (sort != null) {
-//            pageRequest = new PageRequest(page, rows, sort);
-//        } else {
-//            pageRequest = new PageRequest(page, rows);
-//        }
-//        Page<User> result = userService.findAllByPage(pageRequest);
-//        Response response = new Response();
-//        response.setDraw(Integer.parseInt(request.getParameter("draw")));
-//        response.setRecordsFiltered((int) result.getTotalElements());
-//        response.setRecordsTotal(result.getTotalElements());
-//        response.setData(result.getContent());
-//        return response;
-//    }
-//    @RequestMapping(method = RequestMethod.GET, value = "/user/{id}", produces = "application/json")
-//    @ResponseBody
-//    public Response getStaff(@PathVariable("id") Long id) {
-//        User result = userService.findById(id);
-//        Response response = new Response();
-//        response.setEntity(result);
-//        response.setEntityClass("user");
-//        return response;
-//    }
+
+    @Autowired
+	AdverseEventService adverseEventService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/patients", produces = "application/json")
     @ResponseBody
@@ -249,5 +202,35 @@ public class AppController extends BaseController{
 
 		inputStream.close();
 		outStream.close();
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "/adverseEvent/{id}", produces = "application/json")
+	@ResponseBody
+	public Response getAdverseEvent(@PathVariable("id") Long id) {
+		logger.info("getAverseEvent");
+		AdverseEvent result = adverseEventService.findById(id);
+		Response response = new Response();
+		response.setEntity(result);
+		response.setEntityClass("adverseEvent");
+		return response;
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "/adverseEvent", produces = "application/json")
+	@ResponseBody
+	public Response getAdverseEvent() {
+		logger.info("getAverseEvent");
+		AdverseEvent result = adverseEventService.findById(0L);
+		Response response = new Response();
+		response.setEntity(result);
+		response.setEntityClass("adverseEvent");
+		return response;
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "adverseEventUpdate", produces = "application/json")
+	@ResponseBody
+	public Response updateAdverseEvent(@RequestBody final AdverseEvent adverseEvent){
+		logger.info("updateAdverseEvent");
+		Response response = new Response();
+		AdverseEvent adverseEvent1 = adverseEventService.save(adverseEvent);
+		response.setEntity(adverseEvent);
+		response.setEntityClass("adverseEvent");
+		return response;
 	}
 }

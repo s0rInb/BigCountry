@@ -4,27 +4,24 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gmail.s0rInb.Utils.LocalDateDeserializer;
 import com.gmail.s0rInb.Utils.LocalDateSerializer;
-import com.gmail.s0rInb.entities.nis.Nis;
+import com.gmail.s0rInb.entities.nis.AdverseEvent;
+import com.gmail.s0rInb.entities.nis.AdverseEvent;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "DISCRIMINATOR_COLUMN", discriminatorType = DiscriminatorType.STRING)
+@MappedSuperclass
 public abstract class Five {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "par_nis_id")
-	private Nis parNis;
 	private String nis;
 
 	@JsonDeserialize(using = LocalDateDeserializer.class)

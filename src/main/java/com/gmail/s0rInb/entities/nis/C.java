@@ -14,9 +14,6 @@ public class C {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne
-	@JoinColumn(name = "par_nis_id")
-	private Nis parNis;
 
 	private String programId;
 
