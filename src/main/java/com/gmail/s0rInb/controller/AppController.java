@@ -9,6 +9,7 @@ import com.gmail.s0rInb.repository.FileRepository;
 import com.gmail.s0rInb.service.AdverseEventService;
 import com.gmail.s0rInb.service.PatientService;
 import com.gmail.s0rInb.service.UserService;
+import com.itextpdf.text.DocumentException;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
@@ -215,9 +213,10 @@ public class AppController extends BaseController{
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/adverseEvent", produces = "application/json")
 	@ResponseBody
-	public Response getAdverseEvent() {
-		logger.info("getAverseEvent");
-		AdverseEvent result = adverseEventService.findById(0L);
+	public Response getAdverseEventNew(@RequestParam(value = "patientId") Long patientId) {
+		logger.info("getAverseEventNew");
+		AdverseEvent result = new AdverseEvent();
+		result.setPatientId(patientId);
 		Response response = new Response();
 		response.setEntity(result);
 		response.setEntityClass("adverseEvent");
@@ -225,12 +224,18 @@ public class AppController extends BaseController{
 	}
 	@RequestMapping(method = RequestMethod.POST, value = "adverseEventUpdate", produces = "application/json")
 	@ResponseBody
-	public Response updateAdverseEvent(@RequestBody final AdverseEvent adverseEvent){
+	public Response updateAdverseEvent(@RequestBody final AdverseEvent adverseEvent) throws IOException {
 		logger.info("updateAdverseEvent");
+		if(adverseEvent.getId()!= null) throw new AccessDeniedException("Уже отправлено");
 		Response response = new Response();
 		AdverseEvent adverseEvent1 = adverseEventService.save(adverseEvent);
 		response.setEntity(adverseEvent);
 		response.setEntityClass("adverseEvent");
+		try {
+			adverseEventService.makePdf(adverseEvent);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
 		return response;
 	}
 }

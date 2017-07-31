@@ -235,3 +235,6 @@ function deletePatient(entityId) {
 function beckToPatients () {
     window.location.hash = "patients"
 }
+function createAdverseEvent (patientId) {
+	window.location.hash = "adverseEvent?patientId="+patientId;
+}

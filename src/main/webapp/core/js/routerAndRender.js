@@ -48,11 +48,11 @@ function renderHeader(router) {
 }
 
 function renderPage(router) {
-        renderTpl(router.path[0],router.args.id)
+        renderTpl(router.path[0],router.args.id,router.args.patientId)
 }
-function renderTpl(tplName, elementID, callback) {
+function renderTpl(tplName, elementID, patientId, callback) {
 	if(tplName!="login") {
-		$.getJSON('/api/' + tplName + (elementID != null ? ('/' + elementID) : ''), function (model) {
+		$.getJSON('/api/' + tplName + (elementID != null ? ('/' + elementID) : '')+(patientId != null ? ('?patientId=' + patientId) : ''), function (model) {
 			model = JSOG.decode(model);
 			$.ajax({
 				url: '/tpl/' + tplName + '.dust',

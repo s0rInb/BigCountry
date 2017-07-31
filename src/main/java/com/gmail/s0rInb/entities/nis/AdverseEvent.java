@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gmail.s0rInb.Utils.LocalDateDeserializer;
 import com.gmail.s0rInb.Utils.LocalDateSerializer;
 import com.gmail.s0rInb.entities.Consultation;
+import com.gmail.s0rInb.entities.Patient;
 import com.gmail.s0rInb.entities.nis.five.*;
 import com.gmail.s0rInb.entities.nis.four.*;
 import com.gmail.s0rInb.entities.nis.seven.Seven;
@@ -27,12 +28,15 @@ import java.util.Set;
 @Entity
 @Table
 @Getter
+@Setter
 @Transactional
 public class AdverseEvent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "patient_id")
+	private Long patientId;
 
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
@@ -125,5 +129,4 @@ public class AdverseEvent {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "seven_3_id")
 	private Seven_3 seven_3;
-
 }

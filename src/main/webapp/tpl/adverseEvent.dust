@@ -23,6 +23,7 @@
     </div>
     <form style="display: grid">
         <input hidden name="id" value="{entity.id}">
+        <input hidden name="patient.id" value="{entity.patientId}">
         <div class="adverseEventMenu">
             <p style="font-weight: bold;">А. Только для сообщений из наблюдательных исследований</p>
         </div>
@@ -2280,6 +2281,6 @@
                           name="additionalText">{entity.additionalText}</textarea>
             </div>
         </div>
-        <button type="submit" class="btn btn-success">Сохранить</button>
+        {?entity.id}{:else}<button type="submit" class="btn btn-success">Сохранить и отправить</button>{/entity.id}
     </form>
 </div>

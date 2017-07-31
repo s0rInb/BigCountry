@@ -24,7 +24,6 @@ public abstract class Four {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-
 	private String name;
 
 	private String indications;
