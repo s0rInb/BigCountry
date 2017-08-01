@@ -1,0 +1,16 @@
+<div class="scroll">
+    <table class="table table-bordered table-hover" style="min-height: 600px">
+        <thead>
+        <th>Номер НЯ</th>
+        <th>ID пациента</th>
+        </thead>
+        <tbody>
+            {#data}
+            <tr>
+                <td><a href="#patient?id={id}">{id}</a></td>
+                <td><a href="#patient?id={pId}">{patientId}</a></td>
+            </tr>
+            {/data}
+        </tbody>
+    </table>
+</div>

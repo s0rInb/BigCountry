@@ -23,7 +23,7 @@
     </div>
     <form style="display: grid">
         <input hidden name="id" value="{entity.id}">
-        <input hidden name="patient.id" value="{entity.patientId}">
+        <input hidden name="patientId" value="{entity.patientId}">
         <div class="adverseEventMenu">
             <p style="font-weight: bold;">А. Только для сообщений из наблюдательных исследований</p>
         </div>
