@@ -23,6 +23,7 @@
     </mvc:annotation-driven>
 
     <import resource="spring-jpa.xml"/>
+    <import resource="Spring-Mail.xml"/>
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>

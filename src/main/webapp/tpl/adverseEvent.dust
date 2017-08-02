@@ -1,0 +1,2286 @@
+<div id="adverseEvent-{entity.id}" style="display: grid">
+    <h1 style="text-align: center;">Форма для сообщения о нежелательном явлении или особой ситуации на фоне применения
+        препарата Roche</h1>
+    <div class="adverseEventDescription">
+        <p style="font-weight: bold;">Инструкция:</p>
+        <p>Данная форма должна использоваться для сообщений о нежелательных явлениях или особых ситуациях
+            при спонтанном репортировании, в рамках наблюдательных исследований (NIS), маркетинговых программ (MAP),
+            программ предрегистрационного доступа препарата (PAA/CU), а также программ доступа препарата после
+            завершения клинических исследований (PTAP)</p>
+        <p>Сообщения о нежелательных явлениях или особых ситуациях будут называться общим термином «НЯ».</p>
+        <ul>
+            <li>Для сообщений из спонтанных источников – пропустите раздел А, B,C начните с раздела 1 – контакты
+                заявителя.
+            </li>
+            <li>Наблюдательные исследования NIS – заполните раздел А в дополнении к остальным разделам.</li>
+            <li>MAP – заполните раздел В в дополнении к остальным разделам.</li>
+            <li>PAA/CU – заполните раздел С в дополнении к остальным разделам.</li>
+            <li>PTAP - заполните раздел D в дополнении к остальным разделам</li>
+        </ul>
+        <p>Четыре основных критерия сообщения о НЯ отмечены значком *, в данных разделах необходимо заполнить хотя бы
+            одно из полей.</p>
+        <p>После заполнения формы отправьте ее в группу безопасности препаратов.</p>
+    </div>
+    <form style="display: grid">
+        <input hidden name="id" value="{entity.id}">
+        <input hidden name="patientId" value="{entity.patientId}">
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">А. Только для сообщений из наблюдательных исследований</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-4">
+                <label for="aNisId">Номер протокола NIS</label>
+                <input class="form-control" id="aNisId" placeholder="Номер протокола NIS" value="{entity.a.nisId}"
+                       name="a.nisId">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="aCenterId">Номер центра</label>
+                <input class="form-control" id="aCenterId" placeholder="Номер центра" value="{entity.a.centerId}"
+                       name="a.centerId">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="aPatientId">Номер пациента</label>
+                <input class="form-control" id="aPatientId" placeholder="Номер пациента" value="{entity.a.patientId}"
+                       name="a.patientId">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="aExclude">Были ли какие-то нежелательные явления из указанных в этой форме исключены из
+                    сбора данных согласно протоколу NIS?</label>
+                <select class="form-control" name="a.exclude"
+                        id="aExclude">
+                    {@select key=entity.a.exclude}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
+                </select>
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">В. Только для сообщений из маркетинговых программ</p>
+            <p>Важно: даже если нет данных о пациенте, предоставьте по возможности наиболее полную информацию.</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-3">
+                <label for="bProgramId">ID программы</label>
+                <input class="form-control" id="bProgramId" placeholder="ID программы" value="{entity.b.programId}"
+                       name="b.programId">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bProjectName">Название проекта</label>
+                <input class="form-control" id="bProjectName" placeholder="Название проекта"
+                       value="{entity.b.projectName}"
+                       name="b.projectName">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bAgentName">Название агентства</label>
+                <input class="form-control" id="bAgentName" placeholder="Название агентства"
+                       value="{entity.b.agentName}"
+                       name="b.agentName">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bApplicationId">Номер заявителя</label>
+                <input class="form-control" id="bApplicationId" placeholder="Номер заявителя"
+                       value="{entity.b.applicationId}"
+                       name="b.applicationId">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="bAddress">Адрес</label>
+                <input class="form-control" id="bAddress" placeholder="Адрес" value="{entity.b.address}"
+                       name="b.address">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bEmail">E-mail</label>
+                <input class="form-control" id="bEmail" placeholder="E-mail" value="{entity.b.email}"
+                       name="b.email">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bCountry">Страна</label>
+                <input class="form-control" id="bCountry" placeholder="Страна" value="{entity.b.country}"
+                       name="b.country">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bPhone">Телефон</label>
+                <input class="form-control" id="bPhone" placeholder="Телефон" value="{entity.b.phone}"
+                       name="b.phone">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bFax">Факс</label>
+                <input class="form-control" id="bFax" placeholder="Факс" value="{entity.b.fax}"
+                       name="b.fax">
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">С. Только для сообщений из программ предрегистрационного доступа</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-6">
+                <label for="cProgramId">Номер программы</label>
+                <input class="form-control" id="cProgramId" placeholder="Номер программы" value="{entity.c.programId}"
+                       name="c.programId">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="cPatientId">Номер пациента</label>
+                <input class="form-control" id="cPatientId" placeholder="Номер пациент" value="{entity.c.patientId}"
+                       name="c.patientId">
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">D.Только для сообщений из программ доступа после завершения исследования</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-6">
+                <label for="dProgramId">Номер программы</label>
+                <input class="form-control" id="dProgramId" placeholder="Номер программы" value="{entity.d.programId}"
+                       name="d.programId">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="dPatientId">Номер пациента</label>
+                <input class="form-control" id="dPatientId" placeholder="Номер пациент" value="{entity.d.patientId}"
+                       name="d.patientId">
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">1. Данные заявителя</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-4">
+                <label for="oneName">Имя</label>
+                <input class="form-control" id="oneName" placeholder="Имя" value="{entity.one.name}"
+                       name="one.name">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="oneSurname">Фамилия</label>
+                <input class="form-control" id="oneSurname" placeholder="Фамилия" value="{entity.one.surname}"
+                       name="one.surname">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="onePhone">Телефон</label>
+                <input class="form-control" id="onePhone" placeholder="Телефон" value="{entity.one.phone}"
+                       name="one.phone">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="oneAddress">Адрес</label>
+                <input class="form-control" id="oneAddress" placeholder="Адрес" value="{entity.one.address}"
+                       name="one.address">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="oneIndex">Индекс</label>
+                <input class="form-control" id="oneIndex" placeholder="Индекс" value="{entity.one.index}"
+                       name="one.index">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="oneCountry">Страна</label>
+                <input class="form-control" id="oneCountry" placeholder="Страна" value="{entity.one.country}"
+                       name="one.country">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="oneEmail">E-mail</label>
+                <input class="form-control" id="oneEmail" placeholder="E-mail" value="{entity.one.email}"
+                       name="one.email">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="oneFax">Факс</label>
+                <input class="form-control" id="oneFax" placeholder="Факс" value="{entity.one.fax}"
+                       name="one.fax">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="oneApplicant">Тип заявителя</label>
+                <select class="form-control" name="one.applicant"
+                        id="oneApplicant">
+                    {@select key=entity.one.applicant}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="doctor"  {@eq value="doctor"}selected="selected"{/eq}>
+                            Доктор
+                        </option>
+                        <option value="pharmacist" {@eq value="pharmacist"}selected="selected"{/eq}>
+                            Фармацевт
+                        </option>
+                        <option value="nurse" {@eq value="nurse"}selected="selected"{/eq}>
+                            Медсестра
+                        </option>
+                        <option value="patient" {@eq value="patient"}selected="selected"{/eq}>
+                            Пациент/покупатель
+                        </option>
+                        <option value="advocat" {@eq value="advocat"}selected="selected"{/eq}>
+                            Юрист
+                        </option>
+                        <option value="company" {@eq value="company"}selected="selected"{/eq}>
+                            Представитель компании
+                        </option>
+                        <option value="another" {@eq value="another"}selected="selected"{/eq}>
+                            Другое
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                {@select key=entity.one.applicant}
+                    <div id="oneDoctorTextBody" style="display: none">
+                        <label for="oneDoctorText">Специальность врача</label>
+                        <input class="form-control" id="oneDoctorText" placeholder="Специальность врача"
+                               value="{entity.one.doctorText}" name="one.doctorText">
+                    </div>
+                    <div id="oneAnotherTextBody" style="display: none">
+                        <label for="oneAnotherText">Уточните заявителя</label>
+                        <input class="form-control" id="oneAnotherText" placeholder="Уточните заявителя"
+                               value="{entity.one.anotherText}" name="one.anotherText">
+                    </div>
+                {/select}
+            </div>
+            <div class="form-group col-md-12">
+                <label for="oneReg">Сообщалось ли об этом случае в регуляторные органы?</label>
+                <select class="form-control" name="one.reg"
+                        id="oneReg">
+                    {@select key=entity.one.reg}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                        <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                            Неизвестно
+                        </option>
+                    {/select}
+                </select>
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">2. Возможность связаться с врачом (работником здравоохранения)</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-12">
+                <label for="twoNis">Если заявитель является пациентом/покупателем, можно ли связаться с лечащим врачом
+                    относительно сообщения о НЯ?</label>
+                <select class="form-control" name="two.nis"
+                        id="twoNis">
+                    {@select key=entity.two.nis}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="twoDoctorContacts">Контакты врача</label>
+                <input class="form-control" id="twoDoctorContacts" placeholder="Контакты врача"
+                       value="{entity.two.doctorContacts}"
+                       name="two.doctorContacts">
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">3. Данные пациент</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-4">
+                <label for="threeName">Имя/инициалы</label>
+                <input class="form-control" id="threeName" placeholder="Имя/инициалы" value="{entity.three.name}"
+                       name="three.name">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="threeSex">Пол</label>
+                <select class="form-control" name="three.sex"
+                        id="threeSex">
+                    {@select key=entity.three.sex}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="m"  {@eq value="m"}selected="selected"{/eq}>
+                            Мужской
+                        </option>
+                        <option value="f" {@eq value="f"}selected="selected"{/eq}>
+                            Женский
+                        </option>
+                        <option value="u" {@eq value="u"}selected="selected"{/eq}>
+                            Неизвестно
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="threeBirthDate">Дата рождения</label>
+                <input class="form-control" id="threeBirthDate" placeholder="Дата рождения"
+                       value="{entity.three.birthDate}"
+                       name="three.birthDate">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="threeWeightText">Вес в килограммах</label>
+                <input class="form-control" id="threeWeightText" placeholder="Вес в килограммах"
+                       value="{entity.three.weightText}"
+                       name="three.weightText">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="threeHeightText">Рост в сантиметрах</label>
+                <input class="form-control" id="threeHeightText" placeholder="Рост в сантиметрах"
+                       value="{entity.three.heightText}"
+                       name="three.heightText">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="threeEthos">Этническая принадлежность</label>
+                <select class="form-control" name="three.ethos"
+                        id="threeEthos">
+                    {@select key=entity.three.ethos}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="asian"  {@eq value="asian"}selected="selected"{/eq}>
+                            Азиат
+                        </option>
+                        <option value="africa" {@eq value="africa"}selected="selected"{/eq}>
+                            Африканец
+                        </option>
+                        <option value="white" {@eq value="white"}selected="selected"{/eq}>
+                            Белый
+                        </option>
+                        <option value="latinos" {@eq value="latinos"}selected="selected"{/eq}>
+                            Латиноамериканец
+                        </option>
+                        <option value="another" {@eq value="another"}selected="selected"{/eq}>
+                            Другое
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                {@select key=entity.three.ethos}
+                    <div id="threeAnotherTextBody" style="display: none">
+                        <label for="threeAnotherText">Уточните принадлежность</label>
+                        <input class="form-control" id="threeAnotherText" placeholder="Уточните принадлежность"
+                               value="{entity.three.anotherText}" name="three.anotherText">
+                    </div>
+                {/select}
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">4. Подозреваемый препарат</p>
+            <p>(если больше 4, укажите в разделе 8 – дополнительная информация)</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="adverseListMain">
+                <div style="text-align: center">
+                    <h4>A</h4>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aName">Название препарата</label>
+                    <input class="form-control" id="four_aName" placeholder="По возможности торговое название"
+                           value="{entity.four_a.name}"
+                           name="four_a.name">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aIndications">Показания</label>
+                    <input class="form-control" id="four_aIndications" placeholder="Для которого прописан препарат"
+                           value="{entity.four_a.indications}"
+                           name="four_a.indications">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aDose">Доза, ед</label>
+                    <input class="form-control" id="four_aDose" placeholder="Доза, ед" value="{entity.four_a.dose}"
+                           name="four_a.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aPath">Путь введения</label>
+                    <input class="form-control" id="four_aPath" placeholder="Путь введения" value="{entity.four_a.path}"
+                           name="four_a.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aFrequency">Частота введения</label>
+                    <input class="form-control" id="four_aFrequency" placeholder="Частота введения"
+                           value="{entity.four_a.frequency}"
+                           name="four_a.frequency">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aStartDate">Дата начала лечения</label>
+                    <input class="form-control" id="four_aStartDate" placeholder="Дата начала лечения"
+                           value="{entity.four_a.startDate}"
+                           name="four_a.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aEndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="four_aEndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.four_a.endDate}"
+                           name="four_a.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_aNumber">Номер серии</label>
+                    <input class="form-control" id="four_aNumber" placeholder="Номер серии"
+                           value="{entity.four_a.number}"
+                           name="four_a.number">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_aNis">Отменялся ли препарат в связи с НЯ?</label>
+                    <select class="form-control" name="four_a.nis"
+                            id="four_aNis">
+                        {@select key=entity.four_a.nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_aAgain">Была ли препарат назначен повторно?</label>
+                    <select class="form-control" name="four_a.again"
+                            id="four_aAgain">
+                        {@select key=entity.four_a.again}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_aPhenomenon">Если да, разрешилось ли явление?</label>
+                    <select class="form-control" name="four_a.phenomenon"
+                            id="four_aPhenomenon">
+                        {@select key=entity.four_a.phenomenon}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_aAgain_nis">Если да, повторилось ли НЯ?</label>
+                    <select class="form-control" name="four_a.again_nis"
+                            id="four_aAgain_nis">
+                        {@select key=entity.four_a.again_nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+            </div>
+            <div class="adverseListMain">
+                <div style="text-align: center">
+                    <h4>B</h4>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bName">Название препарата</label>
+                    <input class="form-control" id="four_bName" placeholder="По возможности торговое название"
+                           value="{entity.four_b.name}"
+                           name="four_b.name">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bIndications">Показания</label>
+                    <input class="form-control" id="four_bIndications" placeholder="Для которого прописан препарат"
+                           value="{entity.four_b.indications}"
+                           name="four_b.indications">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bDose">Доза, ед</label>
+                    <input class="form-control" id="four_bDose" placeholder="Доза, ед" value="{entity.four_b.dose}"
+                           name="four_b.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bPath">Путь введения</label>
+                    <input class="form-control" id="four_bPath" placeholder="Путь введения" value="{entity.four_b.path}"
+                           name="four_b.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bFrequency">Частота введения</label>
+                    <input class="form-control" id="four_bFrequency" placeholder="Частота введения"
+                           value="{entity.four_b.frequency}"
+                           name="four_b.frequency">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bStartDate">Дата начала лечения</label>
+                    <input class="form-control" id="four_bStartDate" placeholder="Дата начала лечения"
+                           value="{entity.four_b.startDate}"
+                           name="four_b.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bEndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="four_bEndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.four_b.endDate}"
+                           name="four_b.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_bNumber">Номер серии</label>
+                    <input class="form-control" id="four_bNumber" placeholder="Номер серии"
+                           value="{entity.four_b.number}"
+                           name="four_b.number">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_bNis">Отменялся ли препарат в связи с НЯ?</label>
+                    <select class="form-control" name="four_b.nis"
+                            id="four_bNis">
+                        {@select key=entity.four_b.nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_bAgain">Была ли препарат назначен повторно?</label>
+                    <select class="form-control" name="four_b.again"
+                            id="four_bAgain">
+                        {@select key=entity.four_b.again}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_bPhenomenon">Если да, разрешилось ли явление?</label>
+                    <select class="form-control" name="four_b.phenomenon"
+                            id="four_bPhenomenon">
+                        {@select key=entity.four_b.phenomenon}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_bAgain_nis">Если да, повторилось ли НЯ?</label>
+                    <select class="form-control" name="four_b.again_nis"
+                            id="four_bAgain_nis">
+                        {@select key=entity.four_b.again_nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+            </div>
+            <div class="adverseListMain">
+                <div style="text-align: center">
+                    <h4>C</h4>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cName">Название препарата</label>
+                    <input class="form-control" id="four_cName" placeholder="По возможности торговое название"
+                           value="{entity.four_c.name}"
+                           name="four_c.name">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cIndications">Показания</label>
+                    <input class="form-control" id="four_cIndications" placeholder="Для которого прописан препарат"
+                           value="{entity.four_c.indications}"
+                           name="four_c.indications">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cDose">Доза, ед</label>
+                    <input class="form-control" id="four_cDose" placeholder="Доза, ед" value="{entity.four_c.dose}"
+                           name="four_c.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cPath">Путь введения</label>
+                    <input class="form-control" id="four_cPath" placeholder="Путь введения" value="{entity.four_c.path}"
+                           name="four_c.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cFrequency">Частота введения</label>
+                    <input class="form-control" id="four_cFrequency" placeholder="Частота введения"
+                           value="{entity.four_c.frequency}"
+                           name="four_c.frequency">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cStartDate">Дата начала лечения</label>
+                    <input class="form-control" id="four_cStartDate" placeholder="Дата начала лечения"
+                           value="{entity.four_c.startDate}"
+                           name="four_c.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cEndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="four_cEndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.four_c.endDate}"
+                           name="four_c.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_cNumber">Номер серии</label>
+                    <input class="form-control" id="four_cNumber" placeholder="Номер серии"
+                           value="{entity.four_c.number}"
+                           name="four_c.number">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_cNis">Отменялся ли препарат в связи с НЯ?</label>
+                    <select class="form-control" name="four_c.nis"
+                            id="four_cNis">
+                        {@select key=entity.four_c.nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_cAgain">Была ли препарат назначен повторно?</label>
+                    <select class="form-control" name="four_c.again"
+                            id="four_cAgain">
+                        {@select key=entity.four_c.again}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_cPhenomenon">Если да, разрешилось ли явление?</label>
+                    <select class="form-control" name="four_c.phenomenon"
+                            id="four_cPhenomenon">
+                        {@select key=entity.four_c.phenomenon}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_cAgain_nis">Если да, повторилось ли НЯ?</label>
+                    <select class="form-control" name="four_c.again_nis"
+                            id="four_cAgain_nis">
+                        {@select key=entity.four_c.again_nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+            </div>
+            <div class="adverseListMain">
+                <div style="text-align: center">
+                    <h4>D</h4>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dName">Название препарата</label>
+                    <input class="form-control" id="four_dName" placeholder="По возможности торговое название"
+                           value="{entity.four_d.name}"
+                           name="four_d.name">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dIndications">Показания</label>
+                    <input class="form-control" id="four_dIndications" placeholder="Для которого прописан препарат"
+                           value="{entity.four_d.indications}"
+                           name="four_d.indications">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dDose">Доза, ед</label>
+                    <input class="form-control" id="four_dDose" placeholder="Доза, ед" value="{entity.four_d.dose}"
+                           name="four_d.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dPath">Путь введения</label>
+                    <input class="form-control" id="four_dPath" placeholder="Путь введения" value="{entity.four_d.path}"
+                           name="four_d.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dFrequency">Частота введения</label>
+                    <input class="form-control" id="four_dFrequency" placeholder="Частота введения"
+                           value="{entity.four_d.frequency}"
+                           name="four_d.frequency">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dStartDate">Дата начала лечения</label>
+                    <input class="form-control" id="four_dStartDate" placeholder="Дата начала лечения"
+                           value="{entity.four_d.startDate}"
+                           name="four_d.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dEndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="four_dEndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.four_d.endDate}"
+                           name="four_d.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="four_dNumber">Номер серии</label>
+                    <input class="form-control" id="four_dNumber" placeholder="Номер серии"
+                           value="{entity.four_d.number}"
+                           name="four_d.number">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_dNis">Отменялся ли препарат в связи с НЯ?</label>
+                    <select class="form-control" name="four_d.nis"
+                            id="four_dNis">
+                        {@select key=entity.four_d.nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_dAgain">Была ли препарат назначен повторно?</label>
+                    <select class="form-control" name="four_d.again"
+                            id="four_dAgain">
+                        {@select key=entity.four_d.again}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_dPhenomenon">Если да, разрешилось ли явление?</label>
+                    <select class="form-control" name="four_d.phenomenon"
+                            id="four_dPhenomenon">
+                        {@select key=entity.four_d.phenomenon}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="four_dAgain_nis">Если да, повторилось ли НЯ?</label>
+                    <select class="form-control" name="four_d.again_nis"
+                            id="four_dAgain_nis">
+                        {@select key=entity.four_d.again_nis}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="unknow" {@eq value="unknow"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">5. Нежелательные явления/особые ситуации</p>
+            <p>(если необходимо, продолжите в разделе 8)</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="five_aNis">Нежелательное явление</label>
+                    <input class="form-control" id="five_aNis" placeholder="Нежелательное явление (сначала основные)"
+                           value="{entity.five_a.nis}"
+                           name="five_a.nis">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_aStartDate">Дата начала</label>
+                    <input class="form-control" id="five_aStartDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_a.startDate}"
+                           name="five_a.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_aResult">Исход</label>
+                    <select class="form-control" name="five_a.result"
+                            id="five_aResult">
+                        {@select key=entity.five_a.result}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Не разрешилось
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Разрешилось
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Разрешилось с последствиями
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Улучшается
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_aEndDate">Дата разрешения/улучшения</label>
+                    <input class="form-control" id="five_aEndDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_a.endDate}"
+                           name="five_a.endDate">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="five_aHard">Серьезность</label>
+                    <select class="form-control" name="five_a.hard"
+                            id="five_aHard">
+                        {@select key=entity.five_a.hard}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Угроза жизни (т.е. жизнь пациента находилась под угрозой во время НЯ)
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Госпитализация или ее продление
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Врожденная аномалия/дефект
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Стойкая или значимая нетрудоспособность/инвалидность
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Медицински значимое НЯ (важное явление с риском для пациента, что требует
+                                медицинского/хирургического вмешательства для предотвращения других исходов)
+                            </option>
+                            <option value="7" {@eq value="7"}selected="selected"{/eq}>
+                                Несерьезное явление особого интереса (согласно протоколу NIS)
+                            </option>
+                            <option value="8" {@eq value="8"}selected="selected"{/eq}>
+                                Несерьезное
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div style="text-align: center">
+                    <h4>Связь с применением препарата</h4>
+                    <h5>Укажите все препараты, которые могли бы вызвать НЯ.
+                        Если связь неизвестна, укажите дополнительную информацию в разделе 8</h5>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_aA">A</label>
+                    <select class="form-control" name="five_a.a"
+                            id="five_aA">
+                        {@select key=entity.five_a.a}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_aB">C</label>
+                    <select class="form-control" name="five_a.b"
+                            id="five_aB">
+                        {@select key=entity.five_a.b}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_aC">B</label>
+                    <select class="form-control" name="five_a.c"
+                            id="five_aC">
+                        {@select key=entity.five_a.c}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_aD">D</label>
+                    <select class="form-control" name="five_a.d"
+                            id="five_aD">
+                        {@select key=entity.five_a.d}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="five_bNis">Нежелательное явление</label>
+                    <input class="form-control" id="five_bNis" placeholder="Нежелательное явление (сначала основные)"
+                           value="{entity.five_b.nis}"
+                           name="five_b.nis">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_bStartDate">Дата начала</label>
+                    <input class="form-control" id="five_bStartDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_b.startDate}"
+                           name="five_b.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_bResult">Исход</label>
+                    <select class="form-control" name="five_b.result"
+                            id="five_bResult">
+                        {@select key=entity.five_b.result}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Не разрешилось
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Разрешилось
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Разрешилось с последствиями
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Улучшается
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_bEndDate">Дата разрешения/улучшения</label>
+                    <input class="form-control" id="five_bEndDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_b.endDate}"
+                           name="five_b.endDate">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="five_bHard">Серьезность</label>
+                    <select class="form-control" name="five_b.hard"
+                            id="five_bHard">
+                        {@select key=entity.five_b.hard}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Угроза жизни (т.е. жизнь пациента находилась под угрозой во время НЯ)
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Госпитализация или ее продление
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Врожденная аномалия/дефект
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Стойкая или значимая нетрудоспособность/инвалидность
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Медицински значимое НЯ (важное явление с риском для пациента, что требует
+                                медицинского/хирургического вмешательства для предотвращения других исходов)
+                            </option>
+                            <option value="7" {@eq value="7"}selected="selected"{/eq}>
+                                Несерьезное явление особого интереса (согласно протоколу NIS)
+                            </option>
+                            <option value="8" {@eq value="8"}selected="selected"{/eq}>
+                                Несерьезное
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div style="text-align: center">
+                    <h4>Связь с применением препарата</h4>
+                    <h5>Укажите все препараты, которые могли бы вызвать НЯ.
+                        Если связь неизвестна, укажите дополнительную информацию в разделе 8</h5>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_bA">A</label>
+                    <select class="form-control" name="five_b.a"
+                            id="five_bA">
+                        {@select key=entity.five_b.a}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_bB">C</label>
+                    <select class="form-control" name="five_b.b"
+                            id="five_bB">
+                        {@select key=entity.five_b.b}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_bC">B</label>
+                    <select class="form-control" name="five_b.c"
+                            id="five_bC">
+                        {@select key=entity.five_b.c}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_bD">D</label>
+                    <select class="form-control" name="five_b.d"
+                            id="five_bD">
+                        {@select key=entity.five_b.d}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="five_cNis">Нежелательное явление</label>
+                    <input class="form-control" id="five_cNis" placeholder="Нежелательное явление (сначала основные)"
+                           value="{entity.five_c.nis}"
+                           name="five_c.nis">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_cStartDate">Дата начала</label>
+                    <input class="form-control" id="five_cStartDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_c.startDate}"
+                           name="five_c.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_cResult">Исход</label>
+                    <select class="form-control" name="five_c.result"
+                            id="five_cResult">
+                        {@select key=entity.five_c.result}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Не разрешилось
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Разрешилось
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Разрешилось с последствиями
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Улучшается
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_cEndDate">Дата разрешения/улучшения</label>
+                    <input class="form-control" id="five_cEndDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_c.endDate}"
+                           name="five_c.endDate">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="five_cHard">Серьезность</label>
+                    <select class="form-control" name="five_c.hard"
+                            id="five_cHard">
+                        {@select key=entity.five_c.hard}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Угроза жизни (т.е. жизнь пациента находилась под угрозой во время НЯ)
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Госпитализация или ее продление
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Врожденная аномалия/дефект
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Стойкая или значимая нетрудоспособность/инвалидность
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Медицински значимое НЯ (важное явление с риском для пациента, что требует
+                                медицинского/хирургического вмешательства для предотвращения других исходов)
+                            </option>
+                            <option value="7" {@eq value="7"}selected="selected"{/eq}>
+                                Несерьезное явление особого интереса (согласно протоколу NIS)
+                            </option>
+                            <option value="8" {@eq value="8"}selected="selected"{/eq}>
+                                Несерьезное
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div style="text-align: center">
+                    <h4>Связь с применением препарата</h4>
+                    <h5>Укажите все препараты, которые могли бы вызвать НЯ.
+                        Если связь неизвестна, укажите дополнительную информацию в разделе 8</h5>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_cA">A</label>
+                    <select class="form-control" name="five_c.a"
+                            id="five_cA">
+                        {@select key=entity.five_c.a}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_cB">C</label>
+                    <select class="form-control" name="five_c.b"
+                            id="five_cB">
+                        {@select key=entity.five_c.b}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_cC">B</label>
+                    <select class="form-control" name="five_c.c"
+                            id="five_cC">
+                        {@select key=entity.five_c.c}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_cD">D</label>
+                    <select class="form-control" name="five_c.d"
+                            id="five_cD">
+                        {@select key=entity.five_c.d}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="five_dNis">Нежелательное явление</label>
+                    <input class="form-control" id="five_dNis" placeholder="Нежелательное явление (сначала основные)"
+                           value="{entity.five_d.nis}"
+                           name="five_d.nis">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_dStartDate">Дата начала</label>
+                    <input class="form-control" id="five_dStartDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_d.startDate}"
+                           name="five_d.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_dResult">Исход</label>
+                    <select class="form-control" name="five_d.result"
+                            id="five_dResult">
+                        {@select key=entity.five_d.result}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Не разрешилось
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Разрешилось
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Разрешилось с последствиями
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Улучшается
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_dEndDate">Дата разрешения/улучшения</label>
+                    <input class="form-control" id="five_dEndDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_d.endDate}"
+                           name="five_d.endDate">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="five_dHard">Серьезность</label>
+                    <select class="form-control" name="five_d.hard"
+                            id="five_dHard">
+                        {@select key=entity.five_d.hard}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Угроза жизни (т.е. жизнь пациента находилась под угрозой во время НЯ)
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Госпитализация или ее продление
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Врожденная аномалия/дефект
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Стойкая или значимая нетрудоспособность/инвалидность
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Медицински значимое НЯ (важное явление с риском для пациента, что требует
+                                медицинского/хирургического вмешательства для предотвращения других исходов)
+                            </option>
+                            <option value="7" {@eq value="7"}selected="selected"{/eq}>
+                                Несерьезное явление особого интереса (согласно протоколу NIS)
+                            </option>
+                            <option value="8" {@eq value="8"}selected="selected"{/eq}>
+                                Несерьезное
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div style="text-align: center">
+                    <h4>Связь с применением препарата</h4>
+                    <h5>Укажите все препараты, которые могли бы вызвать НЯ.
+                        Если связь неизвестна, укажите дополнительную информацию в разделе 8</h5>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_dA">A</label>
+                    <select class="form-control" name="five_d.a"
+                            id="five_dA">
+                        {@select key=entity.five_d.a}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_dB">C</label>
+                    <select class="form-control" name="five_d.b"
+                            id="five_dB">
+                        {@select key=entity.five_d.b}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_dC">B</label>
+                    <select class="form-control" name="five_d.c"
+                            id="five_dC">
+                        {@select key=entity.five_d.c}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_dD">D</label>
+                    <select class="form-control" name="five_d.d"
+                            id="five_dD">
+                        {@select key=entity.five_d.d}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="five_eNis">Нежелательное явление</label>
+                    <input class="form-control" id="five_eNis" placeholder="Нежелательное явление (сначала основные)"
+                           value="{entity.five_e.nis}"
+                           name="five_e.nis">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_eStartDate">Дата начала</label>
+                    <input class="form-control" id="five_eStartDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_e.startDate}"
+                           name="five_e.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_eResult">Исход</label>
+                    <select class="form-control" name="five_e.result"
+                            id="five_eResult">
+                        {@select key=entity.five_e.result}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Не разрешилось
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Разрешилось
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Разрешилось с последствиями
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Улучшается
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_eEndDate">Дата разрешения/улучшения</label>
+                    <input class="form-control" id="five_eEndDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_e.endDate}"
+                           name="five_e.endDate">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="five_eHard">Серьезность</label>
+                    <select class="form-control" name="five_e.hard"
+                            id="five_eHard">
+                        {@select key=entity.five_e.hard}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Угроза жизни (т.е. жизнь пациента находилась под угрозой во время НЯ)
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Госпитализация или ее продление
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Врожденная аномалия/дефект
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Стойкая или значимая нетрудоспособность/инвалидность
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Медицински значимое НЯ (важное явление с риском для пациента, что требует
+                                медицинского/хирургического вмешательства для предотвращения других исходов)
+                            </option>
+                            <option value="7" {@eq value="7"}selected="selected"{/eq}>
+                                Несерьезное явление особого интереса (согласно протоколу NIS)
+                            </option>
+                            <option value="8" {@eq value="8"}selected="selected"{/eq}>
+                                Несерьезное
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div style="text-align: center">
+                    <h4>Связь с применением препарата</h4>
+                    <h5>Укажите все препараты, которые могли бы вызвать НЯ.
+                        Если связь неизвестна, укажите дополнительную информацию в разделе 8</h5>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_eA">A</label>
+                    <select class="form-control" name="five_e.a"
+                            id="five_eA">
+                        {@select key=entity.five_e.a}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_eB">C</label>
+                    <select class="form-control" name="five_e.b"
+                            id="five_eB">
+                        {@select key=entity.five_e.b}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_eC">B</label>
+                    <select class="form-control" name="five_e.c"
+                            id="five_eC">
+                        {@select key=entity.five_e.c}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_eD">D</label>
+                    <select class="form-control" name="five_e.d"
+                            id="five_eD">
+                        {@select key=entity.five_e.d}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="five_fNis">Нежелательное явление</label>
+                    <input class="form-control" id="five_fNis" placeholder="Нежелательное явление (сначала основные)"
+                           value="{entity.five_f.nis}"
+                           name="five_f.nis">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_fStartDate">Дата начала</label>
+                    <input class="form-control" id="five_fStartDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_f.startDate}"
+                           name="five_f.startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_fResult">Исход</label>
+                    <select class="form-control" name="five_f.result"
+                            id="five_fResult">
+                        {@select key=entity.five_f.result}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Не разрешилось
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Разрешилось
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Разрешилось с последствиями
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Улучшается
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Неизвестно
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_fEndDate">Дата разрешения/улучшения</label>
+                    <input class="form-control" id="five_fEndDate" placeholder="Для которого прописан препарат"
+                           value="{entity.five_f.endDate}"
+                           name="five_f.endDate">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="five_fHard">Серьезность</label>
+                    <select class="form-control" name="five_f.hard"
+                            id="five_fHard">
+                        {@select key=entity.five_f.hard}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="1"  {@eq value="1"}selected="selected"{/eq}>
+                                Смерть
+                            </option>
+                            <option value="2" {@eq value="2"}selected="selected"{/eq}>
+                                Угроза жизни (т.е. жизнь пациента находилась под угрозой во время НЯ)
+                            </option>
+                            <option value="3" {@eq value="3"}selected="selected"{/eq}>
+                                Госпитализация или ее продление
+                            </option>
+                            <option value="4" {@eq value="4"}selected="selected"{/eq}>
+                                Врожденная аномалия/дефект
+                            </option>
+                            <option value="5" {@eq value="5"}selected="selected"{/eq}>
+                                Стойкая или значимая нетрудоспособность/инвалидность
+                            </option>
+                            <option value="6" {@eq value="6"}selected="selected"{/eq}>
+                                Медицински значимое НЯ (важное явление с риском для пациента, что требует
+                                медицинского/хирургического вмешательства для предотвращения других исходов)
+                            </option>
+                            <option value="7" {@eq value="7"}selected="selected"{/eq}>
+                                Несерьезное явление особого интереса (согласно протоколу NIS)
+                            </option>
+                            <option value="8" {@eq value="8"}selected="selected"{/eq}>
+                                Несерьезное
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div style="text-align: center">
+                    <h4>Связь с применением препарата</h4>
+                    <h5>Укажите все препараты, которые могли бы вызвать НЯ.
+                        Если связь неизвестна, укажите дополнительную информацию в разделе 8</h5>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_fA">A</label>
+                    <select class="form-control" name="five_f.a"
+                            id="five_fA">
+                        {@select key=entity.five_f.a}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_fB">C</label>
+                    <select class="form-control" name="five_f.b"
+                            id="five_fB">
+                        {@select key=entity.five_f.b}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_fC">B</label>
+                    <select class="form-control" name="five_f.c"
+                            id="five_fC">
+                        {@select key=entity.five_f.c}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="five_fD">D</label>
+                    <select class="form-control" name="five_f.d"
+                            id="five_fD">
+                        {@select key=entity.five_f.d}
+                            <option {@eq value=""}{/eq}value="">
+                            </option>
+                            <option value="Да"  {@eq value="Да"}selected="selected"{/eq}>
+                                Да
+                            </option>
+                            <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                Нет
+                            </option>
+                            <option value="Не известно" {@eq value="Не известно"}selected="selected"{/eq}>
+                                Не известно
+                            </option>
+                            <option value="Данных не предоставлено"
+                                    {@eq value="Данных не предоставлено"}selected="selected"{/eq}>
+                                Данных не предоставлено
+                            </option>
+                        {/select}
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">6. Сопутствующая терапия</p>
+            <p>(включая гомеопатию и БАД, а также нерецептурные препараты. Если более 6 – укажите в разделе 8)</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="adverseListMain">
+                <div class="form-group col-md-4">
+                    <label for="six_1Drug">Препарат</label>
+                    <input class="form-control" id="six_1Drug" placeholder="По возможности торговое название"
+                           value="{entity.six_1.drug}"
+                           name="six_1.drug">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_1StartDate">Дата начала лечения</label>
+                    <input class="form-control" id="six_1StartDate" placeholder="Дата начала лечения"
+                           value="{entity.six_1.startDate}"
+                           name="six_1.startDate">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_1EndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="six_1EndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.six_1.endDate}"
+                           name="six_1.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_1Show">Показания</label>
+                    <input class="form-control" id="six_1Show" placeholder="Для которого прописан препарат"
+                           value="{entity.six_1.show}"
+                           name="six_1.show">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_1Dose">Доза, ед</label>
+                    <input class="form-control" id="six_1Dose" placeholder="Доза, ед" value="{entity.six_1.dose}"
+                           name="six_1.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_1Path">Путь введения</label>
+                    <input class="form-control" id="six_1Path" placeholder="Путь введения" value="{entity.six_1.path}"
+                           name="six_1.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_1Frequency">Частота введения</label>
+                    <input class="form-control" id="six_1Frequency" placeholder="Частота введения"
+                           value="{entity.six_1.frequency}"
+                           name="six_1.frequency">
+                </div>
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-4">
+                    <label for="six_2Drug">Препарат</label>
+                    <input class="form-control" id="six_2Drug" placeholder="По возможности торговое название"
+                           value="{entity.six_2.drug}"
+                           name="six_2.drug">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_2StartDate">Дата начала лечения</label>
+                    <input class="form-control" id="six_2StartDate" placeholder="Дата начала лечения"
+                           value="{entity.six_2.startDate}"
+                           name="six_2.startDate">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_2EndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="six_2EndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.six_2.endDate}"
+                           name="six_2.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_2Show">Показания</label>
+                    <input class="form-control" id="six_2Show" placeholder="Для которого прописан препарат"
+                           value="{entity.six_2.show}"
+                           name="six_2.show">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_2Dose">Доза, ед</label>
+                    <input class="form-control" id="six_2Dose" placeholder="Доза, ед" value="{entity.six_2.dose}"
+                           name="six_2.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_2Path">Путь введения</label>
+                    <input class="form-control" id="six_2Path" placeholder="Путь введения" value="{entity.six_2.path}"
+                           name="six_2.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_2Frequency">Частота введения</label>
+                    <input class="form-control" id="six_2Frequency" placeholder="Частота введения"
+                           value="{entity.six_2.frequency}"
+                           name="six_2.frequency">
+                </div>
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-4">
+                    <label for="six_3Drug">Препарат</label>
+                    <input class="form-control" id="six_3Drug" placeholder="По возможности торговое название"
+                           value="{entity.six_3.drug}"
+                           name="six_3.drug">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_3StartDate">Дата начала лечения</label>
+                    <input class="form-control" id="six_3StartDate" placeholder="Дата начала лечения"
+                           value="{entity.six_3.startDate}"
+                           name="six_3.startDate">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_3EndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="six_3EndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.six_3.endDate}"
+                           name="six_3.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_3Show">Показания</label>
+                    <input class="form-control" id="six_3Show" placeholder="Для которого прописан препарат"
+                           value="{entity.six_3.show}"
+                           name="six_3.show">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_3Dose">Доза, ед</label>
+                    <input class="form-control" id="six_3Dose" placeholder="Доза, ед" value="{entity.six_3.dose}"
+                           name="six_3.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_3Path">Путь введения</label>
+                    <input class="form-control" id="six_3Path" placeholder="Путь введения" value="{entity.six_3.path}"
+                           name="six_3.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_3Frequency">Частота введения</label>
+                    <input class="form-control" id="six_3Frequency" placeholder="Частота введения"
+                           value="{entity.six_3.frequency}"
+                           name="six_3.frequency">
+                </div>
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-4">
+                    <label for="six_4Drug">Препарат</label>
+                    <input class="form-control" id="six_4Drug" placeholder="По возможности торговое название"
+                           value="{entity.six_4.drug}"
+                           name="six_4.drug">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_4StartDate">Дата начала лечения</label>
+                    <input class="form-control" id="six_4StartDate" placeholder="Дата начала лечения"
+                           value="{entity.six_4.startDate}"
+                           name="six_4.startDate">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_4EndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="six_4EndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.six_4.endDate}"
+                           name="six_4.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_4Show">Показания</label>
+                    <input class="form-control" id="six_4Show" placeholder="Для которого прописан препарат"
+                           value="{entity.six_4.show}"
+                           name="six_4.show">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_4Dose">Доза, ед</label>
+                    <input class="form-control" id="six_4Dose" placeholder="Доза, ед" value="{entity.six_4.dose}"
+                           name="six_4.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_4Path">Путь введения</label>
+                    <input class="form-control" id="six_4Path" placeholder="Путь введения" value="{entity.six_4.path}"
+                           name="six_4.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_4Frequency">Частота введения</label>
+                    <input class="form-control" id="six_4Frequency" placeholder="Частота введения"
+                           value="{entity.six_4.frequency}"
+                           name="six_4.frequency">
+                </div>
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-4">
+                    <label for="six_5Drug">Препарат</label>
+                    <input class="form-control" id="six_5Drug" placeholder="По возможности торговое название"
+                           value="{entity.six_5.drug}"
+                           name="six_5.drug">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_5StartDate">Дата начала лечения</label>
+                    <input class="form-control" id="six_5StartDate" placeholder="Дата начала лечения"
+                           value="{entity.six_5.startDate}"
+                           name="six_5.startDate">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="six_5EndDate">Дата окончания лечения</label>
+                    <input class="form-control" id="six_5EndDate"
+                           placeholder="Дата окончания лечения (или продолжается)" value="{entity.six_5.endDate}"
+                           name="six_5.endDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_5Show">Показания</label>
+                    <input class="form-control" id="six_5Show" placeholder="Для которого прописан препарат"
+                           value="{entity.six_5.show}"
+                           name="six_5.show">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_5Dose">Доза, ед</label>
+                    <input class="form-control" id="six_5Dose" placeholder="Доза, ед" value="{entity.six_5.dose}"
+                           name="six_5.dose">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_5Path">Путь введения</label>
+                    <input class="form-control" id="six_5Path" placeholder="Путь введения" value="{entity.six_5.path}"
+                           name="six_5.path">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="six_5Frequency">Частота введения</label>
+                    <input class="form-control" id="six_5Frequency" placeholder="Частота введения"
+                           value="{entity.six_5.frequency}"
+                           name="six_5.frequency">
+                </div>
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">7. Лабораторные исследования для оценки НЯ.</p>
+            <p>Например, исходные показатели до начала терапии. Пожалуйста, при необходимости, воспользуйтесь разделом
+                8.</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="seven_1Analyses">Анализ/исследование</label>
+                    <input class="form-control" id="seven_1Analyses" placeholder="Анализ/исследование"
+                           value="{entity.seven_1.analyses}"
+                           name="seven_1.analyses">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="seven_1Date">Дата проведения теста</label>
+                    <input class="form-control" id="seven_1Date" placeholder="Дата проведения теста"
+                           value="{entity.seven_1.date}"
+                           name="seven_1.date">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="seven_1Result">Результат</label>
+                    <input class="form-control" id="seven_1Result"
+                           placeholder="Результат (с указанием единиц измерения, если применимо)"
+                           value="{entity.seven_1.result}"
+                           name="seven_1.result">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="seven_1Value">Референсные значения</label>
+                    <input class="form-control" id="seven_1Value" placeholder="Референсные значения"
+                           value="{entity.seven_1.value}"
+                           name="seven_1.value">
+                </div>
+                <div class="checkbox-inline col-md-1" style="margin-top: 30px">
+                    <label><input name="seven_1.inWork" type="checkbox" value="true">В работе</label>
+                </div>
+
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="seven_2Analyses">Анализ/исследование</label>
+                    <input class="form-control" id="seven_2Analyses" placeholder="Анализ/исследование"
+                           value="{entity.seven_2.analyses}"
+                           name="seven_2.analyses">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="seven_2Date">Дата проведения теста</label>
+                    <input class="form-control" id="seven_2Date" placeholder="Дата проведения теста"
+                           value="{entity.seven_2.date}"
+                           name="seven_2.date">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="seven_2Result">Результат</label>
+                    <input class="form-control" id="seven_2Result"
+                           placeholder="Результат (с указанием единиц измерения, если применимо)"
+                           value="{entity.seven_2.result}"
+                           name="seven_2.result">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="seven_2Value">Референсные значения</label>
+                    <input class="form-control" id="seven_2Value" placeholder="Референсные значения"
+                           value="{entity.seven_2.value}"
+                           name="seven_2.value">
+                </div>
+                <div class="checkbox-inline col-md-1" style="margin-top: 30px">
+                    <label><input name="seven_2.inWork" type="checkbox" value="true">В работе</label>
+                </div>
+
+            </div>
+            <div class="adverseListMain">
+                <div class="form-group col-md-3">
+                    <label for="seven_3Analyses">Анализ/исследование</label>
+                    <input class="form-control" id="seven_3Analyses" placeholder="Анализ/исследование"
+                           value="{entity.seven_3.analyses}"
+                           name="seven_3.analyses">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="seven_3Date">Дата проведения теста</label>
+                    <input class="form-control" id="seven_3Date" placeholder="Дата проведения теста"
+                           value="{entity.seven_3.date}"
+                           name="seven_3.date">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="seven_3Result">Результат</label>
+                    <input class="form-control" id="seven_3Result"
+                           placeholder="Результат (с указанием единиц измерения, если применимо)"
+                           value="{entity.seven_3.result}"
+                           name="seven_3.result">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="seven_3Value">Референсные значения</label>
+                    <input class="form-control" id="seven_3Value" placeholder="Референсные значения"
+                           value="{entity.seven_3.value}"
+                           name="seven_3.value">
+                </div>
+                <div class="checkbox-inline col-md-1" style="margin-top: 30px">
+                    <label><input name="seven_3.inWork" type="checkbox" value="true">В работе</label>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="lethalDate">Дата смерти</label>
+            <input class="form-control" id="lethalDate" placeholder="Дата смерти"
+                   value="{entity.lethalDate}"
+                   name="lethalDate">
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">8. Дополнительная значимая информация</p>
+            <p>Пожалуйста, опишите НЯ, сопутствующие заболевания, данные истории болезни (включая даты), клиническое
+                течение болезни, оценку причинно-следственной связи (если неизвестна), препараты для лечения НЯ и
+                исход.</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-12">
+                <label for="additionalText">Дополнительная значимая информация</label>
+                <textarea class="form-control" id="additionalText" rows="10"
+                          placeholder="Дополнительная значимая информация"
+                          name="additionalText">{entity.additionalText}</textarea>
+            </div>
+        </div>
+        {?entity.id}{:else}<button type="submit" class="btn btn-success">Сохранить и отправить</button>{/entity.id}
+    </form>
+</div>

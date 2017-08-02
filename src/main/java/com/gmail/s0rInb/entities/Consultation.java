@@ -95,7 +95,7 @@ public class Consultation {
 	private LocalDate medicalCommissionDate;
 
 	@Column(name = "medical_commission_result")
-	private Boolean medicalCommissionResult;
+	private String medicalCommissionResult;
 
 	@Column(name = "medical_commission_confirm")
 	private Boolean medicalCommissionConfirm;

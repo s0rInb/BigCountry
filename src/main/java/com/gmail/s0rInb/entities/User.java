@@ -53,6 +53,9 @@ public class User {
 	@JsonIgnore
 	private Integer passwordInputs;
 
+	@Enumerated
+	private UserRole userRole;
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = {CascadeType.ALL})
 	private Set<UserValue> userValues;
 }

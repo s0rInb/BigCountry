@@ -75,11 +75,6 @@
             <version>${springVersion}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jpa</artifactId>
-            <version>2.0.8</version>
-        </dependency>
-        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>1.1.0.Final</version>
@@ -153,6 +148,22 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.11</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -202,7 +213,7 @@
                 <resources>
                     <resource>
                         <directory>src/main/resources</directory>
-                        <filtering>true</filtering>
+                        <filtering>false</filtering>
                     </resource>
                 </resources>
                 <plugins>
@@ -228,7 +239,7 @@
                 <resources>
                     <resource>
                         <directory>src/main/resources</directory>
-                        <filtering>true</filtering>
+                        <filtering>false</filtering>
                     </resource>
                 </resources>
                 <plugins>

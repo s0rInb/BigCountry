@@ -20,7 +20,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public Page<User> findAllByPage(Pageable pageable) {
         return userRepository.findAll(pageable);
