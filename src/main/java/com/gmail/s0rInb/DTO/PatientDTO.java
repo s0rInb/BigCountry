@@ -19,13 +19,14 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class PatientDTO{
+public class PatientDTO {
 	private Long id;
 	private String patientId;
 	private String name;
 	private String surname;
 	private String patronymic;
 	private String sex;
+	private String rusSex;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate birthday;
@@ -37,7 +38,6 @@ public class PatientDTO{
 	private ExpertCenter expertCenter;
 	private SubjectRF subjectRF;
 	private String city;
-	private String medAgentFullName;
 	private Diagnosis diagnosis;
 	private String phone;
 	private String email;
@@ -64,7 +64,6 @@ public class PatientDTO{
 		this.expertCenter = patient.getExpertCenter();
 		this.subjectRF = patient.getSubjectRF();
 		this.city = patient.getCity();
-		this.medAgentFullName = patient.getMedAgentFullName();
 		this.diagnosis = patient.getDiagnosis();
 		this.phone = patient.getPhone();
 		this.email = patient.getEmail();
@@ -74,25 +73,27 @@ public class PatientDTO{
 		this.hotLineCallDate = patient.getHotLineCallDate();
 		this.consultation = patient.getConsultation();
 		this.legalSupport = patient.getLegalSupport();
-	}
-	public PatientDTO(Patient patient,UserRole userRole) {
-		this(patient);
-			switch (userRole){
-				case MANAGER:
-					break;
-				case CUSTOMER:
-					managerPatientDTO(patient);
-					break;
-			}
+		this.rusSex = patient.getRusSex();
 	}
 
-	private void managerPatientDTO(Patient patient){
+	public PatientDTO(Patient patient, UserRole userRole) {
+		this(patient);
+		switch (userRole) {
+			case MANAGER:
+				break;
+			case CUSTOMER:
+				managerPatientDTO(patient);
+				break;
+		}
+	}
+
+	private void managerPatientDTO(Patient patient) {
 		this.name = null;
 		this.surname = null;
 		this.patronymic = null;
-		this.phone=null;
-		this.address=null;
-		this.email=null;
-		this.contactInfo=null;
+		this.phone = null;
+		this.address = null;
+		this.email = null;
+		this.contactInfo = null;
 	}
 }

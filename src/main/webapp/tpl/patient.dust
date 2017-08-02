@@ -1,5 +1,6 @@
 <div id="patient-{entity.id}">
-    {?entity.id}<button class="btn btn-warning" onclick="createAdverseEvent({entity.id})">Добавить НЯ</button>{/entity.id}
+    {?entity.id}
+        <button class="btn btn-warning" onclick="createAdverseEvent({entity.id})">Добавить НЯ</button>{/entity.id}
     <form>
         <div class="block-main">
 
@@ -22,6 +23,7 @@
             <div class="form-group col-md-4">
                 <label for="birthday">Дата рождения</label>
                 <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}"
+                       type="date"
                        name="birthday">
             </div>
             <div class="form-group col-md-4">
@@ -32,14 +34,15 @@
                 <label for="sex">Пол</label>
                 <select class="form-control" name="sex"
                         id="sex">
-                    <option value="male" {?entity.sex}
-                            selected="selected"{/entity.sex}>
-                        Мужской
-                    </option>
-                    <option value="female" {?entity.sex}{:else}
-                            selected="selected"{/entity.sex}>
-                        Женский
-                    </option>
+                    {@select key=entity.sex}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="male" {@eq value="male"}selected="selected"{/eq}>
+                            Мужской
+                        </option>
+                        <option value="female" {@eq value="female"}selected="selected"{/eq}>
+                            Женский
+                        </option>
+                    {/select}
                 </select>
             </div>
 
@@ -85,6 +88,7 @@
             <div class="form-group col-md-3">
                 <label for="hotLineCallDate">Дата обращения на горячую линию</label>
                 <input class="form-control" id="hotLineCallDate" placeholder="Дата обращения на горячую линию"
+                       type="date"
                        value="{entity.hotLineCallDate}"
                        name="hotLineCallDate">
             </div>
@@ -110,6 +114,7 @@
             <div class="form-group col-md-4">
                 <label for="infoConsentDate">Дата информированного согласия</label>
                 <input class="form-control" id="infoConsentDate" placeholder="Дата информированного согласия"
+                       type="date"
                        value="{entity.infoConsentDate}"
                        name="infoConsentDate">
             </div>
@@ -192,6 +197,7 @@
             <div class="form-group col-md-4">
                 <label for="consultationConsultationDate">Дата консультации</label>
                 <input class="form-control" id="consultationConsultationDate" placeholder="Дата консультации"
+                       type="date"
                        value="{entity.consultation.consultationDate}"
                        name="consultation.consultationDate">
             </div>
@@ -208,6 +214,7 @@
             <div class="form-group col-md-4">
                 <label for="consultationFullDocumentDate">Дата получения полного пакета документов</label>
                 <input class="form-control" id="consultationFullDocumentDate"
+                       type="date"
                        placeholder="Дата получения полного пакета документов (для заочной консультации)"
                        value="{entity.consultation.fullDocumentDate}"
                        name="consultation.fullDocumentDate">
@@ -215,6 +222,7 @@
             <div class="form-group col-md-4">
                 <label for="consultationFullDocumentSendDate">Дата передачи документов в центр</label>
                 <input class="form-control" id="consultationFullDocumentSendDate"
+                       type="date"
                        placeholder="Дата передачи документов в центр (для заочной консультации)"
                        value="{entity.consultation.fullDocumentSendDate}"
                        name="consultation.fullDocumentSendDate">
@@ -229,12 +237,14 @@
             <div class="form-group col-md-6">
                 <label for="consultationConclusionDate">Дата получения заключения</label>
                 <input class="form-control" id="consultationConclusionDate" placeholder="Дата получения заключения"
+                       type="date"
                        value="{entity.consultation.conclusionDate}"
                        name="consultation.conclusionDate">
             </div>
             <div class="form-group col-md-6">
                 <label for="consultationSendRegionDate">Дата отправки заключения в регион</label>
                 <input class="form-control" id="consultationSendRegionDate"
+                       type="date"
                        placeholder="Дата отправки заключения в регион"
                        value="{entity.consultation.sendRegionDate}"
                        name="consultation.sendRegionDate">
@@ -256,6 +266,7 @@
             <div class="form-group col-md-3">
                 <label for="consultationMedicalCommissionDate">Дата врачебной комиссии</label>
                 <input class="form-control" id="consultationMedicalCommissionDate" placeholder="Дата врачебной комиссии"
+                       type="date"
                        value="{entity.consultation.medicalCommissionDate}"
                        name="consultation.medicalCommissionDate">
             </div>
@@ -335,12 +346,14 @@
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealMinHealthDate">Дата обращения в Минздрав</label>
                 <input class="form-control" id="legalSupportAppealMinHealthDate" placeholder="Дата обращения в Минздрав"
+                       type="date"
                        value="{entity.legalSupport.appealMinHealthDate}"
                        name="legalSupport.appealMinHealthDate">
             </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportResultMinHealthDate">Дата получения ответа из Минздрава</label>
                 <input class="form-control" id="legalSupportResultMinHealthDate"
+                       type="date"
                        placeholder="Дата получения ответа из Минздрава"
                        value="{entity.legalSupport.resultMinHealthDate}"
                        name="legalSupport.resultMinHealthDate">
@@ -488,6 +501,17 @@
             <button type="submit" class="btn btn-success">Сохранить</button>
         </div>
     </form>
+    <h1>Файлы заказчика</h1>
+    <div class="form-group form-group-sm col-sm-12" id="files-customer">
+        <div class="col-sm-3">
+            <div id="infoConsent-customer"
+                 uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+        </div>
+        <div class="col-sm-9" id="files-container-customer">
+            <div hidden id="file-loading-error-customer"
+                 style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+        </div>
+    </div>
 </div>
 
 <button class="btn btn-danger" onclick="deletePatient({entity.id})">Удалить карту пациента</button>

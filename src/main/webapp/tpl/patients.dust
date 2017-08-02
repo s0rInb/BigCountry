@@ -1,8 +1,8 @@
 <button type="button" class="btn btn-default btn-lg" onclick="window.location.hash='patient'">Новый пациент</button>
 <div class="scroll">
-<table class="table table-bordered table-hover" style="min-height: 600px">
+<table class="table table-bordered table-hover table_main" style="min-height: 600px; margin-bottom: 0;">
     <thead>
-    <th>Номер строки</th>
+    <th>№</th>
     <th>ID пациента</th>
     <th>Фамилия</th>
     <th>Имя</th>
@@ -11,7 +11,6 @@
     <th>Дата получения информированного согласия</th>
     <th>Субъект РФ</th>
     <th>Город</th>
-    <th>Медицинский представитель</th>
     <th>Диагноз</th>
     <th>Пол</th>
     <th>Дата Рождения</th>
@@ -36,9 +35,8 @@
         <td>{infoConsentDate}</td>
         <td>{subjectRF.name}</td>
         <td>{city}</td>
-        <td>{medAgentFullName}</td>
         <td>{diagnosis.name}</td>
-        <td>{sex}</td>
+        <td>{rusSex}</td>
         <td>{birthday}</td>
         <td>{age}</td>
         <td>{address}</td>
@@ -46,7 +44,7 @@
         <td>{email}</td>
         <td>{whoCall.name}</td>
         <td>{contactInfo}</td>
-        <td>{expertCenter}</td>
+        <td>{expertCenter.name}</td>
         <td>{hotLineCallDate}</td>
     </tr>
     {/data}

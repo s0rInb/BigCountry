@@ -1,24 +1,23 @@
 package com.gmail.s0rInb.entities;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gmail.s0rInb.Utils.LocalDateDeserializer;
 import com.gmail.s0rInb.Utils.LocalDateSerializer;
-import com.gmail.s0rInb.entities.dictionary.*;
+import com.gmail.s0rInb.entities.dictionary.Diagnosis;
+import com.gmail.s0rInb.entities.dictionary.ExpertCenter;
+import com.gmail.s0rInb.entities.dictionary.SubjectRF;
+import com.gmail.s0rInb.entities.dictionary.WhoCall;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Set;
 
 /**
  * Created by s0rInb on 11.07.2017.
@@ -54,6 +53,10 @@ public class Patient {
 	@Column(name = "sex")
 	private String sex;
 
+	@Transient
+	@Setter(AccessLevel.NONE)
+	private String rusSex;
+
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	@Column(name = "birthday")
@@ -86,10 +89,6 @@ public class Patient {
 	@Size(max = 320)
 	@Column(name = "city")
 	private String city;
-
-	@Size(max = 320)
-	@Column(name = "med_agent_full_name")
-	private String medAgentFullName;
 
 	@ManyToOne
 	@JoinColumn(name = "diagnosis_id")
@@ -128,15 +127,29 @@ public class Patient {
 	private LegalSupport legalSupport;
 
 	public String getPatientId() {
-		return (getSurname()!=null?getSurname().substring(0,1):"") +
-				(getName()!=null?getName().substring(0,1):"") +
-				(getPatronymic()!=null?getPatronymic().substring(0,1):"") +
+		return (getSurname() != null ? getSurname().substring(0, 1) : "") +
+				(getName() != null ? getName().substring(0, 1) : "") +
+				(getPatronymic() != null ? getPatronymic().substring(0, 1) : "") +
 				id.toString();
 	}
+
 	public void setPatientId(String patientId) {
 		this.patientId = getPatientId();
 	}
+
 	public Integer getAge() {
-		return getBirthday()!=null?(Period.between(getBirthday(),LocalDate.now()).getYears()):null;
+		return getBirthday() != null ? (Period.between(getBirthday(), LocalDate.now()).getYears()) : null;
+	}
+
+	public String getRusSex() {
+		if (getSex() != null) {
+			switch (getSex()) {
+				case "male":
+					return "Мужской";
+				case "female":
+					return "Женский";
+			}
+		}
+		return null;
 	}
 }

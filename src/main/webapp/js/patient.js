@@ -216,6 +216,69 @@ function initForm(entityClass, entityId) {
             })
         }
     })
+
+	var infoConsentcustomer = $("#infoConsent-customer");
+	infoConsentcustomer.uploadFile({
+		url: "/api/uploadFile",
+		multiple: false,
+		dragDrop: false,
+		uploadStr: infoConsentcustomer.attr("uploadStr"),
+		dynamicFormData: function () {
+			var data = {
+				"patientId": entityId,
+				"fileType": "customer",
+				"name": $("#div-file-customer" + (fileCount - 1)).text()
+			}
+			return data;
+		},
+		onSubmit: function (files) {
+			$("#files-container-customer").append('<div id="div-file-customer' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+				files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+			$('#div-file-customer' + fileCount + " div span").on('click', function () {
+				$(this).closest("div").parent("div").remove();
+				$.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
+				})
+			});
+			fileCount++;
+		},
+		onSuccess: function (files, data, xhr, pd) {
+			var divFile = $('#div-file-customer' + fileCount);
+			divFile.empty();
+			divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
+				data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+			divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
+			divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
+		},
+		onError: function (files, status, errMsg, pd) {
+			$("#file-loading-error-customer").append(' "' + files + '"');
+			$("#file-loading-error-customer").show();
+		}
+	});
+
+	$.ajax({
+		url: "/api/fileLinks/" + entityId,
+		data: null,
+		success: function (data) {
+			data.entity.forEach(function (entrya) {
+				if (entrya.fileType === 'customer') {
+					$("#files-container-customer").append('<div id="div-file-customer' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+						entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+					var divFile = $('#div-file-customer' + fileCount);
+					divFile.empty();
+					divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
+						entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+					divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
+					divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
+					$('#div-file-customer' + fileCount + " div span").on('click', function () {
+						$(this).closest("div").parent("div").remove();
+						$.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
+						})
+					});
+					fileCount++;
+				}
+			})
+		}
+	});
 	$("#birthday").change(function (){var ageDifMs = Date.now() - new Date($("#birthday").val()).getTime();
 		var ageDate = new Date(ageDifMs); // miliseconds from epoch
 		$("#age").val(Math.abs(ageDate.getUTCFullYear() - 1970));});

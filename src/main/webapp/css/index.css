@@ -1,23 +1,24 @@
-.right{
+.right {
     float: right;
 }
 
-.scroll{
+.scroll {
     overflow: auto;
 }
 
-.navbar-v{
+.navbar-v {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.main{
+.main {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
 }
+
 .block-main {
     position: relative;
     padding: 0px 15px 50px;
@@ -28,8 +29,14 @@
     border-style: solid;
     border-width: 1px 0;
 }
-th {
-    white-space: nowrap;
+
+.table_main td{
+    text-align: center;
+    min-width: 120px;
+}
+.table_main th{
+    text-align: center;
+    min-width: 120px;
 }
 /*    --------------------------------------------------
 	:: Login Section
@@ -37,10 +44,12 @@ th {
 #login {
     padding-top: 50px
 }
+
 #login .form-wrap {
     width: 30%;
     margin: 0 auto;
 }
+
 #login h1 {
     color: #1fa67b;
     font-size: 18px;
@@ -48,9 +57,11 @@ th {
     font-weight: bold;
     padding-bottom: 20px;
 }
+
 #login .form-group {
     margin-bottom: 25px;
 }
+
 #login .checkbox {
     margin-bottom: 20px;
     position: relative;
@@ -60,6 +71,7 @@ th {
     -o-user-select: none;
     user-select: none;
 }
+
 #login .checkbox.show:before {
     content: '\e013';
     color: #1fa67b;
@@ -69,6 +81,7 @@ th {
     pointer-events: none;
     font-family: 'Glyphicons Halflings';
 }
+
 #login .checkbox .character-checkbox {
     width: 25px;
     height: 25px;
@@ -78,15 +91,18 @@ th {
     vertical-align: middle;
     display: inline-block;
 }
+
 #login .checkbox .label {
     color: #6d6d6d;
     font-size: 13px;
     font-weight: normal;
 }
+
 #login .btn.btn-custom {
     font-size: 14px;
     margin-bottom: 20px;
 }
+
 #login .forget {
     font-size: 13px;
     text-align: center;
@@ -99,31 +115,36 @@ th {
 .form-control {
     color: #212121;
 }
+
 .btn-custom {
     color: #fff;
     background-color: #1fa67b;
 }
+
 .btn-custom:hover,
 .btn-custom:focus {
     color: #fff;
 }
 
-.adverseEventDescription{
+.adverseEventDescription {
 
     font-size: 16px;
     background-color: #eeece1;
     padding: 20px;
 }
-.adverseEventMenu{
+
+.adverseEventMenu {
     background-color: #ccc;
     padding: 20px;
     font-size: 16px;
     width: 100%;
 }
-.adverseEventMain{
+
+.adverseEventMain {
     padding: 20px;
 }
-.adverseListMain{
+
+.adverseListMain {
     display: flow-root;
     border: 1px black dotted;
     margin: 15px;
@@ -139,9 +160,11 @@ th {
     font-size: 12px;
     text-align: center;
 }
+
 #footer p {
     margin-bottom: 0;
 }
+
 #footer a {
     color: inherit;
 }

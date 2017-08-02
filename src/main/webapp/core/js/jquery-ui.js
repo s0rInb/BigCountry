@@ -143,6 +143,9 @@ function Datepicker() {
 		firstDay: 1,
 		isRTL: false,
 		showMonthAfterYear: false,
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "-120:+0",
 		yearSuffix: "" // Additional text to append to the year in the month headers
 	};
 	this._defaults = { // Global defaults for all the date picker instances

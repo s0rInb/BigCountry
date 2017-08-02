@@ -182,8 +182,9 @@ public class AppController extends BaseController {
 	@RequestMapping(value = "getFile", method = RequestMethod.GET)
 	public void getFile(@RequestParam("id") Long id, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		logger.info("getFile");
-		if (getUser().getUserRole().equals(UserRole.MANAGER)) {
 			FileLink fileLink = fileRepository.findOne(id);
+		if (getUser().getUserRole().equals(UserRole.MANAGER) ||
+				(getUser().getUserRole().equals(UserRole.CUSTOMER) && fileLink.getFileType().equals("customer"))) {
 			FileSystemResource fileSystemResource = new FileSystemResource(fileLink.getPath());
 			File downloadFile = new File(fileSystemResource.getPath());
 			FileInputStream inputStream = new FileInputStream(downloadFile);
