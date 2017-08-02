@@ -7,7 +7,7 @@
         <tbody>
             {#data}
             <tr>
-                <td><a href="#patient?id={id}">{id}</a></td>
+                <td><a href="#adverseEvent?id={id}">{id}</a></td>
                 <td><a href="#patient?id={pId}">{patientId}</a></td>
             </tr>
             {/data}
