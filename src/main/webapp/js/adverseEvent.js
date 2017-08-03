@@ -59,5 +59,7 @@ function initForm(entityClass, entityId){
 	$("#seven_3Date").datepicker({dateFormat: 'yy-mm-dd'});
 
 	$("#lethalDate").datepicker({dateFormat: 'yy-mm-dd'});
-	
+	if(entityId!=null){
+		makeReadonly();
+	}
 }

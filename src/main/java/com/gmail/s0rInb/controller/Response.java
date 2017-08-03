@@ -22,6 +22,8 @@ public class Response {
     private Object entity;
     @JsonSerialize
     private String entityClass;
+    @JsonSerialize
+    private String userRole;
 //    @JsonSerialize
 //    private User user;
 
@@ -71,6 +73,14 @@ public class Response {
 
     public void setEntityClass(String entityClass) {
         this.entityClass = entityClass;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
 //    public User getUser() {

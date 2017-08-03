@@ -73,6 +73,7 @@ public class AppController extends BaseController {
 		PatientDTO result = new PatientDTO(patientService.findById(id), getUser().getUserRole());
 		Response response = new Response();
 		response.setEntity(result);
+		response.setUserRole(getUser().getUserRole().name());
 		response.setEntityClass("patient");
 		return response;
 	}
@@ -95,6 +96,7 @@ public class AppController extends BaseController {
 		Response response = new Response();
 		if (getUser().getUserRole().equals(UserRole.MANAGER)) patient = patientService.save(patient);
 		response.setEntity(patient);
+		response.setUserRole(getUser().getUserRole().name());
 		response.setEntityClass("patient");
 		return response;
 

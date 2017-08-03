@@ -282,6 +282,9 @@ function initForm(entityClass, entityId) {
 	$("#birthday").change(function (){var ageDifMs = Date.now() - new Date($("#birthday").val()).getTime();
 		var ageDate = new Date(ageDifMs); // miliseconds from epoch
 		$("#age").val(Math.abs(ageDate.getUTCFullYear() - 1970));});
+	if($("#userRole").val()!=="MANAGER"){
+		makeReadonly();
+	}
 }
 
 

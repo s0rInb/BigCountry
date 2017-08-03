@@ -141,3 +141,7 @@ function returnDictionarySelect2Options(url, placeholder, fnProcessResults) {
 		minimumInputLength: 0
 	};
 }
+function makeReadonly() {
+	$("#page").find(".select2-hidden-accessible,select").prop("disabled",true);
+	$("#page").find("input,textarea").prop("readonly",true);
+}
