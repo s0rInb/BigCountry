@@ -9,19 +9,22 @@
             <h1>Пациент</h1>
             <input hidden name="id" value="{entity.id}">
             <h3>Общая информация</h3>
-            <div class="form-group col-md-4">
-                <label for="surname">Фамилия</label>
-                <input class="form-control" id="surname" placeholder="Фамилия" value="{entity.surname}" name="surname">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="name">Имя</label>
-                <input class="form-control" id="name" placeholder="Имя" value="{entity.name}" name="name">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="patronymic">Отчество</label>
-                <input class="form-control" id="patronymic" placeholder="Отчество" value="{entity.patronymic}"
-                       name="patronymic">
-            </div>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <div class="form-group col-md-4">
+                    <label for="surname">Фамилия</label>
+                    <input class="form-control" id="surname" placeholder="Фамилия" value="{entity.surname}"
+                           name="surname">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="name">Имя</label>
+                    <input class="form-control" id="name" placeholder="Имя" value="{entity.name}" name="name">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="patronymic">Отчество</label>
+                    <input class="form-control" id="patronymic" placeholder="Отчество" value="{entity.patronymic}"
+                           name="patronymic">
+                </div>
+            {:else}{/ne}
             <div class="form-group col-md-4">
                 <label for="birthday">Дата рождения</label>
                 <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}"
@@ -47,22 +50,23 @@
                     {/select}
                 </select>
             </div>
-
-            <div class="form-group col-md-4">
-                <label for="phone">Телефон</label>
-                <input class="form-control" id="phone" placeholder="Телефон" value="{entity.phone}"
-                       name="phone">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="address">Адрес</label>
-                <input class="form-control" id="address" placeholder="Адрес" value="{entity.address}"
-                       name="address">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="email">Адрес электронной почты</label>
-                <input class="form-control" id="email" placeholder="Адрес электронной почты" value="{entity.email}"
-                       name="email">
-            </div>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <div class="form-group col-md-4">
+                    <label for="phone">Телефон</label>
+                    <input class="form-control" id="phone" placeholder="Телефон" value="{entity.phone}"
+                           name="phone">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="address">Адрес</label>
+                    <input class="form-control" id="address" placeholder="Адрес" value="{entity.address}"
+                           name="address">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="email">Адрес электронной почты</label>
+                    <input class="form-control" id="email" placeholder="Адрес электронной почты" value="{entity.email}"
+                           name="email">
+                </div>
+            {:else}{/ne}
             <div class="form-group col-md-4">
                 <label for="diagnosis">Диагноз</label>
                 <select class="form-control" name="diagnosis.id" id="diagnosis">
@@ -94,23 +98,28 @@
                        value="{entity.hotLineCallDate}"
                        name="hotLineCallDate">
             </div>
-            <div class="form-group col-md-3">
-                <label for="contactInfo">Контактные данные обратившегося</label>
-                <input class="form-control" id="contactInfo" placeholder="Контактные данные обратившегося"
-                       value="{entity.contactInfo}"
-                       name="contactInfo">
-            </div>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <div class="form-group col-md-3">
+                    <label for="contactInfo">Контактные данные обратившегося</label>
+                    <input class="form-control" id="contactInfo" placeholder="Контактные данные обратившегося"
+                           value="{entity.contactInfo}"
+                           name="contactInfo">
+                </div>
+
+            {:else}{/ne}
             <div class="form-group col-md-3">
                 <label for="infoConsent">Информированное согласие получено</label>
                 <select class="form-control" name="infoConsent" id="infoConsent">
-                    <option value="true" {?entity.infoConsent}
-                            selected="selected"{/entity.infoConsent}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.infoConsent}{:else}
-                            selected="selected"{/entity.infoConsent}>
-                        Нет
-                    </option>
+                    {@select key=entity.infoConsent}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+
+                    {/select}
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -136,10 +145,10 @@
 
             <div class="form-group form-group-sm col-sm-12" id="files-patient">
                 <div class="col-sm-3">
-{@eq key="{userRole}"  value="MANAGER"}
-                    <div id="infoConsent-patient"
-                         uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
-{:else}{/eq}
+                    {@eq key="{userRole}"  value="MANAGER"}
+                        <div id="infoConsent-patient"
+                             uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+                    {:else}{/eq}
                 </div>
                 <div class="col-sm-9" id="files-container-patient">
                     <div hidden id="file-loading-error-patient"
@@ -258,14 +267,16 @@
             <div class="form-group col-md-3">
                 <label for="consultationMedicalCommission">Назначена ли врачебная комиссия</label>
                 <select class="form-control" name="consultation.medicalCommission" id="consultationMedicalCommission">
-                    <option value="true" {?entity.consultation.medicalCommission}
-                            selected="selected"{/entity.consultation.medicalCommission}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.consultation.medicalCommission}{:else}
-                            selected="selected"{/entity.consultation.medicalCommission}>
-                        Нет
-                    </option>
+                    {@select key=entity.consultation.medicalCommission}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+
+                    {/select}
                 </select>
             </div>
             <div class="form-group col-md-3">
@@ -285,23 +296,24 @@
                 <label for="consultationMedicalCommissionConfirm">Подтверждение врачебной комиссии</label>
                 <select class="form-control" name="consultation.medicalCommissionConfirm"
                         id="consultationMedicalCommissionConfirm">
-                    <option value="true" {?entity.consultation.medicalCommissionConfirm}
-                            selected="selected"{/entity.consultation.medicalCommissionConfirm}>
-                        Подтверждено
-                    </option>
-                    <option value="false" {?entity.consultation.medicalCommissionConfirm}{:else}
-                            selected="selected"{/entity.consultation.medicalCommissionConfirm}>
-                        Не подтверждено
-                    </option>
+                    {@select key=entity.consultation.medicalCommissionConfirm}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
                 </select>
             </div>
 
             <div class="form-group form-group-sm col-sm-12" id="files-consultation">
                 <div class="col-sm-3">
-{@eq key="{userRole}"  value="MANAGER"}
-                    <div id="infoConsent-consultation"
-                         uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
-{:else}{/eq}
+                    {@eq key="{userRole}"  value="MANAGER"}
+                        <div id="infoConsent-consultation"
+                             uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+                    {:else}{/eq}
                 </div>
                 <div class="col-sm-9" id="files-container-consultation">
                     <div hidden id="file-loading-error-consultation"
@@ -318,14 +330,15 @@
                 <label for="legalSupportNeedLegalSupport">Потребность в юридической поддержке</label>
                 <select class="form-control" name="legalSupport.needLegalSupport"
                         id="legalSupportNeedLegalSupport">
-                    <option value="true" {?entity.legalSupport.needLegalSupport}
-                            selected="selected"{/entity.legalSupport.needLegalSupport}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.needLegalSupport}{:else}
-                            selected="selected"{/entity.legalSupport.needLegalSupport}>
-                        Нет
-                    </option>
+                    {@select key=entity.legalSupport.needLegalSupport}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
                 </select>
             </div>
             <div class="form-group col-md-6">
@@ -341,14 +354,15 @@
                 <label for="legalSupportAppealMinHealth">Обращение в Минздрав</label>
                 <select class="form-control" name="legalSupport.appealMinHealth"
                         id="legalSupportAppealMinHealth">
-                    <option value="true" {?entity.legalSupport.appealMinHealth}
-                            selected="selected"{/entity.legalSupport.appealMinHealth}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.appealMinHealth}{:else}
-                            selected="selected"{/entity.legalSupport.appealMinHealth}>
-                        Нет
-                    </option>
+                    {@select key=entity.legalSupport.appealMinHealth}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -371,14 +385,15 @@
                 <label for="legalSupportAppealRusHealth">Обращение в Росздравнадзор</label>
                 <select class="form-control" name="legalSupport.appealRusHealth"
                         id="legalSupportAppealRusHealth">
-                    <option value="true" {?entity.legalSupport.appealRusHealth}
-                            selected="selected"{/entity.legalSupport.appealRusHealth}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.appealRusHealth}{:else}
-                            selected="selected"{/entity.legalSupport.appealRusHealth}>
-                        Нет
-                    </option>
+                    {@select key=entity.legalSupport.appealRusHealth}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -398,14 +413,15 @@
                 <label for="legalSupportAppealProcurator">Обращение в Прокуратуру</label>
                 <select class="form-control" name="legalSupport.appealProcurator"
                         id="legalSupportAppealProcurator">
-                    <option value="true" {?entity.legalSupport.appealProcurator}
-                            selected="selected"{/entity.legalSupport.appealProcurator}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.appealProcurator}{:else}
-                            selected="selected"{/entity.legalSupport.appealProcurator}>
-                        Нет
-                    </option>
+                    {@select key=entity.legalSupport.appealProcurator}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -427,14 +443,15 @@
                 <label for="legalSupportAppealCourt">Обращение в суд</label>
                 <select class="form-control" name="legalSupport.appealCourt"
                         id="legalSupportAppealCourt">
-                    <option value="true" {?entity.legalSupport.appealCourt}
-                            selected="selected"{/entity.legalSupport.appealCourt}>
-                        Да
-                    </option>
-                    <option value="false" {?entity.legalSupport.appealCourt}{:else}
-                            selected="selected"{/entity.legalSupport.appealCourt}>
-                        Нет
-                    </option>
+                    {@select key=entity.legalSupport.appealCourt}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -515,10 +532,10 @@
     <h1>Файлы заказчика</h1>
     <div class="form-group form-group-sm col-sm-12" id="files-customer">
         <div class="col-sm-3">
-{@eq key="{userRole}"  value="MANAGER"}
-            <div id="infoConsent-customer"
-                 uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
-{:else}{/eq}
+            {@eq key="{userRole}"  value="MANAGER"}
+                <div id="infoConsent-customer"
+                     uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
+            {:else}{/eq}
         </div>
         <div class="col-sm-9" id="files-container-customer">
             <div hidden id="file-loading-error-customer"
@@ -527,7 +544,7 @@
     </div>
 </div>
 {@eq key="{userRole}"  value="MANAGER"}
-<button class="btn btn-danger" onclick="deletePatient({entity.id})">Удалить карту пациента</button>
+    <button class="btn btn-danger" onclick="deletePatient({entity.id})">Удалить карту пациента</button>
 {:else}{/eq}
 <button class="btn btn-warning right" onclick="beckToPatients()">Выйти из карточки пациента</button>
 

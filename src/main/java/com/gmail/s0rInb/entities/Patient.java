@@ -67,7 +67,7 @@ public class Patient {
 	private Integer age;
 
 	@Column(name = "info_consent")
-	private Boolean infoConsent;
+	private String infoConsent;
 
 	@Column(name = "info_consent_date")
 	@JsonDeserialize(using = LocalDateDeserializer.class)

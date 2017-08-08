@@ -28,14 +28,14 @@ public class LegalSupport {
 
 
 	@Column(name = "need_legal_support")
-	private Boolean needLegalSupport;
+	private String needLegalSupport;
 
 	@ManyToOne
 	@JoinColumn(name = "who_legal_support_id")
 	private WhoLegalSupport whoLegalSupport;
 
 	@Column(name = "appeal_min_health")
-	private Boolean appealMinHealth;
+	private String appealMinHealth;
 
 	@Column(name = "appeal_min_health_date")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
@@ -48,7 +48,7 @@ public class LegalSupport {
 	private LocalDate resultMinHealthDate;
 
 	@Column(name = "appeal_rus_health")
-	private Boolean appealRusHealth;
+	private String appealRusHealth;
 
 	@Column(name = "appeal_rus_health_date")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
@@ -61,7 +61,7 @@ public class LegalSupport {
 	private LocalDate resultRusHealthDate;
 	
 	@Column(name = "appeal_procurator")
-	private Boolean appealProcurator;
+	private String appealProcurator;
 
 
 
@@ -76,7 +76,7 @@ public class LegalSupport {
 	private LocalDate resultProcuratorHealthDate;
 	
 	@Column(name = "appeal_court")
-	private Boolean appealCourt;
+	private String appealCourt;
 
 	@Column(name = "appeal_court_date")
 	@JsonDeserialize(using = LocalDateDeserializer.class)

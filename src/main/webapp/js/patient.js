@@ -25,260 +25,262 @@ function initForm(entityClass, entityId) {
     $("#legalSupportPlannedCourtDate").datepicker({dateFormat: 'yy-mm-dd'});
 	$("#birthday").datepicker({dateFormat: 'yy-mm-dd'});
 	$("#infoConsentDate").datepicker({dateFormat: 'yy-mm-dd'});
-    var infoConsentPatient = $("#infoConsent-patient");
-    infoConsentPatient.uploadFile({
-        url: "/api/uploadFile",
-        multiple: false,
-        dragDrop: false,
-        uploadStr: infoConsentPatient.attr("uploadStr"),
-        dynamicFormData: function () {
-            var data = {
-                "patientId": entityId,
-                "fileType": "infoConsent",
-                "name": $("#div-file-patient-" + (fileCount - 1)).text()
-            };
-            return data;
-        },
-        onSubmit: function (files) {
-            $("#files-container-patient").append('<div id="div-file-patient-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-                files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-            $('#div-file-patient-' + fileCount + " div span").on('click', function () {
-                $(this).closest("div").parent("div").remove();
-                $.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
-                })
-            });
-            fileCount++;
-        },
-        onSuccess: function (files, data, xhr, pd) {
-            var divFile = $('#div-file-patient-' + fileCount);
-            divFile.empty();
-            divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
-                data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-            divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
-            divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
-        },
-        onError: function (files, status, errMsg, pd) {
-            $("#file-loading-error-patient").append(' "' + files + '"');
-            $("#file-loading-error-patient").show();
-        }
-    });
-
-    $.ajax({
-        url: "/api/fileLinks/" + entityId,
-        data: null,
-        success: function (data) {
-            data.entity.forEach(function (entrya) {
-                if (entrya.fileType === 'infoConsent') {
-                    $("#files-container-patient").append('<div id="div-file-patient-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-                        entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-
-                    var divFile = $('#div-file-patient-' + fileCount);
-                    divFile.empty();
-                    divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
-                        entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-                    divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
-                    divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
-                    $('#div-file-patient-' + fileCount + " div span").on('click', function () {
-                        $(this).closest("div").parent("div").remove();
-                        $.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
-                        })
-                    });
-                    fileCount++;
-                }
-            })
-        }
-    });
-
-    var infoConsentConsultation = $("#infoConsent-consultation");
-    infoConsentConsultation.uploadFile({
-        url: "/api/uploadFile",
-        multiple: false,
-        dragDrop: false,
-        uploadStr: infoConsentConsultation.attr("uploadStr"),
-        dynamicFormData: function () {
-            var data = {
-                "patientId": entityId,
-                "fileType": "consultation",
-                "name": $("#div-file-consultation" + (fileCount - 1)).text()
+	if (entityId!=null) {
+        var infoConsentPatient = $("#infoConsent-patient");
+        infoConsentPatient.uploadFile({
+            url: "/api/uploadFile",
+            multiple: false,
+            dragDrop: false,
+            uploadStr: infoConsentPatient.attr("uploadStr"),
+            dynamicFormData: function () {
+                var data = {
+                    "patientId": entityId,
+                    "fileType": "infoConsent",
+                    "name": $("#div-file-patient-" + (fileCount - 1)).text()
+                };
+                return data;
+            },
+            onSubmit: function (files) {
+                $("#files-container-patient").append('<div id="div-file-patient-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                    files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+                $('#div-file-patient-' + fileCount + " div span").on('click', function () {
+                    $(this).closest("div").parent("div").remove();
+                    $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                    })
+                });
+                fileCount++;
+            },
+            onSuccess: function (files, data, xhr, pd) {
+                var divFile = $('#div-file-patient-' + fileCount);
+                divFile.empty();
+                divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
+                    data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
+            },
+            onError: function (files, status, errMsg, pd) {
+                $("#file-loading-error-patient").append(' "' + files + '"');
+                $("#file-loading-error-patient").show();
             }
-            return data;
-        },
-        onSubmit: function (files) {
-            $("#files-container-consultation").append('<div id="div-file-consultation' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-                files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-            $('#div-file-consultation' + fileCount + " div span").on('click', function () {
-                $(this).closest("div").parent("div").remove();
-                $.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
+        });
+
+        $.ajax({
+            url: "/api/fileLinks/" + entityId,
+            data: null,
+            success: function (data) {
+                data.entity.forEach(function (entrya) {
+                    if (entrya.fileType === 'infoConsent') {
+                        $("#files-container-patient").append('<div id="div-file-patient-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                            entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+
+                        var divFile = $('#div-file-patient-' + fileCount);
+                        divFile.empty();
+                        divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
+                            entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
+                        $('#div-file-patient-' + fileCount + " div span").on('click', function () {
+                            $(this).closest("div").parent("div").remove();
+                            $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                            })
+                        });
+                        fileCount++;
+                    }
                 })
-            });
-            fileCount++;
-        },
-        onSuccess: function (files, data, xhr, pd) {
-            var divFile = $('#div-file-consultation' + fileCount);
-            divFile.empty();
-            divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
-                data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-            divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
-            divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
-        },
-        onError: function (files, status, errMsg, pd) {
-            $("#file-loading-error-consultation").append(' "' + files + '"');
-            $("#file-loading-error-consultation").show();
-        }
-    });
-
-    $.ajax({
-        url: "/api/fileLinks/" + entityId,
-        data: null,
-        success: function (data) {
-            data.entity.forEach(function (entrya) {
-                if (entrya.fileType === 'consultation') {
-                    $("#files-container-consultation").append('<div id="div-file-consultation' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-                        entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-                    var divFile = $('#div-file-consultation' + fileCount);
-                    divFile.empty();
-                    divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
-                        entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-                    divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
-                    divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
-                    $('#div-file-consultation' + fileCount + " div span").on('click', function () {
-                        $(this).closest("div").parent("div").remove();
-                        $.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
-                        })
-                    });
-                    fileCount++;
-                }
-            })
-        }
-    });
-
-    var infoConsentLegalSupport = $("#infoConsent-legalSupport");
-    infoConsentLegalSupport.uploadFile({
-        url: "/api/uploadFile",
-        multiple: false,
-        dragDrop: false,
-        uploadStr: infoConsentLegalSupport.attr("uploadStr"),
-        dynamicFormData: function () {
-            var data = {
-                "patientId": entityId,
-                "fileType": "legalSupport",
-                "name": $("#div-file-legalSupport-" + (fileCount - 1)).text()
             }
-            return data;
-        },
-        onSubmit: function (files) {
-            $("#files-container-legalSupport").append('<div id="div-file-legalSupport-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-                files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-            $('#div-file-legalSupport-' + fileCount + " div span").on('click', function () {
-                $(this).closest("div").parent("div").remove();
-                $.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
-                })
-            });
-            fileCount++;
-        },
-        onSuccess: function (files, data, xhr, pd) {
-            var divFile = $('#div-file-legalSupport-' + fileCount);
-            divFile.empty();
-            divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
-                data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-            divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
-            divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
+        });
 
-        },
-        onError: function (files, status, errMsg, pd) {
-            $("#file-loading-error-legalSupport").append(' "' + files + '"');
-            $("#file-loading-error-legalSupport").show();
-        }
-    });
-
-    $.ajax({
-        url: "/api/fileLinks/" + entityId,
-        data: null,
-        success: function (data) {
-            data.entity.forEach(function (entrya) {
-                if (entrya.fileType === 'legalSupport') {
-                    $("#files-container-legalSupport").append('<div id="div-file-legalSupport-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-                        entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-
-                    var divFile = $('#div-file-legalSupport-' + fileCount);
-                    divFile.empty();
-                    divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
-                        entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-                    divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
-                    divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
-                    $('#div-file-legalSupport-' + fileCount + " div span").on('click', function () {
-                        $(this).closest("div").parent("div").remove();
-                        $.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
-                        })
-                    });
-                    fileCount++;
+        var infoConsentConsultation = $("#infoConsent-consultation");
+        infoConsentConsultation.uploadFile({
+            url: "/api/uploadFile",
+            multiple: false,
+            dragDrop: false,
+            uploadStr: infoConsentConsultation.attr("uploadStr"),
+            dynamicFormData: function () {
+                var data = {
+                    "patientId": entityId,
+                    "fileType": "consultation",
+                    "name": $("#div-file-consultation" + (fileCount - 1)).text()
                 }
-            })
-        }
-    })
+                return data;
+            },
+            onSubmit: function (files) {
+                $("#files-container-consultation").append('<div id="div-file-consultation' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                    files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+                $('#div-file-consultation' + fileCount + " div span").on('click', function () {
+                    $(this).closest("div").parent("div").remove();
+                    $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                    })
+                });
+                fileCount++;
+            },
+            onSuccess: function (files, data, xhr, pd) {
+                var divFile = $('#div-file-consultation' + fileCount);
+                divFile.empty();
+                divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
+                    data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
+            },
+            onError: function (files, status, errMsg, pd) {
+                $("#file-loading-error-consultation").append(' "' + files + '"');
+                $("#file-loading-error-consultation").show();
+            }
+        });
 
-	var infoConsentcustomer = $("#infoConsent-customer");
-	infoConsentcustomer.uploadFile({
-		url: "/api/uploadFile",
-		multiple: false,
-		dragDrop: false,
-		uploadStr: infoConsentcustomer.attr("uploadStr"),
-		dynamicFormData: function () {
-			var data = {
-				"patientId": entityId,
-				"fileType": "customer",
-				"name": $("#div-file-customer" + (fileCount - 1)).text()
-			}
-			return data;
-		},
-		onSubmit: function (files) {
-			$("#files-container-customer").append('<div id="div-file-customer' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-				files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-			$('#div-file-customer' + fileCount + " div span").on('click', function () {
-				$(this).closest("div").parent("div").remove();
-				$.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
-				})
-			});
-			fileCount++;
-		},
-		onSuccess: function (files, data, xhr, pd) {
-			var divFile = $('#div-file-customer' + fileCount);
-			divFile.empty();
-			divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
-				data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-			divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
-			divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
-		},
-		onError: function (files, status, errMsg, pd) {
-			$("#file-loading-error-customer").append(' "' + files + '"');
-			$("#file-loading-error-customer").show();
-		}
-	});
+        $.ajax({
+            url: "/api/fileLinks/" + entityId,
+            data: null,
+            success: function (data) {
+                data.entity.forEach(function (entrya) {
+                    if (entrya.fileType === 'consultation') {
+                        $("#files-container-consultation").append('<div id="div-file-consultation' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                            entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+                        var divFile = $('#div-file-consultation' + fileCount);
+                        divFile.empty();
+                        divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
+                            entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
+                        $('#div-file-consultation' + fileCount + " div span").on('click', function () {
+                            $(this).closest("div").parent("div").remove();
+                            $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                            })
+                        });
+                        fileCount++;
+                    }
+                })
+            }
+        });
 
-	$.ajax({
-		url: "/api/fileLinks/" + entityId,
-		data: null,
-		success: function (data) {
-			data.entity.forEach(function (entrya) {
-				if (entrya.fileType === 'customer') {
-					$("#files-container-customer").append('<div id="div-file-customer' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
-						entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
-					var divFile = $('#div-file-customer' + fileCount);
-					divFile.empty();
-					divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
-						entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
-					divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
-					divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
-					$('#div-file-customer' + fileCount + " div span").on('click', function () {
-						$(this).closest("div").parent("div").remove();
-						$.post("/api/deleteFileLinks/"+$(this).closest('div').next('input').val(), function (data) {
-						})
-					});
-					fileCount++;
-				}
-			})
-		}
-	});
+        var infoConsentLegalSupport = $("#infoConsent-legalSupport");
+        infoConsentLegalSupport.uploadFile({
+            url: "/api/uploadFile",
+            multiple: false,
+            dragDrop: false,
+            uploadStr: infoConsentLegalSupport.attr("uploadStr"),
+            dynamicFormData: function () {
+                var data = {
+                    "patientId": entityId,
+                    "fileType": "legalSupport",
+                    "name": $("#div-file-legalSupport-" + (fileCount - 1)).text()
+                }
+                return data;
+            },
+            onSubmit: function (files) {
+                $("#files-container-legalSupport").append('<div id="div-file-legalSupport-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                    files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+                $('#div-file-legalSupport-' + fileCount + " div span").on('click', function () {
+                    $(this).closest("div").parent("div").remove();
+                    $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                    })
+                });
+                fileCount++;
+            },
+            onSuccess: function (files, data, xhr, pd) {
+                var divFile = $('#div-file-legalSupport-' + fileCount);
+                divFile.empty();
+                divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
+                    data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
+
+            },
+            onError: function (files, status, errMsg, pd) {
+                $("#file-loading-error-legalSupport").append(' "' + files + '"');
+                $("#file-loading-error-legalSupport").show();
+            }
+        });
+
+        $.ajax({
+            url: "/api/fileLinks/" + entityId,
+            data: null,
+            success: function (data) {
+                data.entity.forEach(function (entrya) {
+                    if (entrya.fileType === 'legalSupport') {
+                        $("#files-container-legalSupport").append('<div id="div-file-legalSupport-' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                            entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+
+                        var divFile = $('#div-file-legalSupport-' + fileCount);
+                        divFile.empty();
+                        divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
+                            entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
+                        $('#div-file-legalSupport-' + fileCount + " div span").on('click', function () {
+                            $(this).closest("div").parent("div").remove();
+                            $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                            })
+                        });
+                        fileCount++;
+                    }
+                })
+            }
+        })
+
+        var infoConsentcustomer = $("#infoConsent-customer");
+        infoConsentcustomer.uploadFile({
+            url: "/api/uploadFile",
+            multiple: false,
+            dragDrop: false,
+            uploadStr: infoConsentcustomer.attr("uploadStr"),
+            dynamicFormData: function () {
+                var data = {
+                    "patientId": entityId,
+                    "fileType": "customer",
+                    "name": $("#div-file-customer" + (fileCount - 1)).text()
+                }
+                return data;
+            },
+            onSubmit: function (files) {
+                $("#files-container-customer").append('<div id="div-file-customer' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                    files[0] + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+                $('#div-file-customer' + fileCount + " div span").on('click', function () {
+                    $(this).closest("div").parent("div").remove();
+                    $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                    })
+                });
+                fileCount++;
+            },
+            onSuccess: function (files, data, xhr, pd) {
+                var divFile = $('#div-file-customer' + fileCount);
+                divFile.empty();
+                divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + data.entity.id + '">' +
+                    data.entity.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + data.entity.id + '"/>');
+                divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + data.entity.name + '"/>');
+            },
+            onError: function (files, status, errMsg, pd) {
+                $("#file-loading-error-customer").append(' "' + files + '"');
+                $("#file-loading-error-customer").show();
+            }
+        });
+
+        $.ajax({
+            url: "/api/fileLinks/" + entityId,
+            data: null,
+            success: function (data) {
+                data.entity.forEach(function (entrya) {
+                    if (entrya.fileType === 'customer') {
+                        $("#files-container-customer").append('<div id="div-file-customer' + fileCount + '"><div class="well well-sm task-file" style="margin-bottom: 5px;"><div class="loading"></div>' +
+                            entrya.path + '<span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>');
+                        var divFile = $('#div-file-customer' + fileCount);
+                        divFile.empty();
+                        divFile.append('<div class="well well-sm task-file" style="margin-bottom: 5px;"><a href="/api/getFile?id=' + entrya.id + '">' +
+                            entrya.name + '</a><span class="remove-span glyphicon glyphicon-remove" aria-hidden="true"></span></div>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].id" value="' + entrya.id + '"/>');
+                        divFile.append('<input hidden name="fileLinks[' + fileCount + '].name" value="' + entrya.name + '"/>');
+                        $('#div-file-customer' + fileCount + " div span").on('click', function () {
+                            $(this).closest("div").parent("div").remove();
+                            $.post("/api/deleteFileLinks/" + $(this).closest('div').next('input').val(), function (data) {
+                            })
+                        });
+                        fileCount++;
+                    }
+                })
+            }
+        });
+    }
 	$("#birthday").change(function (){var ageDifMs = Date.now() - new Date($("#birthday").val()).getTime();
 		var ageDate = new Date(ageDifMs); // miliseconds from epoch
 		$("#age").val(Math.abs(ageDate.getUTCFullYear() - 1970));});

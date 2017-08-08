@@ -31,7 +31,7 @@ public class PatientDTO {
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate birthday;
 	private Integer age;
-	private Boolean infoConsent;
+	private String infoConsent;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate infoConsentDate;

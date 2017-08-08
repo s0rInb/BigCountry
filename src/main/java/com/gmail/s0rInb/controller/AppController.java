@@ -63,6 +63,7 @@ public class AppController extends BaseController {
 		result.sort(Comparator.comparing(PatientDTO::getId));
 		Response response = new Response();
 		response.setData(result);
+		response.setUserRole(getUser().getUserRole().name());
 		return response;
 	}
 
@@ -85,6 +86,7 @@ public class AppController extends BaseController {
 		Patient result = patientService.findById(0L);
 		Response response = new Response();
 		response.setEntity(result);
+		response.setUserRole(getUser().getUserRole().name());
 		response.setEntityClass("patient");
 		return response;
 	}
@@ -119,6 +121,7 @@ public class AppController extends BaseController {
 		Response response = new Response();
 		response.setEntity(result);
 		response.setEntityClass("fileLinks");
+		response.setUserRole(getUser().getUserRole().name());
 		return response;
 	}
 
@@ -132,6 +135,7 @@ public class AppController extends BaseController {
 			Files.delete(Paths.get(one.getPath()));
 		}
 		Response response = new Response();
+		response.setUserRole(getUser().getUserRole().name());
 		response.setEntityClass("fileLinks");
 		return response;
 	}
@@ -229,6 +233,7 @@ public class AppController extends BaseController {
 		AdverseEvent result = adverseEventService.findById(id);
 		Response response = new Response();
 		response.setEntity(result);
+		response.setUserRole(getUser().getUserRole().name());
 		response.setEntityClass("adverseEvent");
 		return response;
 	}
@@ -241,6 +246,7 @@ public class AppController extends BaseController {
 		result.setPatientId(patientId);
 		Response response = new Response();
 		response.setEntity(result);
+		response.setUserRole(getUser().getUserRole().name());
 		response.setEntityClass("adverseEvent");
 		return response;
 	}
@@ -262,6 +268,7 @@ public class AppController extends BaseController {
 				e.printStackTrace();
 			}
 		}
+		response.setUserRole(getUser().getUserRole().name());
 		return response;
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/adverseEvents", produces = "application/json")
@@ -272,6 +279,7 @@ public class AppController extends BaseController {
 		List<HashMap> adverseEvents = adverseEventService.findHashMapList();
 		Response response = new Response();
 		response.setData(adverseEvents);
+		response.setUserRole(getUser().getUserRole().name());
 		return response;
 	}
 }

@@ -4,33 +4,41 @@
     <thead>
     <th>№</th>
     <th>ID пациента</th>
+    {@ne key="{userRole}"  value="CUSTOMER"}
     <th>Фамилия</th>
     <th>Имя</th>
     <th>Отчество</th>
-    <th>Информированное согласие получено</th>
-    <th>Дата получения информированного согласия</th>
+    {:else}{/ne}
+    <th>Инф. согласие получено</th>
+    <th>Дата инф. согласия</th>
     <th>Субъект РФ</th>
     <th>Город</th>
     <th>Диагноз</th>
     <th>Пол</th>
     <th>Дата Рождения</th>
     <th>Возраст</th>
+    {@ne key="{userRole}"  value="CUSTOMER"}
     <th>Адрес</th>
     <th>Телефон</th>
     <th>Адрес электронной почты</th>
-    <th>Кто обратился на горячую линию</th>
-    <th>Контактные данные обратившегося</th>
+    {:else}{/ne}
+    <th>Обративщийся</th>
+    {@ne key="{userRole}"  value="CUSTOMER"}
+    <th>Контакты обратившегося</th>
+    {:else}{/ne}
     <th>Экспертный центр</th>
-    <th>Дата обращения на горячую линию</th>
+    <th>Дата обращения на Г.Л.</th>
     </thead>
     <tbody>
     {#data}
     <tr>
         <td>{id}</td>
         <td><a href="#patient?id={id}">{patientId}</a></td>
+        {@ne key="{userRole}"  value="CUSTOMER"}
         <td>{surname}</td>
         <td>{name}</td>
         <td>{patronymic}</td>
+        {:else}{/ne}
         <td>{infoConsent}</td>
         <td>{infoConsentDate}</td>
         <td>{subjectRF.name}</td>
@@ -39,11 +47,15 @@
         <td>{rusSex}</td>
         <td>{birthday}</td>
         <td>{age}</td>
+        {@ne key="{userRole}"  value="CUSTOMER"}
         <td>{address}</td>
         <td>{phone}</td>
         <td>{email}</td>
+        {:else}{/ne}
         <td>{whoCall.name}</td>
+        {@ne key="{userRole}"  value="CUSTOMER"}
         <td>{contactInfo}</td>
+        {:else}{/ne}
         <td>{expertCenter.name}</td>
         <td>{hotLineCallDate}</td>
     </tr>

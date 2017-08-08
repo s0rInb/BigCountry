@@ -87,7 +87,7 @@ public class Consultation {
 	private LocalDate sendRegionDate;
 
 	@Column(name = "medical_commission")
-	private Boolean medicalCommission;
+	private String medicalCommission;
 
 	@Column(name = "medical_commission_date")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
@@ -98,5 +98,5 @@ public class Consultation {
 	private String medicalCommissionResult;
 
 	@Column(name = "medical_commission_confirm")
-	private Boolean medicalCommissionConfirm;
+	private String medicalCommissionConfirm;
 }

@@ -1,3 +1,3 @@
-initForm(entityClass, entityId){
+function initForm(entityClass, entityId){
 
 }
