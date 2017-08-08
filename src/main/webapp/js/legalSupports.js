@@ -1,0 +1,3 @@
+function initForm(entityClass, entityId){
+
+}

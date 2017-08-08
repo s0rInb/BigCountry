@@ -4,9 +4,12 @@ import com.gmail.s0rInb.DTO.PatientDTO;
 import com.gmail.s0rInb.entities.FileLink;
 import com.gmail.s0rInb.entities.Patient;
 import com.gmail.s0rInb.entities.UserRole;
+import com.gmail.s0rInb.entities.dictionary.ConsultationType;
+import com.gmail.s0rInb.entities.dictionary.Dictionary;
 import com.gmail.s0rInb.entities.nis.AdverseEvent;
 import com.gmail.s0rInb.repository.FileRepository;
 import com.gmail.s0rInb.service.AdverseEventService;
+import com.gmail.s0rInb.service.DictionaryService;
 import com.gmail.s0rInb.service.PatientService;
 import com.gmail.s0rInb.service.UserService;
 import com.itextpdf.text.DocumentException;
@@ -48,6 +51,8 @@ public class AppController extends BaseController {
 	FileRepository fileRepository;
 	@Autowired
 	AdverseEventService adverseEventService;
+	@Autowired
+	DictionaryService dictionaryService;
 
 	@Override
 	protected void init() {
@@ -279,6 +284,53 @@ public class AppController extends BaseController {
 		List<HashMap> adverseEvents = adverseEventService.findHashMapList();
 		Response response = new Response();
 		response.setData(adverseEvents);
+		response.setUserRole(getUser().getUserRole().name());
+		return response;
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "/consultationsExtramural", produces = "application/json")
+	@ResponseBody
+	public Response getConsultationExtramural(HttpServletRequest request)
+			throws IOException {
+		logger.info("getConsultationExtramural");
+		ConsultationType consultationType = (ConsultationType) dictionaryService.findById("ConsultationType", 1L);
+		List<PatientDTO> patientDTOList = patientService.findAll().stream().map(o -> new PatientDTO(o, getUser().getUserRole())).collect(Collectors.toList());
+		if (!patientDTOList.isEmpty()) {
+			patientDTOList = patientDTOList.stream().filter(patientDTO -> patientDTO.getConsultation() != null && consultationType.equals(patientDTO.getConsultation().getConsultationType())).collect(Collectors.toList());
+		}
+		Response response = getPatients(request);
+		response.setEntityClass("consultationsExtramural");
+		response.setData(patientDTOList);
+		response.setUserRole(getUser().getUserRole().name());
+		return response;
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "/consultationsFullTime", produces = "application/json")
+	@ResponseBody
+	public Response getConsultation(HttpServletRequest request)
+			throws IOException {
+		logger.info("getConsultationFullTime");
+		ConsultationType consultationType = (ConsultationType) dictionaryService.findById("ConsultationType", 1L);
+		List<PatientDTO> patientDTOList = patientService.findAll().stream().map(o -> new PatientDTO(o, getUser().getUserRole())).collect(Collectors.toList());
+		if (!patientDTOList.isEmpty()) {
+			patientDTOList = patientDTOList.stream().filter(patientDTO -> patientDTO.getConsultation() != null && consultationType.equals(patientDTO.getConsultation().getConsultationType())).collect(Collectors.toList());
+		}
+		Response response = new Response();
+		response.setEntityClass("consultationsFullTime");
+		response.setData(patientDTOList);
+		response.setUserRole(getUser().getUserRole().name());
+		return response;
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "/legalSupports", produces = "application/json")
+	@ResponseBody
+	public Response getLegalSupports(HttpServletRequest request)
+			throws IOException {
+		logger.info("getLegalSupports");
+		List<PatientDTO> patientDTOList = patientService.findAll().stream().map(o -> new PatientDTO(o, getUser().getUserRole())).collect(Collectors.toList());
+		if (!patientDTOList.isEmpty()) {
+			patientDTOList = patientDTOList.stream().filter(patientDTO -> patientDTO.getLegalSupport() != null).collect(Collectors.toList());
+		}
+		Response response = new Response();
+		response.setEntityClass("legalSupports");
+		response.setData(patientDTOList);
 		response.setUserRole(getUser().getUserRole().name());
 		return response;
 	}
