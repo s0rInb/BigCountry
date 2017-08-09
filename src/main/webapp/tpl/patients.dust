@@ -1,65 +1,67 @@
-{@eq key="{userRole}"  value="MANAGER"}<button type="button" class="btn btn-default btn-lg" onclick="window.location.hash='patient'">Новый пациент</button>{:else}{/eq}
+{@eq key="{userRole}"  value="MANAGER"}
+    <button type="button" class="btn btn-warning btn-lg"  style="margin-bottom: 30px;" onclick="window.location.hash='patient'">
+        Новый пациент
+    </button>
+{:else}{/eq}
 <div class="scroll">
-<table class="table table-bordered table-hover table_main" style="min-height: 600px; margin-bottom: 0;">
-    <thead>
-    <th>№</th>
-    <th>ID пациента</th>
+<div class="table-adaptive" style="margin-bottom: 0;">
+    <div class="row-adaptive header-adaptive green">
+    <div class="cell-adaptive">№</div>
+    <div class="cell-adaptive">ID пациента</div>
     {@ne key="{userRole}"  value="CUSTOMER"}
-    <th>Фамилия</th>
-    <th>Имя</th>
-    <th>Отчество</th>
+    <div class="cell-adaptive">Фамилия</div>
+    <div class="cell-adaptive">Имя</div>
+    <div class="cell-adaptive">Отчество</div>
     {:else}{/ne}
-    <th>Инф. согласие получено</th>
-    <th>Дата инф. согласия</th>
-    <th>Субъект РФ</th>
-    <th>Город</th>
-    <th>Диагноз</th>
-    <th>Пол</th>
-    <th>Дата Рождения</th>
-    <th>Возраст</th>
+    <div class="cell-adaptive">Инф. согласие получено</div>
+    <div class="cell-adaptive">Дата инф. согласия</div>
+    <div class="cell-adaptive">Субъект РФ</div>
+    <div class="cell-adaptive">Город</div>
+    <div class="cell-adaptive">Диагноз</div>
+    <div class="cell-adaptive">Пол</div>
+    <div class="cell-adaptive">Дата Рождения</div>
+    <div class="cell-adaptive">Возраст</div>
     {@ne key="{userRole}"  value="CUSTOMER"}
-    <th>Адрес</th>
-    <th>Телефон</th>
-    <th>Адрес электронной почты</th>
+    <div class="cell-adaptive">Адрес</div>
+    <div class="cell-adaptive">Телефон</div>
+    <div class="cell-adaptive">Адрес электронной почты</div>
     {:else}{/ne}
-    <th>Обративщийся</th>
+    <div class="cell-adaptive">Обративщийся</div>
     {@ne key="{userRole}"  value="CUSTOMER"}
-    <th>Контакты обратившегося</th>
+    <div class="cell-adaptive">Контакты обратившегося</div>
     {:else}{/ne}
-    <th>Экспертный центр</th>
-    <th>Дата обращения на Г.Л.</th>
-    </thead>
-    <tbody>
+    <div class="cell-adaptive">Экспертный центр</div>
+    <div class="cell-adaptive">Дата обращения на Г.Л.</div>
+    </div>
     {#data}
-    <tr>
-        <td>{id}</td>
-        <td><a href="#patient?id={id}">{patientId}</a></td>
+    <div class="row-adaptive">
+        <div class="cell-adaptive">{id}</div>
+        <div class="cell-adaptive"><a href="#patient?id={id}">{patientId}</a></div>
         {@ne key="{userRole}"  value="CUSTOMER"}
-        <td>{surname}</td>
-        <td>{name}</td>
-        <td>{patronymic}</td>
+        <div class="cell-adaptive">{surname}</div>
+        <div class="cell-adaptive">{name}</div>
+        <div class="cell-adaptive">{patronymic}</div>
         {:else}{/ne}
-        <td>{infoConsent}</td>
-        <td>{infoConsentDate}</td>
-        <td>{subjectRF.name}</td>
-        <td>{city}</td>
-        <td>{diagnosis.name}</td>
-        <td>{rusSex}</td>
-        <td>{birthday}</td>
-        <td>{age}</td>
+        <div class="cell-adaptive">{infoConsent}</div>
+        <div class="cell-adaptive">{infoConsentDate}</div>
+        <div class="cell-adaptive">{subjectRF.name}</div>
+        <div class="cell-adaptive">{city}</div>
+        <div class="cell-adaptive">{diagnosis.name}</div>
+        <div class="cell-adaptive">{rusSex}</div>
+        <div class="cell-adaptive">{birthday}</div>
+        <div class="cell-adaptive">{age}</div>
         {@ne key="{userRole}"  value="CUSTOMER"}
-        <td>{address}</td>
-        <td>{phone}</td>
-        <td>{email}</td>
+        <div class="cell-adaptive">{address}</div>
+        <div class="cell-adaptive">{phone}</div>
+        <div class="cell-adaptive">{email}</div>
         {:else}{/ne}
-        <td>{whoCall.name}</td>
+        <div class="cell-adaptive">{whoCall.name}</div>
         {@ne key="{userRole}"  value="CUSTOMER"}
-        <td>{contactInfo}</td>
+        <div class="cell-adaptive">{contactInfo}</div>
         {:else}{/ne}
-        <td>{expertCenter.name}</td>
-        <td>{hotLineCallDate}</td>
-    </tr>
+        <div class="cell-adaptive">{expertCenter.name}</div>
+        <div class="cell-adaptive">{hotLineCallDate}</div>
+    </div>
     {/data}
-    </tbody>
-</table>
+</div>
 </div>

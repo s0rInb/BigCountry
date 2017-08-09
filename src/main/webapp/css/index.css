@@ -169,3 +169,54 @@
 #footer a {
     color: inherit;
 }
+
+.table-adaptive {
+    margin: 0 0 40px 0;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: table;
+}
+@media screen and (max-width: 580px) {
+    .table-adaptive {
+        display: block;
+    }
+}
+
+.row-adaptive {
+    display: table-row;
+    background: #f6f6f6;
+    text-align: center;
+}
+.row-adaptive:nth-of-type(odd) {
+    background: #e9e9e9;
+}
+.row-adaptive.header-adaptive {
+    font-weight: 900;
+    color: #ffffff;
+    background: #ea6153;
+}
+.row-adaptive.green {
+    background: #27ae60;
+}
+.row-adaptive.blue {
+    background: #2980b9;
+}
+@media screen and (max-width: 580px) {
+    .row-adaptive {
+        padding: 8px 0;
+        display: block;
+    }
+}
+
+.cell-adaptive {
+    border: #27ae60 solid;
+    border-width: 1px 1px 0px 0px;
+    padding: 6px 12px;
+    display: table-cell;
+}
+@media screen and (max-width: 580px) {
+    .cell-adaptive {
+        padding: 2px 12px;
+        display: block;
+    }
+}

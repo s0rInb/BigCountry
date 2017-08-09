@@ -1,0 +1,28 @@
+<div class="scroll">
+    <div class="table-adaptive" style="margin-bottom: 0;">
+        <div class="row-adaptive header-adaptive green">
+            <div class="cell-adaptive">№</div>
+            <div class="cell-adaptive">Субъект РФ</div>
+            <div class="cell-adaptive">Нозология</div>
+            <div class="cell-adaptive">Проводилась ли ранее очная/заочная консультация в рамках Программы</div>
+            <div class="cell-adaptive">Дата обращения</div>
+            <div class="cell-adaptive">Кем оказана помощь</div>
+            <div class="cell-adaptive">Досудебная поддержка</div>
+            <div class="cell-adaptive">Судебная поддержка</div>
+            <div class="cell-adaptive">Итог обращения</div>
+        </div>
+        {#data}
+            <div class="row-adaptive">
+                <div class="cell-adaptive">{id}</div>
+                <div class="cell-adaptive">{subjectRF.name}</div>
+                <div class="cell-adaptive">{diagnosis.name}</div>
+                <div class="cell-adaptive">{consultation.consultationType.name}</div>
+                <div class="cell-adaptive">Дата обращения</div>
+                <div class="cell-adaptive">{legalSupport.whoLegalSupport.name}</div>
+                <div class="cell-adaptive">Досудебная поддержка</div>
+                <div class="cell-adaptive">Судебная поддержка</div>
+                <div class="cell-adaptive">Итог обращения</div>
+            </div>
+        {/data}
+    </div>
+</div>

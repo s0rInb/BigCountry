@@ -292,10 +292,12 @@ public class AppController extends BaseController {
 	public Response getConsultationExtramural(HttpServletRequest request)
 			throws IOException {
 		logger.info("getConsultationExtramural");
-		ConsultationType consultationType = (ConsultationType) dictionaryService.findById("ConsultationType", 1L);
+		ConsultationType consultationType = (ConsultationType) dictionaryService.findById("ConsultationType", 2L);
 		List<PatientDTO> patientDTOList = patientService.findAll().stream().map(o -> new PatientDTO(o, getUser().getUserRole())).collect(Collectors.toList());
 		if (!patientDTOList.isEmpty()) {
-			patientDTOList = patientDTOList.stream().filter(patientDTO -> patientDTO.getConsultation() != null && consultationType.equals(patientDTO.getConsultation().getConsultationType())).collect(Collectors.toList());
+			patientDTOList = patientDTOList.stream().filter(patientDTO -> patientDTO.getConsultation() != null &&
+					patientDTO.getConsultation().getConsultationType() != null &&
+					consultationType.getId().equals(patientDTO.getConsultation().getConsultationType().getId())).collect(Collectors.toList());
 		}
 		Response response = getPatients(request);
 		response.setEntityClass("consultationsExtramural");
@@ -311,7 +313,9 @@ public class AppController extends BaseController {
 		ConsultationType consultationType = (ConsultationType) dictionaryService.findById("ConsultationType", 1L);
 		List<PatientDTO> patientDTOList = patientService.findAll().stream().map(o -> new PatientDTO(o, getUser().getUserRole())).collect(Collectors.toList());
 		if (!patientDTOList.isEmpty()) {
-			patientDTOList = patientDTOList.stream().filter(patientDTO -> patientDTO.getConsultation() != null && consultationType.equals(patientDTO.getConsultation().getConsultationType())).collect(Collectors.toList());
+			patientDTOList = patientDTOList.stream().filter(patientDTO -> patientDTO.getConsultation() != null &&
+					patientDTO.getConsultation().getConsultationType() != null &&
+					consultationType.getId().equals(patientDTO.getConsultation().getConsultationType().getId())).collect(Collectors.toList());
 		}
 		Response response = new Response();
 		response.setEntityClass("consultationsFullTime");

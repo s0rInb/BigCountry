@@ -1,0 +1,24 @@
+<div class="scroll">
+    <div class="table-adaptive" style="margin-bottom: 0;">
+        <div class="row-adaptive header-adaptive green">
+            <div class="cell-adaptive">№</div>
+            <div class="cell-adaptive">Субъект РФ</div>
+            <div class="cell-adaptive">Нозология</div>
+            <div class="cell-adaptive">Экспертный центр</div>
+            <div class="cell-adaptive">Дата обращения на Г.Л.</div>
+            <div class="cell-adaptive">Дата поступления на консультацию</div>
+            <div class="cell-adaptive">Дата получения заключения</div>
+        </div>
+        {#data}
+            <div class="row-adaptive">
+                <div class="cell-adaptive">{id}</div>
+                <div class="cell-adaptive">{subjectRF.name}</div>
+                <div class="cell-adaptive">{diagnosis.name}</div>
+                <div class="cell-adaptive">{expertCenter.name}</div>
+                <div class="cell-adaptive">{hotLineCallDate}</div>
+                <div class="cell-adaptive">{consultation.consultationDate}</div>
+                <div class="cell-adaptive">{consultation.conclusionDate}</div>
+            </div>
+        {/data}
+    </div>
+</div>
