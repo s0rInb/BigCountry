@@ -1,5 +1,12 @@
 var fileCount = 0;
 function initForm(entityClass, entityId) {
+    $("#circulationChannel").change(function () {
+        if($(this).val()==="another"){
+            $("#circulationChannelTextBody").show();
+        } else {
+            $("#circulationChannelTextBody").hide();
+        }
+    }).trigger("change");
     $("#subjectRF").select2(returnSelect2options("/api/subjectRF"));
     $("#diagnosis").select2(returnSelect2options("/api/diagnosis"));
     $("#whoCall").select2(returnSelect2options("/api/whoCall"));

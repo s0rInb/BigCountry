@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 /**
  * Created by s0rInb on 11.07.2017.
@@ -125,6 +126,22 @@ public class Patient {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "legal_support_id")
 	private LegalSupport legalSupport;
+
+	@Size(max = 120)
+	@Column(name = "circulationChannel")
+	private String circulationChannel;
+
+	@Size(max = 520)
+	@Column(name = "circulationChannelText")
+	private String circulationChannelText;
+
+	public void setCirculationChannelText(String circulationChannelText) {
+		if(Objects.equals(this.getCirculationChannel(), "another")) {
+			this.circulationChannelText = circulationChannelText;
+		} else{
+			this.circulationChannelText=null;
+		}
+	}
 
 	public String getPatientId() {
 		return (getSurname() != null ? getSurname().substring(0, 1) : "") +

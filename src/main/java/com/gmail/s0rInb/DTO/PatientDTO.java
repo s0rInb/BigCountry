@@ -49,6 +49,8 @@ public class PatientDTO {
 	private LocalDate hotLineCallDate;
 	private Consultation consultation;
 	private LegalSupport legalSupport;
+	private String circulationChannelText;
+	private String circulationChannel;
 
 	private PatientDTO(Patient patient) {
 		this.id = patient.getId();
@@ -74,6 +76,8 @@ public class PatientDTO {
 		this.consultation = patient.getConsultation();
 		this.legalSupport = patient.getLegalSupport();
 		this.rusSex = patient.getRusSex();
+		this.circulationChannel=patient.getCirculationChannel();
+		this.circulationChannelText=patient.getCirculationChannelText();
 	}
 
 	public PatientDTO(Patient patient, UserRole userRole) {

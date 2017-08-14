@@ -84,16 +84,39 @@
                 <input class="form-control" id="patronymic" placeholder="Город" value="{entity.city}"
                        name="city">
             </div>
-            <h3>Обращение</h3>
+            <h3>Обращение в службу поддержки</h3>
             <div class="form-group col-md-3">
-                <label for="whoCall">Кто обратился на горячую линию</label>
+                <label for="circulationChannel">Канал обращения</label>
+                <select class="form-control" name="circulationChannel" id="circulationChannel">
+                    {@select key=entity.circulationChannel}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="hotLine" {@eq value="hotLine"}selected="selected"{/eq}>
+                            Горячая линия
+                        </option>
+                        <option value="email" {@eq value="email"}selected="selected"{/eq}>
+                            Электронное письмо
+                        </option>
+                        <option value="another" {@eq value="another"}selected="selected"{/eq}>
+                            Другое
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-3" id="circulationChannelTextBody">
+                <label for="circulationChannelText">Канал обращения</label>
+                <input class="form-control" id="circulationChannelText" placeholder="Канал обращения"
+                       value="{entity.circulationChannelText}"
+                       name="circulationChannelText">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="whoCall">Кто обратился в службу поддержки</label>
                 <select class="form-control" name="whoCall.id" id="whoCall">
                     <option value="{entity.whoCall.id}" selected="selected">{entity.whoCall.name}</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="hotLineCallDate">Дата обращения на горячую линию</label>
-                <input class="form-control" id="hotLineCallDate" placeholder="Дата обращения на горячую линию"
+                <label for="hotLineCallDate">Дата обращения в службу поддержки</label>
+                <input class="form-control" id="hotLineCallDate" placeholder="Дата обращения в службу поддержки"
                        type="date"
                        value="{entity.hotLineCallDate}"
                        name="hotLineCallDate">
@@ -122,20 +145,20 @@
                     {/select}
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3"
                 <label for="infoConsentDate">Дата информированного согласия</label>
                 <input class="form-control" id="infoConsentDate" placeholder="Дата информированного согласия"
                        type="date"
                        value="{entity.infoConsentDate}"
                        name="infoConsentDate">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="expertCenter">Экспертный центр</label>
                 <select class="form-control" name="expertCenter.id" id="expertCenter">
                     <option value="{entity.expertCenter.id}" selected="selected">{entity.expertCenter.name}</option>
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label for="doctorExpertCenter">Врач из экспертного центра</label>
                 <select class="form-control" name="doctorExpertCenter.id" id="doctorExpertCenter" multiple="multiple">
                     <option value="{entity.doctorExpertCenter.id}"
@@ -155,9 +178,10 @@
                          style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
                 </div>
             </div>
-
+        <div class="form-group form-group-sm col-sm-12">
             {@eq key="{userRole}"  value="MANAGER"}
                 <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+        </div>
 
         </div>
         <div class="block-main">
@@ -321,8 +345,10 @@
                 </div>
             </div>
 
+                    <div class="form-group form-group-sm col-sm-12">
             {@eq key="{userRole}"  value="MANAGER"}
                 <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+        </div>
         </div>
         <div class="block-main">
             <h1>Юридическая поддержка</h1>
@@ -525,8 +551,10 @@
                 </div>
             </div>
 
+                    <div class="form-group form-group-sm col-sm-12">
             {@eq key="{userRole}"  value="MANAGER"}
                 <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+        </div>
         </div>
     </form>
     <h1>Файлы заказчика</h1>
