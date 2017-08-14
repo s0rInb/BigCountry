@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gmail.s0rInb.Utils.LocalDateDeserializer;
 import com.gmail.s0rInb.Utils.LocalDateSerializer;
+import com.gmail.s0rInb.entities.dictionary.ConsultationPatientStatus;
+import com.gmail.s0rInb.entities.dictionary.LegalSupportPatientStatus;
 import com.gmail.s0rInb.entities.dictionary.LegalSupportResult;
 import com.gmail.s0rInb.entities.dictionary.WhoLegalSupport;
 import lombok.Getter;
@@ -27,9 +29,13 @@ public class LegalSupport {
 	private Long id;
 
 
-	@Column(name = "need_legal_support")
-	private String needLegalSupport;
+//	@Column(name = "need_legal_support")
+//	private String needLegalSupport;
 
+	@Column(name = "date")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	private LocalDate date;
 	@ManyToOne
 	@JoinColumn(name = "who_legal_support_id")
 	private WhoLegalSupport whoLegalSupport;
@@ -115,6 +121,10 @@ public class LegalSupport {
 	@Column(name = "legal_support_result_text")
 	private String legalSupportResultText;
 
-//	@OneToMany(mappedBy = "legalSupport")
-//	private Set<AppealProcuratorFileTest> appealProcuratorFileTests;
+	@ManyToOne
+	@JoinColumn(name = "legalSupport_patient_status_id")
+	private LegalSupportPatientStatus legalSupportPatientStatus;
+
+	@Column(name = "comments")
+	private String comments;
 }

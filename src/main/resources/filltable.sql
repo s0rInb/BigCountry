@@ -145,3 +145,23 @@ insert INTO legal_support_result (name) VALUES ('Другое (текстово�
 insert INTO consultation_type (name) VALUES ('Очная');
 insert INTO consultation_type (name) VALUES ('Заочная');
 --ConsultationType
+
+--ConsultationPatientStatus--
+insert INTO consultation_patient_status (name) VALUES ('Подготовка пакета документов');
+insert INTO consultation_patient_status (name) VALUES ('Плановая дата консультации назначена (для очных консультаций)');
+insert INTO consultation_patient_status (name) VALUES ('Полный пакет документов передан консультанту (для заочных консультаций)');
+insert INTO consultation_patient_status (name) VALUES ('Пациент находится на госпитализации');
+insert INTO consultation_patient_status (name) VALUES ('Заключение от консультанта получено');
+insert INTO consultation_patient_status (name) VALUES ('Врачебная комиссия назначена');
+insert INTO consultation_patient_status (name) VALUES ('Врачебная комиссия проведен');
+
+--ConsultationPatientStatus--
+
+--LegalSupportPatientStatus--
+insert INTO legalsupport_patient_status (name) VALUES ('Обращение к главному врачу ЛПУ,');
+insert INTO legalsupport_patient_status (name) VALUES ('Обращение в Минздрав');
+insert INTO legalsupport_patient_status (name) VALUES ('Обращение в Росздравнадзор');
+insert INTO legalsupport_patient_status (name) VALUES ('Обращение в прокуратуру');
+insert INTO legalsupport_patient_status (name) VALUES ('Обращение в суд');
+insert INTO legalsupport_patient_status (name) VALUES ('Другое');
+--LegalSupportPatientStatus--

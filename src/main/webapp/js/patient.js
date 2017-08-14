@@ -10,6 +10,8 @@ function initForm(entityClass, entityId) {
     $("#subjectRF").select2(returnSelect2options("/api/subjectRF"));
     $("#diagnosis").select2(returnSelect2options("/api/diagnosis"));
     $("#whoCall").select2(returnSelect2options("/api/whoCall"));
+    $("#consultationPatientStatus").select2(returnSelect2options("/api/consultationPatientStatus"));
+    $("#legalSupportPatientStatus").select2(returnSelect2options("/api/legalSupportPatientStatus"));
     $("#consultationConsultationType").select2(returnSelect2options("/api/consultationType"));
     $("#consultationWhoSentToConsultation").select2(returnSelect2options("/api/whoSentToCons"));
     $("#legalSupportWhoLegalSupport").select2(returnSelect2options("/api/whoLegalSupport"));
@@ -30,6 +32,7 @@ function initForm(entityClass, entityId) {
     $("#legalSupportResultProcuratorHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#legalSupportAppealCourtDate").datepicker({dateFormat: 'yy-mm-dd'});
     $("#legalSupportPlannedCourtDate").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#legalSupportDate").datepicker({dateFormat: 'yy-mm-dd'});
 	$("#birthday").datepicker({dateFormat: 'yy-mm-dd'});
 	$("#infoConsentDate").datepicker({dateFormat: 'yy-mm-dd'});
 	if (entityId!=null) {

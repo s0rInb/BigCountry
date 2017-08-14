@@ -185,7 +185,22 @@
 
         </div>
         <div class="block-main">
-            <h1>Консультация</h1>
+            <h1>Федеральная консультация</h1>
+            <div class="form-group col-md-4">
+                <label for="consultationPatientStatus">Статус пациента</label>
+                <select class="form-control" name="consultation.consultationPatientStatus.id"
+                        id="consultationPatientStatus">
+                    <option value="{entity.consultation.consultationPatientStatus.id}" selected="selected">
+                        {entity.consultation.consultationPatientStatus.name}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="consultationComments">Комментарии</label>
+                <textarea class="form-control" id="consultationComments" rows="1"
+                          placeholder="Комментарии"
+                          name="consultation.comments">{entity.consultation.comments}</textarea>
+            </div>
             <h3>Лечащий врач</h3>
             <div class="form-group col-md-4">
                 <label for="consultationDoctorSurname">Фамилия лечащего врача</label>
@@ -352,7 +367,22 @@
         </div>
         <div class="block-main">
             <h1>Юридическая поддержка</h1>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
+                <label for="legalSupportPatientStatus">Статус пациента</label>
+                <select class="form-control" name="legalSupport.legalSupportPatientStatus.id"
+                        id="legalSupportPatientStatus">
+                    <option value="{entity.legalSupport.legalSupportPatientStatus.id}" selected="selected">
+                        {entity.legalSupport.legalSupportPatientStatus.name}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="legalSupportComments">Комментарии</label>
+                <textarea class="form-control" id="legalSupportComments" rows="1"
+                          placeholder="Комментарии"
+                          name="legalSupport.comments">{entity.legalSupport.comments}</textarea>
+            </div>
+{!            <div class="form-group col-md-6">
                 <label for="legalSupportNeedLegalSupport">Потребность в юридической поддержке</label>
                 <select class="form-control" name="legalSupport.needLegalSupport"
                         id="legalSupportNeedLegalSupport">
@@ -366,6 +396,13 @@
                         </option>
                     {/select}
                 </select>
+            </div>!}
+            <div class="form-group col-md-6">
+                <label for="legalSupportDate">Дата обращения в Юридическую поддержку</label>
+                <input class="form-control" id="legalSupportDate" placeholder="Дата обращения в Юридическую поддержку"
+                       type="date"
+                       value="{entity.legalSupport.date}"
+                       name="legalSupport.date">
             </div>
             <div class="form-group col-md-6">
                 <label for="legalSupportWhoLegalSupport">Кем оказана юридическая помощь</label>

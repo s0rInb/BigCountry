@@ -106,7 +106,26 @@ public class DictionaryController {
 		return getResponseById("ConsultationType", id);
 	}
 
-
+	@RequestMapping(method = RequestMethod.GET, value = "consultationPatientStatus", produces = "application/json")
+	@ResponseBody
+	public Response getConsultationPatientStatus(@RequestParam(value = "q", required = false) String q) {
+		return getResponseByQ("ConsultationPatientStatus", q);
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "consultationPatientStatus/{id}", produces = "application/json")
+	@ResponseBody
+	public Response getConsultationPatientStatus(@PathVariable("id") Long id) {
+		return getResponseById("ConsultationPatientStatus", id);
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "legalSupportPatientStatus", produces = "application/json")
+	@ResponseBody
+	public Response getLegalSupportPatientStatus(@RequestParam(value = "q", required = false) String q) {
+		return getResponseByQ("LegalSupportPatientStatus", q);
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "legalSupportPatientStatus/{id}", produces = "application/json")
+	@ResponseBody
+	public Response getLegalSupportPatientStatus(@PathVariable("id") Long id) {
+		return getResponseById("LegalSupportPatientStatus", id);
+	}
 
 
 	private Response getResponseByQ(String entityName, String q) {

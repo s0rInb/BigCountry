@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gmail.s0rInb.Utils.LocalDateDeserializer;
 import com.gmail.s0rInb.Utils.LocalDateSerializer;
+import com.gmail.s0rInb.entities.dictionary.ConsultationPatientStatus;
 import com.gmail.s0rInb.entities.dictionary.ConsultationType;
 import com.gmail.s0rInb.entities.dictionary.WhoSentToConsultation;
 import lombok.Getter;
@@ -99,4 +100,12 @@ public class Consultation {
 
 	@Column(name = "medical_commission_confirm")
 	private String medicalCommissionConfirm;
+
+	@ManyToOne
+	@JoinColumn(name = "consultation_patient_status_id")
+	private ConsultationPatientStatus consultationPatientStatus;
+
+	@Column(name = "comments")
+	private String comments;
 }
+
