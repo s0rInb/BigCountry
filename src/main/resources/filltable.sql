@@ -158,7 +158,7 @@ insert INTO consultation_patient_status (name) VALUES ('Врачебная ко�
 --ConsultationPatientStatus--
 
 --LegalSupportPatientStatus--
-insert INTO legalsupport_patient_status (name) VALUES ('Обращение к главному врачу ЛПУ,');
+insert INTO legalsupport_patient_status (name) VALUES ('Обращение к главному врачу ЛПУ');
 insert INTO legalsupport_patient_status (name) VALUES ('Обращение в Минздрав');
 insert INTO legalsupport_patient_status (name) VALUES ('Обращение в Росздравнадзор');
 insert INTO legalsupport_patient_status (name) VALUES ('Обращение в прокуратуру');
