@@ -5,6 +5,7 @@
             </button>{:else}{/eq}{/entity.id}
     <input hidden id="userRole" value="{userRole}">
     <form>
+
         <div class="block-main">
             <h1>Пациент</h1>
             <input hidden name="id" value="{entity.id}">
@@ -25,12 +26,12 @@
                            name="patronymic">
                 </div>
 
-            <div class="form-group col-md-4">
-                <label for="birthday">Дата рождения</label>
-                <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}"
-                       type="date"
-                       name="birthday">
-            </div>
+                <div class="form-group col-md-4">
+                    <label for="birthday">Дата рождения</label>
+                    <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}"
+                           type="date"
+                           name="birthday">
+                </div>
             {:else}{/ne}
             <div class="form-group col-md-4">
                 <label for="age">Возраст</label>
@@ -86,7 +87,7 @@
                        name="city">
             </div>
             <div class="col-sm-12 null-padding-l-r">
-            <h3>Обращение в службу поддержки</h3>
+                <h3>Обращение в службу поддержки</h3>
             </div>
             <div class="form-group col-md-3">
                 <label for="circulationChannel">Канал обращения</label>
@@ -148,7 +149,7 @@
                     {/select}
                 </select>
             </div>
-            <div class="form-group col-md-3"
+            <div class="form-group col-md-3">
                 <label for="infoConsentDate">Дата информированного согласия</label>
                 <input class="form-control" id="infoConsentDate" placeholder="Дата информированного согласия"
                        type="date"
@@ -181,11 +182,10 @@
                          style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
                 </div>
             </div>
-        <div class="form-group form-group-sm col-sm-12">
-            {@eq key="{userRole}"  value="MANAGER"}
-                <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
-        </div>
-
+            <div class="form-group form-group-sm col-sm-12">
+                {@eq key="{userRole}"  value="MANAGER"}
+                    <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+            </div>
         </div>
         <div class="block-main">
             <h1>Федеральная консультация</h1>
@@ -311,7 +311,7 @@
                 </div>
             </div>
             <div class="col-sm-12 null-padding-l-r">
-            <h3>Врачебная комиссия</h3>
+                <h3>Врачебная комиссия</h3>
             </div>
             <div class="form-group col-md-3">
                 <label for="consultationMedicalCommission">Назначена ли врачебная комиссия</label>
@@ -370,10 +370,10 @@
                 </div>
             </div>
 
-                    <div class="form-group form-group-sm col-sm-12">
-            {@eq key="{userRole}"  value="MANAGER"}
-                <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
-        </div>
+            <div class="form-group form-group-sm col-sm-12">
+                {@eq key="{userRole}"  value="MANAGER"}
+                    <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+            </div>
         </div>
         <div class="block-main">
             <h1>Юридическая поддержка</h1>
@@ -392,21 +392,21 @@
                           placeholder="Комментарии"
                           name="legalSupport.comments">{entity.legalSupport.comments}</textarea>
             </div>
-{!            <div class="form-group col-md-6">
-                <label for="legalSupportNeedLegalSupport">Потребность в юридической поддержке</label>
-                <select class="form-control" name="legalSupport.needLegalSupport"
-                        id="legalSupportNeedLegalSupport">
-                    {@select key=entity.legalSupport.needLegalSupport}
-                        <option {@eq value=""}{/eq}value=""></option>
-                        <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
-                            Да
-                        </option>
-                        <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
-                            Нет
-                        </option>
-                    {/select}
-                </select>
-            </div>!}
+            {!            <div class="form-group col-md-6">
+                            <label for="legalSupportNeedLegalSupport">Потребность в юридической поддержке</label>
+                            <select class="form-control" name="legalSupport.needLegalSupport"
+                                    id="legalSupportNeedLegalSupport">
+                                {@select key=entity.legalSupport.needLegalSupport}
+                                    <option {@eq value=""}{/eq}value=""></option>
+                                    <option value="Да" {@eq value="Да"}selected="selected"{/eq}>
+                                        Да
+                                    </option>
+                                    <option value="Нет" {@eq value="Нет"}selected="selected"{/eq}>
+                                        Нет
+                                    </option>
+                                {/select}
+                            </select>
+                        </div>!}
             <div class="form-group col-md-6">
                 <label for="legalSupportDate">Дата обращения в Юридическую поддержку</label>
                 <input class="form-control" id="legalSupportDate" placeholder="Дата обращения в Юридическую поддержку"
@@ -598,10 +598,34 @@
                 </div>
             </div>
 
-                    <div class="form-group form-group-sm col-sm-12">
-            {@eq key="{userRole}"  value="MANAGER"}
-                <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+            <div class="form-group form-group-sm col-sm-12">
+                {@eq key="{userRole}"  value="MANAGER"}
+                    <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+            </div>
         </div>
+        <div class="block-main">
+            <h1>Закрытие случая</h1>
+            <div class="form-group col-md-4">
+                <label for="caseStatus">Статус случая</label>
+                <select class="form-control" name="caseStatus" id="caseStatus">
+                    {@select key=entity.caseStatus}
+                        <option {@eq value=""}{/eq}value=""></option>
+                        <option value="Закрыт" {@eq value="Закрыт"}selected="selected"{/eq}>
+                            Закрыт
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="comments">Комментарии</label>
+                <textarea class="form-control" id="comments" rows="1"
+                          placeholder="Комментарии"
+                          name="comments">{entity.comments}</textarea>
+            </div>
+            <div class="form-group form-group-sm col-sm-12">
+                {@eq key="{userRole}"  value="MANAGER"}
+                    <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
+            </div>
         </div>
     </form>
     <h1>Файлы заказчика</h1>

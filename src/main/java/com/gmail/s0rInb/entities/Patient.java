@@ -127,6 +127,11 @@ public class Patient {
 	@JoinColumn(name = "legal_support_id")
 	private LegalSupport legalSupport;
 
+	private String caseStatus;
+
+	private String comments;
+
+
 	@Size(max = 120)
 	@Column(name = "circulationChannel")
 	private String circulationChannel;

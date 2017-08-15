@@ -51,6 +51,8 @@ public class PatientDTO {
 	private LegalSupport legalSupport;
 	private String circulationChannelText;
 	private String circulationChannel;
+	private String caseStatus;
+	private String comments;
 
 	private PatientDTO(Patient patient) {
 		this.id = patient.getId();
@@ -78,6 +80,8 @@ public class PatientDTO {
 		this.rusSex = patient.getRusSex();
 		this.circulationChannel=patient.getCirculationChannel();
 		this.circulationChannelText=patient.getCirculationChannelText();
+		this.caseStatus=patient.getCaseStatus();
+		this.comments=patient.getComments();
 	}
 
 	public PatientDTO(Patient patient, UserRole userRole) {
