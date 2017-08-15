@@ -12,7 +12,13 @@ function initForm(entityClass, entityId) {
     $("#whoCall").select2(returnSelect2options("/api/whoCall"));
     $("#consultationPatientStatus").select2(returnSelect2options("/api/consultationPatientStatus"));
     $("#legalSupportPatientStatus").select2(returnSelect2options("/api/legalSupportPatientStatus"));
-    $("#consultationConsultationType").select2(returnSelect2options("/api/consultationType"));
+    $("#consultationConsultationType").select2(returnSelect2options("/api/consultationType")).change(function () {
+        if ($(this).val() === "2") {
+            $("#consultationExtramuralBody").show();
+        } else {
+            $("#consultationExtramuralBody").hide();
+        }
+    }).trigger("change");
     $("#consultationWhoSentToConsultation").select2(returnSelect2options("/api/whoSentToCons"));
     $("#legalSupportWhoLegalSupport").select2(returnSelect2options("/api/whoLegalSupport"));
     $("#expertCenter").select2(returnSelect2options("/api/expertCenter"));

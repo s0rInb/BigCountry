@@ -24,13 +24,14 @@
                     <input class="form-control" id="patronymic" placeholder="Отчество" value="{entity.patronymic}"
                            name="patronymic">
                 </div>
-            {:else}{/ne}
+
             <div class="form-group col-md-4">
                 <label for="birthday">Дата рождения</label>
                 <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}"
                        type="date"
                        name="birthday">
             </div>
+            {:else}{/ne}
             <div class="form-group col-md-4">
                 <label for="age">Возраст</label>
                 <input class="form-control" id="age" readonly placeholder="Возраст" value="{entity.age}" name="age">
@@ -84,7 +85,9 @@
                 <input class="form-control" id="patronymic" placeholder="Город" value="{entity.city}"
                        name="city">
             </div>
+            <div class="col-sm-12 null-padding-l-r">
             <h3>Обращение в службу поддержки</h3>
+            </div>
             <div class="form-group col-md-3">
                 <label for="circulationChannel">Канал обращения</label>
                 <select class="form-control" name="circulationChannel" id="circulationChannel">
@@ -201,43 +204,46 @@
                           placeholder="Комментарии"
                           name="consultation.comments">{entity.consultation.comments}</textarea>
             </div>
-            <h3>Лечащий врач</h3>
-            <div class="form-group col-md-4">
-                <label for="consultationDoctorSurname">Фамилия лечащего врача</label>
-                <input class="form-control" id="consultationDoctorSurname" placeholder="Фамилия лечащего врача"
-                       value="{entity.consultation.doctorSurname}"
-                       name="consultation.doctorSurname">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="consultationDoctorName">Имя лечащего врача</label>
-                <input class="form-control" id="consultationDoctorName" placeholder="Имя лечащего врача"
-                       value="{entity.consultation.doctorName}"
-                       name="consultation.doctorName">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="consultationDoctorPatronymic">Отчество лечащего врачаа</label>
-                <input class="form-control" id="consultationDoctorPatronymic" placeholder="Отчество лечащего врача"
-                       value="{entity.consultation.doctorPatronymic}"
-                       name="consultation.doctorPatronymic">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="consultationDoctorContactInfo">Контакты лечащего врача</label>
-                <input class="form-control" id="consultationDoctorContactInfo" placeholder="Контакты лечащего врача"
-                       value="{entity.consultation.doctorContactInfo}"
-                       name="consultation.doctorContactInfo">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="consultationDoctorPosition">Должность лечащего врача</label>
-                <input class="form-control" id="consultationDoctorPosition" placeholder="Должность лечащего врача"
-                       value="{entity.consultation.doctorPosition}"
-                       name="consultation.doctorPosition">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="consultationDoctorLPU">Лечащий врач ЛПУ</label>
-                <input class="form-control" id="consultationDoctorLPU" placeholder="Лечащий врач ЛПУ"
-                       value="{entity.consultation.doctorLPU}"
-                       name="consultation.doctorLPU">
-            </div>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <h3>Лечащий врач</h3>
+                <div class="form-group col-md-4">
+                    <label for="consultationDoctorSurname">Фамилия лечащего врача</label>
+                    <input class="form-control" id="consultationDoctorSurname" placeholder="Фамилия лечащего врача"
+                           value="{entity.consultation.doctorSurname}"
+                           name="consultation.doctorSurname">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="consultationDoctorName">Имя лечащего врача</label>
+                    <input class="form-control" id="consultationDoctorName" placeholder="Имя лечащего врача"
+                           value="{entity.consultation.doctorName}"
+                           name="consultation.doctorName">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="consultationDoctorPatronymic">Отчество лечащего врачаа</label>
+                    <input class="form-control" id="consultationDoctorPatronymic" placeholder="Отчество лечащего врача"
+                           value="{entity.consultation.doctorPatronymic}"
+                           name="consultation.doctorPatronymic">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="consultationDoctorContactInfo">Контакты лечащего врача</label>
+                    <input class="form-control" id="consultationDoctorContactInfo" placeholder="Контакты лечащего врача"
+                           value="{entity.consultation.doctorContactInfo}"
+                           name="consultation.doctorContactInfo">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="consultationDoctorPosition">Должность лечащего врача</label>
+                    <input class="form-control" id="consultationDoctorPosition" placeholder="Должность лечащего врача"
+                           value="{entity.consultation.doctorPosition}"
+                           name="consultation.doctorPosition">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="consultationDoctorLPU">Лечащий врач ЛПУ</label>
+                    <input class="form-control" id="consultationDoctorLPU" placeholder="Лечащий врач ЛПУ"
+                           value="{entity.consultation.doctorLPU}"
+                           name="consultation.doctorLPU">
+                </div>
+
+            {:else}{/ne}
             <h3>Консультация</h3>
             <div class="form-group col-md-4">
                 <label for="consultationConsultationType">Тип консультации для направления в федеральный центр</label>
@@ -263,23 +269,6 @@
                     </option>
                 </select>
             </div>
-            <h3>Заочная</h3>
-            <div class="form-group col-md-4">
-                <label for="consultationFullDocumentDate">Дата получения полного пакета документов</label>
-                <input class="form-control" id="consultationFullDocumentDate"
-                       type="date"
-                       placeholder="Дата получения полного пакета документов (для заочной консультации)"
-                       value="{entity.consultation.fullDocumentDate}"
-                       name="consultation.fullDocumentDate">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="consultationFullDocumentSendDate">Дата передачи документов в центр</label>
-                <input class="form-control" id="consultationFullDocumentSendDate"
-                       type="date"
-                       placeholder="Дата передачи документов в центр (для заочной консультации)"
-                       value="{entity.consultation.fullDocumentSendDate}"
-                       name="consultation.fullDocumentSendDate">
-            </div>
             <div class="form-group col-md-4">
                 <label for="consultationAdditionalResearch">Дополнительные исследования</label>
                 <input class="form-control" id="consultationAdditionalResearch"
@@ -287,14 +276,7 @@
                        value="{entity.consultation.additionalResearch}"
                        name="consultation.additionalResearch">
             </div>
-            <div class="form-group col-md-6">
-                <label for="consultationConclusionDate">Дата получения заключения</label>
-                <input class="form-control" id="consultationConclusionDate" placeholder="Дата получения заключения"
-                       type="date"
-                       value="{entity.consultation.conclusionDate}"
-                       name="consultation.conclusionDate">
-            </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="consultationSendRegionDate">Дата отправки заключения в регион</label>
                 <input class="form-control" id="consultationSendRegionDate"
                        type="date"
@@ -302,7 +284,35 @@
                        value="{entity.consultation.sendRegionDate}"
                        name="consultation.sendRegionDate">
             </div>
+            <div class="form-group col-md-4">
+                <label for="consultationConclusionDate">Дата получения заключения</label>
+                <input class="form-control" id="consultationConclusionDate" placeholder="Дата получения заключения"
+                       type="date"
+                       value="{entity.consultation.conclusionDate}"
+                       name="consultation.conclusionDate">
+            </div>
+            <div class="col-sm-12 null-padding-l-r" id="consultationExtramuralBody">
+                <h3>Заочная</h3>
+                <div class="form-group col-md-6">
+                    <label for="consultationFullDocumentSendDate">Дата передачи документов в центр</label>
+                    <input class="form-control" id="consultationFullDocumentSendDate"
+                           type="date"
+                           placeholder="Дата передачи документов в центр (для заочной консультации)"
+                           value="{entity.consultation.fullDocumentSendDate}"
+                           name="consultation.fullDocumentSendDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="consultationFullDocumentDate">Дата получения полного пакета документов</label>
+                    <input class="form-control" id="consultationFullDocumentDate"
+                           type="date"
+                           placeholder="Дата получения полного пакета документов (для заочной консультации)"
+                           value="{entity.consultation.fullDocumentDate}"
+                           name="consultation.fullDocumentDate">
+                </div>
+            </div>
+            <div class="col-sm-12 null-padding-l-r">
             <h3>Врачебная комиссия</h3>
+            </div>
             <div class="form-group col-md-3">
                 <label for="consultationMedicalCommission">Назначена ли врачебная комиссия</label>
                 <select class="form-control" name="consultation.medicalCommission" id="consultationMedicalCommission">

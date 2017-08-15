@@ -99,5 +99,17 @@ public class PatientDTO {
 		this.address = null;
 		this.email = null;
 		this.contactInfo = null;
+		this.birthday=null;
+		if (this.getConsultation()!=null){
+			Consultation consultation = this.getConsultation();
+			consultation.setDoctorSurname(null);
+			consultation.setDoctorContactInfo(null);
+			consultation.setDoctorName(null);
+			consultation.setDoctorPatronymic(null);
+			consultation.setDoctorLPU(null);
+			consultation.setDoctorPosition(null);
+			this.consultation=consultation;
+		}
+
 	}
 }

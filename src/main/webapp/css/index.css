@@ -220,3 +220,7 @@
         display: block;
     }
 }
+.null-padding-l-r{
+    padding-left: 0;
+    padding-right: 0;
+}

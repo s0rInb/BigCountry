@@ -19,7 +19,9 @@
     <div class="cell-adaptive">Город</div>
     <div class="cell-adaptive">Диагноз</div>
     <div class="cell-adaptive">Пол</div>
+    {@ne key="{userRole}"  value="CUSTOMER"}
     <div class="cell-adaptive">Дата Рождения</div>
+    {:else}{/ne}
     <div class="cell-adaptive">Возраст</div>
     {@ne key="{userRole}"  value="CUSTOMER"}
     <div class="cell-adaptive">Адрес</div>
@@ -48,7 +50,9 @@
         <div class="cell-adaptive">{city}</div>
         <div class="cell-adaptive">{diagnosis.name}</div>
         <div class="cell-adaptive">{rusSex}</div>
-        <div class="cell-adaptive">{birthday}</div>
+        {@ne key="{userRole}"  value="CUSTOMER"}
+            <div class="cell-adaptive">{birthday}</div>
+        {:else}{/ne}
         <div class="cell-adaptive">{age}</div>
         {@ne key="{userRole}"  value="CUSTOMER"}
         <div class="cell-adaptive">{address}</div>

@@ -14,6 +14,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "consultation")
@@ -57,6 +58,22 @@ public class Consultation {
 	@ManyToOne
 	@JoinColumn(name = "who_sent_to_cons_id")
 	private WhoSentToConsultation whoSentToConsultation;
+
+	public void setFullDocumentDate(LocalDate fullDocumentDate) {
+		if(this.getConsultationType()!=null&&Objects.equals(this.getConsultationType().getName(), "Очная")) {
+			this.fullDocumentDate = fullDocumentDate;
+		} else{
+			this.fullDocumentDate=null;
+		}
+	}
+
+	public void setFullDocumentSendDate(LocalDate fullDocumentSendDate) {
+		if(this.getConsultationType()!=null&&Objects.equals(this.getConsultationType().getName(), "Очная")) {
+			this.fullDocumentSendDate = fullDocumentSendDate;
+		} else{
+			this.fullDocumentSendDate=null;
+		}
+	}
 
 	@Column(name = "full_document_date")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
