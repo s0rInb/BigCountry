@@ -12,7 +12,7 @@ import java.util.List;
 @Repository("AdverseEventRepository")
 @Transactional
 public interface AdverseEventRepository extends PagingAndSortingRepository<AdverseEvent,Long>{
-	@Query("select new map (a.id as id, a.patientId as pId) " +
+	@Query("select new map (a.id as id, a.patientId as pId, a.sendDate as sendDate) " +
 			"from AdverseEvent a")
 	List<HashMap> findHashMapList();
 

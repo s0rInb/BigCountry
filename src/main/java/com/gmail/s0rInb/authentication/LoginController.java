@@ -6,8 +6,7 @@ import com.gmail.s0rInb.entities.User;
 import com.gmail.s0rInb.entities.UserSession;
 import com.gmail.s0rInb.repository.UserSessionRepository;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,7 @@ import java.util.Date;
 
 @Controller
 public class LoginController {
-	final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LogManager.getLogger(LoginController.class);
     @Autowired
     private AuthenticationService authenticationService;
     @Autowired

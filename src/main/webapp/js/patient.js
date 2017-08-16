@@ -22,25 +22,25 @@ function initForm(entityClass, entityId) {
     $("#consultationWhoSentToConsultation").select2(returnSelect2options("/api/whoSentToCons"));
     $("#legalSupportWhoLegalSupport").select2(returnSelect2options("/api/whoLegalSupport"));
     $("#expertCenter").select2(returnSelect2options("/api/expertCenter"));
-    $("#doctorExpertCenter").select2(returnSelect2options("/api/doctorExpertCenter"));
-    $("#hotLineCallDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#consultationFullDocumentDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#consultationFullDocumentSendDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#consultationConsultationDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#consultationConclusionDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#consultationSendRegionDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#consultationMedicalCommissionDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportAppealMinHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportResultMinHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportAppealRusHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportResultRusHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportAppealProcuratorHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportResultProcuratorHealthDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportAppealCourtDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportPlannedCourtDate").datepicker({dateFormat: 'yy-mm-dd'});
-    $("#legalSupportDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#birthday").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#infoConsentDate").datepicker({dateFormat: 'yy-mm-dd'});
+    // $("#doctorExpertCenter").select2(returnSelect2options("/api/doctorExpertCenter"));
+    $("#hotLineCallDate").datepicker();
+    $("#consultationFullDocumentDate").datepicker();
+    $("#consultationFullDocumentSendDate").datepicker();
+    $("#consultationConsultationDate").datepicker();
+    $("#consultationConclusionDate").datepicker();
+    $("#consultationSendRegionDate").datepicker();
+    $("#consultationMedicalCommissionDate").datepicker();
+    $("#legalSupportAppealMinHealthDate").datepicker();
+    $("#legalSupportResultMinHealthDate").datepicker();
+    $("#legalSupportAppealRusHealthDate").datepicker();
+    $("#legalSupportResultRusHealthDate").datepicker();
+    $("#legalSupportAppealProcuratorHealthDate").datepicker();
+    $("#legalSupportResultProcuratorHealthDate").datepicker();
+    $("#legalSupportAppealCourtDate").datepicker();
+    $("#legalSupportPlannedCourtDate").datepicker();
+    $("#legalSupportDate").datepicker();
+	$("#birthday").datepicker();
+	$("#infoConsentDate").datepicker();
 	if (entityId!=null) {
         var infoConsentPatient = $("#infoConsent-patient");
         infoConsentPatient.uploadFile({
@@ -297,9 +297,11 @@ function initForm(entityClass, entityId) {
             }
         });
     }
-	$("#birthday").change(function (){var ageDifMs = Date.now() - new Date($("#birthday").val()).getTime();
-		var ageDate = new Date(ageDifMs); // miliseconds from epoch
-		$("#age").val(Math.abs(ageDate.getUTCFullYear() - 1970));});
+    $("#birthday").change(function () {
+        var ageDifMs = Date.now() - $.datepicker.parseDate("dd.mm.yy", $("#birthday").val()).getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        $("#age").val(Math.abs(ageDate.getUTCFullYear() - 1970));
+    });
 	if($("#userRole").val()!=="MANAGER"){
 		makeReadonly();
 	}

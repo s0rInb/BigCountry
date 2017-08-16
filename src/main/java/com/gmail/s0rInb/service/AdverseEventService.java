@@ -1,5 +1,6 @@
 package com.gmail.s0rInb.service;
 
+import com.gmail.s0rInb.Utils.LocalDateSerializer;
 import com.gmail.s0rInb.Utils.MailMail;
 import com.gmail.s0rInb.entities.nis.*;
 import com.gmail.s0rInb.entities.nis.five.Five;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +43,7 @@ public class AdverseEventService {
 	}
 
 	public AdverseEvent save(AdverseEvent adverseEvent) {
+		adverseEvent.setSendDate(LocalDate.now());
 		return adverseEventRepository.save(adverseEvent);
 	}
 
@@ -48,6 +51,8 @@ public class AdverseEventService {
 		List<HashMap> hashMapList = adverseEventRepository.findHashMapList();
 		hashMapList.removeIf(hashMap -> hashMap.get("pId")==null);
 		hashMapList.forEach(hashMap -> hashMap.put("patientId",patientService.findById((Long)hashMap.get("pId")).getPatientId()));
+//		LocalDateSerializer localDateSerializer = new LocalDateSerializer();
+//		hashMapList.forEach(hashMap -> hashMap.replace("sendDate", localDateSerializer.serialize(hashMap.get("sendDate"))));
 		return hashMapList;
 	}
 

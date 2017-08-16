@@ -29,7 +29,7 @@
                 <div class="form-group col-md-4">
                     <label for="birthday">Дата рождения</label>
                     <input class="form-control" id="birthday" placeholder="Дата рождения" value="{entity.birthday}"
-                           type="date"
+
                            name="birthday">
                 </div>
             {:else}{/ne}
@@ -121,7 +121,6 @@
             <div class="form-group col-md-3">
                 <label for="hotLineCallDate">Дата обращения в службу поддержки</label>
                 <input class="form-control" id="hotLineCallDate" placeholder="Дата обращения в службу поддержки"
-                       type="date"
                        value="{entity.hotLineCallDate}"
                        name="hotLineCallDate">
             </div>
@@ -152,7 +151,6 @@
             <div class="form-group col-md-3">
                 <label for="infoConsentDate">Дата информированного согласия</label>
                 <input class="form-control" id="infoConsentDate" placeholder="Дата информированного согласия"
-                       type="date"
                        value="{entity.infoConsentDate}"
                        name="infoConsentDate">
             </div>
@@ -164,7 +162,9 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="doctorExpertCenter">Врач из экспертного центра</label>
-                <select class="form-control" name="doctorExpertCenter.id" id="doctorExpertCenter" multiple="multiple">
+                <select class="form-control"
+                        {!name="doctorExpertCenter.id" !}
+                        id="doctorExpertCenter" multiple="multiple">
                     <option value="{entity.doctorExpertCenter.id}"
                             selected="selected">{entity.doctorExpertCenter.name}</option>
                 </select>
@@ -256,7 +256,6 @@
             <div class="form-group col-md-4">
                 <label for="consultationConsultationDate">Дата консультации</label>
                 <input class="form-control" id="consultationConsultationDate" placeholder="Дата консультации"
-                       type="date"
                        value="{entity.consultation.consultationDate}"
                        name="consultation.consultationDate">
             </div>
@@ -279,7 +278,6 @@
             <div class="form-group col-md-4">
                 <label for="consultationSendRegionDate">Дата отправки заключения в регион</label>
                 <input class="form-control" id="consultationSendRegionDate"
-                       type="date"
                        placeholder="Дата отправки заключения в регион"
                        value="{entity.consultation.sendRegionDate}"
                        name="consultation.sendRegionDate">
@@ -287,7 +285,6 @@
             <div class="form-group col-md-4">
                 <label for="consultationConclusionDate">Дата получения заключения</label>
                 <input class="form-control" id="consultationConclusionDate" placeholder="Дата получения заключения"
-                       type="date"
                        value="{entity.consultation.conclusionDate}"
                        name="consultation.conclusionDate">
             </div>
@@ -296,7 +293,6 @@
                 <div class="form-group col-md-6">
                     <label for="consultationFullDocumentSendDate">Дата передачи документов в центр</label>
                     <input class="form-control" id="consultationFullDocumentSendDate"
-                           type="date"
                            placeholder="Дата передачи документов в центр (для заочной консультации)"
                            value="{entity.consultation.fullDocumentSendDate}"
                            name="consultation.fullDocumentSendDate">
@@ -304,7 +300,6 @@
                 <div class="form-group col-md-6">
                     <label for="consultationFullDocumentDate">Дата получения полного пакета документов</label>
                     <input class="form-control" id="consultationFullDocumentDate"
-                           type="date"
                            placeholder="Дата получения полного пакета документов (для заочной консультации)"
                            value="{entity.consultation.fullDocumentDate}"
                            name="consultation.fullDocumentDate">
@@ -331,7 +326,6 @@
             <div class="form-group col-md-3">
                 <label for="consultationMedicalCommissionDate">Дата врачебной комиссии</label>
                 <input class="form-control" id="consultationMedicalCommissionDate" placeholder="Дата врачебной комиссии"
-                       type="date"
                        value="{entity.consultation.medicalCommissionDate}"
                        name="consultation.medicalCommissionDate">
             </div>
@@ -410,7 +404,6 @@
             <div class="form-group col-md-6">
                 <label for="legalSupportDate">Дата обращения в Юридическую поддержку</label>
                 <input class="form-control" id="legalSupportDate" placeholder="Дата обращения в Юридическую поддержку"
-                       type="date"
                        value="{entity.legalSupport.date}"
                        name="legalSupport.date">
             </div>
@@ -441,14 +434,12 @@
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealMinHealthDate">Дата обращения в Минздрав</label>
                 <input class="form-control" id="legalSupportAppealMinHealthDate" placeholder="Дата обращения в Минздрав"
-                       type="date"
                        value="{entity.legalSupport.appealMinHealthDate}"
                        name="legalSupport.appealMinHealthDate">
             </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportResultMinHealthDate">Дата получения ответа из Минздрава</label>
                 <input class="form-control" id="legalSupportResultMinHealthDate"
-                       type="date"
                        placeholder="Дата получения ответа из Минздрава"
                        value="{entity.legalSupport.resultMinHealthDate}"
                        name="legalSupport.resultMinHealthDate">

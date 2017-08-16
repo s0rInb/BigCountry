@@ -19,46 +19,46 @@ function initForm(entityClass, entityId){
 			$("#threeAnotherTextBody").hide();
 		}
 	}).trigger("change");
-	$("#threeBirthDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_aStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_bStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_cStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_dStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_aEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_bEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_cEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#four_dEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_aEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_aStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_bEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_bStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_cEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_cStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_dEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_dStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_eEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_eStartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_fEndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#five_fStartDate").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#threeBirthDate").datepicker();
+	$("#four_aStartDate").datepicker();
+	$("#four_bStartDate").datepicker();
+	$("#four_cStartDate").datepicker();
+	$("#four_dStartDate").datepicker();
+	$("#four_aEndDate").datepicker();
+	$("#four_bEndDate").datepicker();
+	$("#four_cEndDate").datepicker();
+	$("#four_dEndDate").datepicker();
+	$("#five_aEndDate").datepicker();
+	$("#five_aStartDate").datepicker();
+	$("#five_bEndDate").datepicker();
+	$("#five_bStartDate").datepicker();
+	$("#five_cEndDate").datepicker();
+	$("#five_cStartDate").datepicker();
+	$("#five_dEndDate").datepicker();
+	$("#five_dStartDate").datepicker();
+	$("#five_eEndDate").datepicker();
+	$("#five_eStartDate").datepicker();
+	$("#five_fEndDate").datepicker();
+	$("#five_fStartDate").datepicker();
 	
-	$("#six_5StartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_5EndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_4StartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_4EndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_3StartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_3EndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_2StartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_2EndDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_1StartDate").datepicker({dateFormat: 'yy-mm-dd'});
-	$("#six_1EndDate").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#six_5StartDate").datepicker();
+	$("#six_5EndDate").datepicker();
+	$("#six_4StartDate").datepicker();
+	$("#six_4EndDate").datepicker();
+	$("#six_3StartDate").datepicker();
+	$("#six_3EndDate").datepicker();
+	$("#six_2StartDate").datepicker();
+	$("#six_2EndDate").datepicker();
+	$("#six_1StartDate").datepicker();
+	$("#six_1EndDate").datepicker();
 
-	$("#seven_1Date").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#seven_1Date").datepicker();
 
-	$("#seven_2Date").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#seven_2Date").datepicker();
 
-	$("#seven_3Date").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#seven_3Date").datepicker();
 
-	$("#lethalDate").datepicker({dateFormat: 'yy-mm-dd'});
+	$("#lethalDate").datepicker();
 	if(entityId!=null){
 		makeReadonly();
 	}

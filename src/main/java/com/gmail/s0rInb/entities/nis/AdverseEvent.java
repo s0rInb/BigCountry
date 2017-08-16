@@ -42,7 +42,9 @@ public class AdverseEvent {
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate lethalDate;
 	private String additionalText;
-
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	private LocalDate sendDate;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "a_id")

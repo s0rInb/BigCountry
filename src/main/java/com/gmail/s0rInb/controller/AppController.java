@@ -1,6 +1,7 @@
 package com.gmail.s0rInb.controller;
 
 import com.gmail.s0rInb.DTO.PatientDTO;
+import com.gmail.s0rInb.authentication.LoginController;
 import com.gmail.s0rInb.entities.FileLink;
 import com.gmail.s0rInb.entities.Patient;
 import com.gmail.s0rInb.entities.UserRole;
@@ -14,15 +15,14 @@ import com.gmail.s0rInb.service.PatientService;
 import com.gmail.s0rInb.service.UserService;
 import com.itextpdf.text.DocumentException;
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -42,7 +42,7 @@ import static org.hibernate.internal.util.io.StreamCopier.BUFFER_SIZE;
 @Controller
 public class AppController extends BaseController {
 	private final static String VIDEO_UPLOAD = System.getProperty("videoUploadDir");
-	final Logger logger = LoggerFactory.getLogger(AppController.class);
+	private static final Logger logger = LogManager.getLogger(AppController.class);
 	@Autowired
 	UserService userService;
 	@Autowired

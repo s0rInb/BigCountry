@@ -1,16 +1,16 @@
 <div class="scroll">
-    <table class="table table-bordered table-hover" style="min-height: 600px">
-        <thead>
-        <th>Номер НЯ</th>
-        <th>ID пациента</th>
-        </thead>
-        <tbody>
-            {#data}
-            <tr>
-                <td><a href="#adverseEvent?id={id}">{id}</a></td>
-                <td><a href="#patient?id={pId}">{patientId}</a></td>
-            </tr>
-            {/data}
-        </tbody>
-    </table>
+    <div class="table-adaptive" style="margin-bottom: 0;">
+        <div class="row-adaptive header-adaptive green">
+            <div class="cell-adaptive">Номер НЯ</div>
+            <div class="cell-adaptive">ID пациента</div>
+            <div class="cell-adaptive">Дата отправки</div>
+        </div>
+        {#data}
+            <div class="row-adaptive">
+                <div class="cell-adaptive"><a href="#adverseEvent?id={id}">{id}</a></div>
+                <div class="cell-adaptive"><a href="#patient?id={pId}">{patientId}</a></div>
+                <div class="cell-adaptive">{sendDate}</div>
+            </div>
+        {/data}
+    </div>
 </div>

@@ -9,7 +9,13 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/root-context.xml</param-value>
     </context-param>
-
+    <!--<listener>-->
+        <!--<listener-class>org.springframework.web.util.</listener-class>-->
+    <!--</listener>-->
+    <!--<context-param>-->
+        <!--<param-name>log4j2ConfigLocation</param-name>-->
+        <!--<param-value>/WEB-INF/log42j.xml</param-value>-->
+    <!--</context-param>-->
      <!--Фильтры Spring MVC-->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -79,5 +85,4 @@
     <!--<welcome-file-list>-->
         <!--<welcome-file>/index.html</welcome-file>-->
     <!--</welcome-file-list>-->
-
 </web-app>

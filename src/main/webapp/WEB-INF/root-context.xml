@@ -15,11 +15,11 @@
  http://www.springframework.org/schema/task/spring-task-4.2.xsd">
 
     <mvc:annotation-driven>
-        <!--<mvc:message-converters>-->
-            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
-                <!--<property name="objectMapper" ref="jacksonObjectMapper" />-->
-            <!--</bean>-->
-        <!--</mvc:message-converters>-->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" ref="jacksonObjectMapper" />
+            </bean>
+        </mvc:message-converters>
     </mvc:annotation-driven>
 
     <import resource="spring-jpa.xml"/>
@@ -43,7 +43,7 @@
             <!--<ref bean="validationMessageSource"/>-->
         <!--</property>-->
     <!--</bean>-->
-    <!--<bean id="jacksonObjectMapper"  class="com.pflb.chronos.web.CustomObjectMapper" />-->
+    <bean id="jacksonObjectMapper"  class="com.gmail.s0rInb.Utils.CustomObjectMapper" />
 
     <context:component-scan base-package="com.gmail.s0rInb"/>
     <task:annotation-driven />
