@@ -84,6 +84,10 @@ public class Patient {
 	private ExpertCenter expertCenter;
 
 	@ManyToOne
+	@JoinColumn(name = "doctor_expert_center_id")
+	private DoctorExpertCenter doctorExpertCenter;
+
+	@ManyToOne
 	@JoinColumn(name = "subject_rf_id")
 	private SubjectRF subjectRF;
 

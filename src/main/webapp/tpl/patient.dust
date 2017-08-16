@@ -163,10 +163,10 @@
             <div class="form-group col-md-3">
                 <label for="doctorExpertCenter">Врач из экспертного центра</label>
                 <select class="form-control"
-                        {!name="doctorExpertCenter.id" !}
-                        id="doctorExpertCenter" multiple="multiple">
+                        name="doctorExpertCenter.id"
+                        id="doctorExpertCenter">
                     <option value="{entity.doctorExpertCenter.id}"
-                            selected="selected">{entity.doctorExpertCenter.name}</option>
+                            selected="selected">{entity.doctorExpertCenter.surname} {entity.doctorExpertCenter.name} {entity.doctorExpertCenter.patronymic}</option>
                 </select>
             </div>
 

@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gmail.s0rInb.Utils.LocalDateDeserializer;
 import com.gmail.s0rInb.Utils.LocalDateSerializer;
-import com.gmail.s0rInb.entities.Consultation;
-import com.gmail.s0rInb.entities.LegalSupport;
-import com.gmail.s0rInb.entities.Patient;
-import com.gmail.s0rInb.entities.UserRole;
+import com.gmail.s0rInb.entities.*;
 import com.gmail.s0rInb.entities.dictionary.Diagnosis;
 import com.gmail.s0rInb.entities.dictionary.ExpertCenter;
 import com.gmail.s0rInb.entities.dictionary.SubjectRF;
@@ -53,6 +50,7 @@ public class PatientDTO {
 	private String circulationChannel;
 	private String caseStatus;
 	private String comments;
+	private DoctorExpertCenter doctorExpertCenter;
 
 	private PatientDTO(Patient patient) {
 		this.id = patient.getId();
@@ -82,6 +80,7 @@ public class PatientDTO {
 		this.circulationChannelText=patient.getCirculationChannelText();
 		this.caseStatus=patient.getCaseStatus();
 		this.comments=patient.getComments();
+		this.doctorExpertCenter=patient.getDoctorExpertCenter();
 	}
 
 	public PatientDTO(Patient patient, UserRole userRole) {

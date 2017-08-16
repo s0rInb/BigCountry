@@ -2,6 +2,7 @@ package com.gmail.s0rInb.controller;
 
 import com.gmail.s0rInb.DTO.PatientDTO;
 import com.gmail.s0rInb.authentication.LoginController;
+import com.gmail.s0rInb.entities.DoctorExpertCenter;
 import com.gmail.s0rInb.entities.FileLink;
 import com.gmail.s0rInb.entities.Patient;
 import com.gmail.s0rInb.entities.UserRole;
@@ -9,10 +10,7 @@ import com.gmail.s0rInb.entities.dictionary.ConsultationType;
 import com.gmail.s0rInb.entities.dictionary.Dictionary;
 import com.gmail.s0rInb.entities.nis.AdverseEvent;
 import com.gmail.s0rInb.repository.FileRepository;
-import com.gmail.s0rInb.service.AdverseEventService;
-import com.gmail.s0rInb.service.DictionaryService;
-import com.gmail.s0rInb.service.PatientService;
-import com.gmail.s0rInb.service.UserService;
+import com.gmail.s0rInb.service.*;
 import com.itextpdf.text.DocumentException;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -54,6 +52,8 @@ public class AppController extends BaseController {
 	@Autowired
 	DictionaryService dictionaryService;
 
+	@Autowired
+	DoctorExpertCenterService doctorExpertCenterService;
 	@Override
 	protected void init() {
 
@@ -335,6 +335,28 @@ public class AppController extends BaseController {
 		Response response = new Response();
 		response.setEntityClass("legalSupports");
 		response.setData(patientDTOList);
+		response.setUserRole(getUser().getUserRole().name());
+		return response;
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/doctorExpertCenter/{id}", produces = "application/json")
+	@ResponseBody
+	public Response getDoctorExpertCenter(@PathVariable("id") Long id) {
+		logger.info("getDoctorExpertCenter");
+		Response response = new Response();
+		response.setEntityClass("doctorExpertCenter");
+		response.setEntity(doctorExpertCenterService.findOne(id));
+		response.setUserRole(getUser().getUserRole().name());
+		return response;
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/doctorExpertCenter", produces = "application/json")
+	@ResponseBody
+	public Response getDoctorExpertCenter(@RequestParam(value = "q", required = false) String q) {
+		logger.info("getDoctorExpertCenter");
+		Response response = new Response();
+		response.setEntityClass("doctorExpertCenter");
+		response.setData(doctorExpertCenterService.findAll());
 		response.setUserRole(getUser().getUserRole().name());
 		return response;
 	}

@@ -165,3 +165,16 @@ insert INTO legalsupport_patient_status (name) VALUES ('Обращение в п
 insert INTO legalsupport_patient_status (name) VALUES ('Обращение в суд');
 insert INTO legalsupport_patient_status (name) VALUES ('Другое');
 --LegalSupportPatientStatus--
+
+--DoctorExpertCenter--
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Тумян', 'Гаяне', 'Сепуговна');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Жукова', 'Людмила', 'Григорьевна');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Бялик', 'Татьяна', 'Евгеньевна');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Звонков', 'Евгений', 'Евгеньевич');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Цветкова', 'Ольга', 'Александровна');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Абдуллаева', 'Гульнара', 'Бурхановна');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Воронкова', 'Ольга', 'Олеговна');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Буянова', 'Ольга', 'Евгеньевна');
+INSERT INTO doctor_expert_center (name, patronymic, surname) VALUES ('Рогова', 'Елена', 'Филимоновна');
+
+--DoctorExpertCenter--
