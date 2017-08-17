@@ -23,6 +23,7 @@ function initForm(entityClass, entityId) {
     $("#legalSupportWhoLegalSupport").select2(returnSelect2options("/api/whoLegalSupport"));
     $("#expertCenter").select2(returnSelect2options("/api/expertCenter"));
     $("#doctorExpertCenter").select2(returnSelect2options("/api/doctorExpertCenter"));
+    $("#legalSupportLegalSupportResult").select2(returnSelect2options("/api/legalSupportResult"));
     $("#hotLineCallDate").datepicker();
     $("#consultationFullDocumentDate").datepicker();
     $("#consultationFullDocumentSendDate").datepicker();

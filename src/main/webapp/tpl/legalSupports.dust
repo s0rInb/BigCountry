@@ -17,11 +17,19 @@
                 <div class="cell-adaptive">{subjectRF.name}</div>
                 <div class="cell-adaptive">{diagnosis.name}</div>
                 <div class="cell-adaptive">{consultation.consultationType.name}</div>
-                <div class="cell-adaptive">Дата обращения</div>
+                <div class="cell-adaptive">{legalSupport.date}</div>
                 <div class="cell-adaptive">{legalSupport.whoLegalSupport.name}</div>
-                <div class="cell-adaptive">Досудебная поддержка</div>
-                <div class="cell-adaptive">Судебная поддержка</div>
-                <div class="cell-adaptive">Итог обращения</div>
+                <div class="cell-adaptive">
+                    {@eq key="{legalSupport.appealMinHealth}" value="Да"}Минздрав<br>{/eq}
+                    {@eq key="{legalSupport.appealRusHealth}" value="Да"}Росздравнадзор<br>{/eq}
+                    {@eq key="{legalSupport.appealProcurator}" value="Да"}Прокуратура{/eq}
+                </div>
+                <div class="cell-adaptive">{legalSupport.appealCourt}</div>
+                {@eq key="{legalSupport.legalSupportResult.name}"  value="Другое (текстовое поле)"}
+                    <div class="cell-adaptive">{legalSupport.legalSupportResultText}</div>
+                {:else}
+                    <div class="cell-adaptive">{legalSupport.legalSupportResult.name}</div>
+                {/eq}
             </div>
         {/data}
     </div>
