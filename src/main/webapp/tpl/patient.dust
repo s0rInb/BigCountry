@@ -9,7 +9,9 @@
         <div class="block-main">
             <h1>Пациент</h1>
             <input hidden name="id" value="{entity.id}">
-            <h3>Общая информация</h3>
+            <div class="col-sm-12 null-padding-l-r">
+                <h3>Общая информация</h3>
+            </div>
             {@ne key="{userRole}"  value="CUSTOMER"}
                 <div class="form-group col-md-4">
                     <label for="surname">Фамилия</label>
@@ -205,7 +207,9 @@
                           name="consultation.comments">{entity.consultation.comments}</textarea>
             </div>
             {@ne key="{userRole}"  value="CUSTOMER"}
-                <h3>Лечащий врач</h3>
+                <div class="col-sm-12 null-padding-l-r">
+                    <h3>Лечащий врач</h3>
+                </div>
                 <div class="form-group col-md-4">
                     <label for="consultationDoctorSurname">Фамилия лечащего врача</label>
                     <input class="form-control" id="consultationDoctorSurname" placeholder="Фамилия лечащего врача"
@@ -244,7 +248,9 @@
                 </div>
 
             {:else}{/ne}
-            <h3>Консультация</h3>
+            <div class="col-sm-12 null-padding-l-r">
+                <h3>Консультация</h3>
+            </div>
             <div class="form-group col-md-4">
                 <label for="consultationConsultationType">Тип консультации для направления в федеральный центр</label>
                 <select class="form-control" name="consultation.consultationType.id" id="consultationConsultationType">
@@ -415,7 +421,9 @@
                     </option>
                 </select>
             </div>
-            <h3>Обращение в Минздрав</h3>
+            <div class="col-sm-12 null-padding-l-r">
+                <h3>Обращение в Минздрав</h3>
+            </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealMinHealth">Обращение в Минздрав</label>
                 <select class="form-control" name="legalSupport.appealMinHealth"
@@ -444,7 +452,9 @@
                        value="{entity.legalSupport.resultMinHealthDate}"
                        name="legalSupport.resultMinHealthDate">
             </div>
-            <h3>Обращение в Росздравнадзор</h3>
+            <div class="col-sm-12 null-padding-l-r">
+                <h3>Обращение в Росздравнадзор</h3>
+            </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealRusHealth">Обращение в Росздравнадзор</label>
                 <select class="form-control" name="legalSupport.appealRusHealth"
@@ -472,7 +482,10 @@
                        value="{entity.legalSupport.resultRusHealthDate}"
                        name="legalSupport.resultRusHealthDate">
             </div>
-            <h3>Обращение в Прокуратуру</h3>
+            <div class="col-sm-12 null-padding-l-r">
+                <h3>Обращение в Прокуратуру</h3>
+            </div>
+
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealProcurator">Обращение в Прокуратуру</label>
                 <select class="form-control" name="legalSupport.appealProcurator"
@@ -502,7 +515,9 @@
                        value="{entity.legalSupport.resultProcuratorHealthDate}"
                        name="legalSupport.resultProcuratorHealthDate">
             </div>
-            <h3>Обращение в Суд</h3>
+            <div class="col-sm-12 null-padding-l-r">
+                <h3>Обращение в Суд</h3>
+            </div>
             <div class="form-group col-md-4">
                 <label for="legalSupportAppealCourt">Обращение в суд</label>
                 <select class="form-control" name="legalSupport.appealCourt"
