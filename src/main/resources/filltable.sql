@@ -153,7 +153,7 @@ insert INTO consultation_patient_status (name) VALUES ('Полный пакет 
 insert INTO consultation_patient_status (name) VALUES ('Пациент находится на госпитализации');
 insert INTO consultation_patient_status (name) VALUES ('Заключение от консультанта получено');
 insert INTO consultation_patient_status (name) VALUES ('Врачебная комиссия назначена');
-insert INTO consultation_patient_status (name) VALUES ('Врачебная комиссия проведен');
+insert INTO consultation_patient_status (name) VALUES ('Врачебная комиссия проведена');
 
 --ConsultationPatientStatus--
 
