@@ -21,6 +21,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -211,8 +213,8 @@ public class AppController extends BaseController {
 
 			// set headers for the response
 			String headerKey = "Content-Disposition";
-			String headerValue = String.format("attachment; filename=\"%s\"",
-					downloadFile.getName());
+			String fileName = new String(downloadFile.getName().getBytes("Cp1251"),"Cp1252");
+			String headerValue = "attachment; filename="+ fileName;
 			response.setHeader(headerKey, headerValue);
 
 			// get output stream of the response

@@ -4,13 +4,13 @@
             <button class="btn btn-warning" onclick="createAdverseEvent({entity.id})">Добавить НЯ
             </button>{:else}{/eq}
 
-    <button class="btn btn-info right" onclick="getPatientNIS({entity.id})">Список заполненых форм НЯ</button>
-{/entity.id}
+        <button class="btn btn-info right" onclick="getPatientNIS({entity.id})">Список заполненых форм НЯ</button>
+    {/entity.id}
     <input hidden id="userRole" value="{userRole}">
     <form>
 
         <div class="block-main">
-            <h1>Пациент</h1>
+            <h1>Пациент {entity.patientId}</h1>
             <input hidden name="id" value="{entity.id}">
             <div class="col-sm-12 null-padding-l-r">
                 <h3>Общая информация</h3>
@@ -174,23 +174,22 @@
                             selected="selected">{entity.doctorExpertCenter.surname} {entity.doctorExpertCenter.name} {entity.doctorExpertCenter.patronymic}</option>
                 </select>
             </div>
+            {@eq key="{userRole}"  value="MANAGER"}
+                <div class="form-group form-group-sm col-sm-12" id="files-patient">
+                    <div class="col-sm-3">
 
-            <div class="form-group form-group-sm col-sm-12" id="files-patient">
-                <div class="col-sm-3">
-                    {@eq key="{userRole}"  value="MANAGER"}
                         <div id="infoConsent-patient"
                              uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
-                    {:else}{/eq}
+                    </div>
+                    <div class="col-sm-9" id="files-container-patient">
+                        <div hidden id="file-loading-error-patient"
+                             style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+                    </div>
                 </div>
-                <div class="col-sm-9" id="files-container-patient">
-                    <div hidden id="file-loading-error-patient"
-                         style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+                <div class="form-group form-group-sm col-sm-12">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
                 </div>
-            </div>
-            <div class="form-group form-group-sm col-sm-12">
-                {@eq key="{userRole}"  value="MANAGER"}
-                    <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
-            </div>
+            {:else}{/eq}
         </div>
         <div class="block-main">
             <h1>Федеральная консультация</h1>
@@ -359,24 +358,23 @@
                     {/select}
                 </select>
             </div>
-
-            <div class="form-group form-group-sm col-sm-12" id="files-consultation">
-                <div class="col-sm-3">
-                    {@eq key="{userRole}"  value="MANAGER"}
+            {@eq key="{userRole}"  value="MANAGER"}
+                <div class="form-group form-group-sm col-sm-12" id="files-consultation">
+                    <div class="col-sm-3">
                         <div id="infoConsent-consultation"
                              uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
-                    {:else}{/eq}
-                </div>
-                <div class="col-sm-9" id="files-container-consultation">
-                    <div hidden id="file-loading-error-consultation"
-                         style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
-                </div>
-            </div>
 
-            <div class="form-group form-group-sm col-sm-12">
-                {@eq key="{userRole}"  value="MANAGER"}
-                    <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
-            </div>
+                    </div>
+                    <div class="col-sm-9" id="files-container-consultation">
+                        <div hidden id="file-loading-error-consultation"
+                             style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm col-sm-12">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+            {:else}{/eq}
         </div>
         <div class="block-main">
             <h1>Юридическая поддержка</h1>
@@ -593,24 +591,23 @@
                           value="{entity.legalSupport.legalSupportResultText}"
                           name="legalSupport.legalSupportResultText">{entity.legalSupport.legalSupportResultText}</textarea>
             </div>
-
-            <div class="form-group form-group-sm col-sm-12" id="files-legalSupport">
-                <div class="col-sm-3">
-                    {@eq key="{userRole}"  value="MANAGER"}
+            {@eq key="{userRole}"  value="MANAGER"}
+                <div class="form-group form-group-sm col-sm-12" id="files-legalSupport">
+                    <div class="col-sm-3">
                         <div id="infoConsent-legalSupport"
                              uploadStr='<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Загрузить файлы'></div>
-                    {:else}{/eq}
-                </div>
-                <div class="col-sm-9" id="files-container-legalSupport">
-                    <div hidden id="file-loading-error-legalSupport"
-                         style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
-                </div>
-            </div>
 
-            <div class="form-group form-group-sm col-sm-12">
-                {@eq key="{userRole}"  value="MANAGER"}
-                    <button type="submit" class="btn btn-success">Сохранить</button>{:else}{/eq}
-            </div>
+                    </div>
+                    <div class="col-sm-9" id="files-container-legalSupport">
+                        <div hidden id="file-loading-error-legalSupport"
+                             style="border-radius: 3px;margin-bottom: 5px;border: 1px solid red;background-color: rgba(255,0,0,0.1);font-size: 19px;padding: 3px;">{@lc key="task:file"/}</div>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm col-sm-12">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </div>
+            {:else}{/eq}
         </div>
         <div class="block-main">
             <h1>Закрытие случая</h1>
