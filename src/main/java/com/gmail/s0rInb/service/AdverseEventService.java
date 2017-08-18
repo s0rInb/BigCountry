@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 //import com.itextpdf.text.Document;
 
@@ -47,9 +48,10 @@ public class AdverseEventService {
 		return adverseEventRepository.save(adverseEvent);
 	}
 
-	public List<HashMap> findHashMapList() {
+	public List<HashMap> findHashMapList(Long patientId) {
+
 		List<HashMap> hashMapList = adverseEventRepository.findHashMapList();
-		hashMapList.removeIf(hashMap -> hashMap.get("pId")==null);
+		hashMapList.removeIf(hashMap -> (patientId==null && hashMap.get("pId")==null ) || (patientId!=null && !hashMap.get("pId").equals(patientId)));
 		hashMapList.forEach(hashMap -> hashMap.put("patientId",patientService.findById((Long)hashMap.get("pId")).getPatientId()));
 //		LocalDateSerializer localDateSerializer = new LocalDateSerializer();
 //		hashMapList.forEach(hashMap -> hashMap.replace("sendDate", localDateSerializer.serialize(hashMap.get("sendDate"))));

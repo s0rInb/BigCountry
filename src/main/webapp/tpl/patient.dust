@@ -2,7 +2,10 @@
     {?entity.id}
         {@eq key="{userRole}"  value="MANAGER"}
             <button class="btn btn-warning" onclick="createAdverseEvent({entity.id})">Добавить НЯ
-            </button>{:else}{/eq}{/entity.id}
+            </button>{:else}{/eq}
+
+    <button class="btn btn-info right" onclick="getPatientNIS({entity.id})">Список заполненых форм НЯ</button>
+{/entity.id}
     <input hidden id="userRole" value="{userRole}">
     <form>
 

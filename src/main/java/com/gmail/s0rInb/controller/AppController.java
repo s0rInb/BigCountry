@@ -278,10 +278,10 @@ public class AppController extends BaseController {
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/adverseEvents", produces = "application/json")
 	@ResponseBody
-	public Response getAdverseEvents(HttpServletRequest request)
+	public Response getAdverseEvents(@RequestParam(value = "patientId", required = false) Long patientId, HttpServletRequest request)
 			throws IOException {
 		logger.info("getAdverseEvents");
-		List<HashMap> adverseEvents = adverseEventService.findHashMapList();
+		List<HashMap> adverseEvents = adverseEventService.findHashMapList(patientId);
 		Response response = new Response();
 		response.setData(adverseEvents);
 		response.setUserRole(getUser().getUserRole().name());

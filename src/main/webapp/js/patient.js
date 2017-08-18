@@ -42,6 +42,7 @@ function initForm(entityClass, entityId) {
     $("#legalSupportDate").datepicker();
 	$("#birthday").datepicker();
 	$("#infoConsentDate").datepicker();
+
 	if (entityId!=null) {
         var infoConsentPatient = $("#infoConsent-patient");
         infoConsentPatient.uploadFile({
@@ -324,4 +325,7 @@ function beckToPatients () {
 }
 function createAdverseEvent (patientId) {
 	window.location.hash = "adverseEvent?patientId="+patientId;
+}
+function getPatientNIS(patientId) {
+    window.location.hash = "adverseEvents?patientId="+patientId;
 }
