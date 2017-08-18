@@ -176,5 +176,6 @@ INSERT INTO doctor_expert_center (surname, name, patronymic) VALUES ('Абдул
 INSERT INTO doctor_expert_center (surname, name, patronymic) VALUES ('Воронкова', 'Ольга', 'Олеговна');
 INSERT INTO doctor_expert_center (surname, name, patronymic) VALUES ('Буянова', 'Ольга', 'Евгеньевна');
 INSERT INTO doctor_expert_center (surname, name, patronymic) VALUES ('Рогова', 'Елена', 'Филимоновна');
+INSERT INTO doctor_expert_center (surname, name, patronymic) VALUES ('Болотина', 'Лариса', 'Владимировна');
 
 --DoctorExpertCenter--
