@@ -31,12 +31,18 @@ function submitForm(entityClass, entityId, getDisabled) {
 			if(!(data.entityClass == 'userSession' && data.entity.id == undefined)) {
                 window.location.hash = data.entityClass + "?id=" + data.entity.id;
                 submittedResponse = data;
+                $("#mainModal").find(".modal-body").text("Изменения сохранены");
+                $("#mainModal").modal();
             } else {
                 window.location.hash = "patients";
 			}
 			// if (entityClass === "task")
 			// 	getCountOverdueTasksForStaff();
 		}
+		},
+		error: function (data, status, jqXHR){
+            $("#mainModal").find(".modal-body").text("Произошла ошибка. Изменения не сохранены");
+            $("#mainModal").modal();
 		}
 	});
 	return submittedResponse;

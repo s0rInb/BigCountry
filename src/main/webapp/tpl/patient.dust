@@ -299,18 +299,18 @@
             <div class="col-sm-12 null-padding-l-r" id="consultationExtramuralBody">
                 <h3>Заочная</h3>
                 <div class="form-group col-md-6">
+                    <label for="consultationFullDocumentDate">Дата получения полного пакета документов сотрудниками НП ЗБ</label>
+                    <input class="form-control" id="consultationFullDocumentDate"
+                           placeholder="Дата получения полного пакета документов сотрудниками НП ЗБ"
+                           value="{entity.consultation.fullDocumentDate}"
+                           name="consultation.fullDocumentDate">
+                </div>
+                <div class="form-group col-md-6">
                     <label for="consultationFullDocumentSendDate">Дата передачи документов в центр</label>
                     <input class="form-control" id="consultationFullDocumentSendDate"
                            placeholder="Дата передачи документов в центр (для заочной консультации)"
                            value="{entity.consultation.fullDocumentSendDate}"
                            name="consultation.fullDocumentSendDate">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="consultationFullDocumentDate">Дата получения полного пакета документов</label>
-                    <input class="form-control" id="consultationFullDocumentDate"
-                           placeholder="Дата получения полного пакета документов (для заочной консультации)"
-                           value="{entity.consultation.fullDocumentDate}"
-                           name="consultation.fullDocumentDate">
                 </div>
             </div>
             <div class="col-sm-12 null-padding-l-r">

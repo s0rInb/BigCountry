@@ -65,7 +65,6 @@ function renderTpl(tplName, elementID, patientId, callback) {
 						}
 					});
 					$("form").submit(function (event) {
-						console.log("Handler for .submit() called.");
 						event.preventDefault();
 						submitForm(tplName, elementID, false);
 					});
