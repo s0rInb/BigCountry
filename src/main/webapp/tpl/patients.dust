@@ -29,7 +29,7 @@
                 <div class="cell-adaptive">Телефон</div>
                 <div class="cell-adaptive">Адрес электронной почты</div>
             {:else}{/ne}
-            <div class="cell-adaptive">Обративщийся</div>
+            <div class="cell-adaptive">Обратившийся</div>
             {@ne key="{userRole}"  value="CUSTOMER"}
                 <div class="cell-adaptive">Контакты обратившегося</div>
             {:else}{/ne}
