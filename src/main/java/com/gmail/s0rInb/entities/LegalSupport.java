@@ -11,6 +11,7 @@ import com.gmail.s0rInb.entities.dictionary.LegalSupportResult;
 import com.gmail.s0rInb.entities.dictionary.WhoLegalSupport;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -22,6 +23,7 @@ import java.util.Set;
 @Getter
 @Setter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+@Audited
 public class LegalSupport {
 
 	@Id

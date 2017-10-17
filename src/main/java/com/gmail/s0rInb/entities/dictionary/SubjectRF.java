@@ -1,5 +1,7 @@
 package com.gmail.s0rInb.entities.dictionary;
 
+import org.hibernate.envers.Audited;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -8,5 +10,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="subject_RF")
+@Audited
 public class SubjectRF extends Dictionary {
 }

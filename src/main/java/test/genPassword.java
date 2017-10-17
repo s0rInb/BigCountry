@@ -13,7 +13,7 @@ public class genPassword {
         User user = new User();
         user.setId(12345L);
         user.setUsername("genPassword");
-        user.setPassword("");
+        user.setPassword("G2jsOifj");
         com.gmail.s0rInb.authentication.AuthenticationService authenticationService = new AuthenticationService();
         user = authenticationService.hash(user);
         System.out.println("Hash is: "+user.getHash());

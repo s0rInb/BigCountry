@@ -4,6 +4,7 @@ import com.gmail.s0rInb.entities.dictionary.Diagnosis;
 import com.gmail.s0rInb.entities.dictionary.ExpertCenter;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import java.util.List;
 @Table(name = "doctor_expert_center")
 @Getter
 @Setter
+@Audited
 public class DoctorExpertCenter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

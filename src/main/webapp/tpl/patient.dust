@@ -12,6 +12,9 @@
         <div class="block-main">
             <h1>Пациент {entity.patientId}</h1>
             <input hidden name="id" value="{entity.id}">
+            <input hidden name="legalSupport.id" value="{entity.legalSupport.id}">
+            <input hidden name="consultation.id" value="{entity.consultation.id}">
+            <input hidden name="id" value="{entity.id}">
             <div class="col-sm-12 null-padding-l-r">
                 <h3>Общая информация</h3>
             </div>

@@ -2,6 +2,7 @@ package com.gmail.s0rInb.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "files")
+@Audited
 public class FileLink implements Serializable{
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)

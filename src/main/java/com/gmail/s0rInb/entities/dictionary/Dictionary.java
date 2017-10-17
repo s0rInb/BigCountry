@@ -2,6 +2,7 @@ package com.gmail.s0rInb.entities.dictionary;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
