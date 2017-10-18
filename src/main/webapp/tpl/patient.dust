@@ -1,3 +1,8 @@
+{?entity.id}
+    {@eq key="{userRole}"  value="MANAGER"}
+        <div id="patientCommentsMain" style="padding-bottom: 30px;"></div>
+    {:else}{/eq}
+{/entity.id}
 <div id="patient-{entity.id}">
     {?entity.id}
         {@eq key="{userRole}"  value="MANAGER"}

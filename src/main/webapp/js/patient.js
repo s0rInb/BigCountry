@@ -1,7 +1,8 @@
 var fileCount = 0;
+
 function initForm(entityClass, entityId) {
     $("#circulationChannel").change(function () {
-        if($(this).val()==="another"){
+        if ($(this).val() === "another") {
             $("#circulationChannelTextBody").show();
         } else {
             $("#circulationChannelTextBody").hide();
@@ -40,10 +41,10 @@ function initForm(entityClass, entityId) {
     $("#legalSupportAppealCourtDate").datepicker();
     $("#legalSupportPlannedCourtDate").datepicker();
     $("#legalSupportDate").datepicker();
-	$("#birthday").datepicker();
-	$("#infoConsentDate").datepicker();
+    $("#birthday").datepicker();
+    $("#infoConsentDate").datepicker();
 
-	if (entityId!=null) {
+    if (entityId != null) {
         var infoConsentPatient = $("#infoConsent-patient");
         infoConsentPatient.uploadFile({
             url: "/api/uploadFile",
@@ -304,28 +305,72 @@ function initForm(entityClass, entityId) {
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         $("#age").val(Math.abs(ageDate.getUTCFullYear() - 1970));
     });
-	if($("#userRole").val()!=="MANAGER"){
-		makeReadonly();
-	}
-}
+    if ($("#userRole").val() !== "MANAGER") {
+        makeReadonly();
+    }
+
+    function renderPatientComments() {
+        $.getJSON('/api/patientComments/' + entityId, function (model) {
+            model = JSOG.decode(model);
+            $.ajax({
+                url: '/tpl/patientComments.dust',
+                success: function (data) {
+                    dust.renderSource(data, model, function (err, out) {
+                        $('#patientCommentsMain').empty().append(out);
+                    })
+                },
+                cache: false
+            }).done(function () {
+                console.log("done");
+                $("#createPatientComment").click(function () {
+                    var json = {
+                        comment: $("#patientComment").val()
+                    };
+                    $.ajax({
+                        url: '/api/patientCommentCreate/' + entityId,
+                        data: JSON.stringify(json, null, '\t'),
+                        type: "post",
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        mimeType: 'application/json',
+                        success: function (data) {
+                            renderPatientComments();
+                        },
+                        error: function (data, status, jqXHR) {
+                            $("#mainModal").find(".modal-body").text("Произошла ошибка. Комментарий не сохранен");
+                            $("#mainModal").modal();
+                        }
+                    });
+                })
+            }).error(function (data) {
+                if (data.status == 403) {
+                }
+            });
+        });
+    }
+
+    renderPatientComments();
 
 
-function deletePatient(entityId) {
-    $.ajax({
-        url: "/api/patientDelete/" + entityId,
-        data: null,
-        success: function () {
-            window.location.hash = "patients"
-        }
-    })
-}
+    function deletePatient(entityId) {
+        $.ajax({
+            url: "/api/patientDelete/" + entityId,
+            data: null,
+            success: function () {
+                window.location.hash = "patients"
+            }
+        })
+    }
 
-function beckToPatients () {
-    window.location.hash = "patients"
-}
-function createAdverseEvent (patientId) {
-	window.location.hash = "adverseEvent?patientId="+patientId;
-}
-function getPatientNIS(patientId) {
-    window.location.hash = "adverseEvents?patientId="+patientId;
+    function beckToPatients() {
+        window.location.hash = "patients"
+    }
+
+    function createAdverseEvent(patientId) {
+        window.location.hash = "adverseEvent?patientId=" + patientId;
+    }
+
+    function getPatientNIS(patientId) {
+        window.location.hash = "adverseEvents?patientId=" + patientId;
+    }
 }

@@ -1,11 +1,9 @@
 package com.gmail.s0rInb.controller;
 
+import com.gmail.s0rInb.DTO.PatientCommentDTO;
 import com.gmail.s0rInb.DTO.PatientDTO;
 import com.gmail.s0rInb.authentication.LoginController;
-import com.gmail.s0rInb.entities.DoctorExpertCenter;
-import com.gmail.s0rInb.entities.FileLink;
-import com.gmail.s0rInb.entities.Patient;
-import com.gmail.s0rInb.entities.UserRole;
+import com.gmail.s0rInb.entities.*;
 import com.gmail.s0rInb.entities.dictionary.ConsultationType;
 import com.gmail.s0rInb.entities.dictionary.Dictionary;
 import com.gmail.s0rInb.entities.nis.AdverseEvent;
@@ -56,6 +54,9 @@ public class AppController extends BaseController {
 
 	@Autowired
 	DoctorExpertCenterService doctorExpertCenterService;
+
+	@Autowired
+	PatientCommentsService patientCommentsService;
 	@Override
 	protected void init() {
 
@@ -111,11 +112,36 @@ public class AppController extends BaseController {
 
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/patientComments/{patientId}", produces = "application/json")
+	@ResponseBody
+	public Response getPatientsComments(@PathVariable("patientId") Long patientId) {
+		logger.info("getPatientComments with patientId="+patientId);
+		Response response = new Response();
+		if (getUser().getUserRole().equals(UserRole.MANAGER)) {
+            response.setData(patientCommentsService.findAllByPatientId(patientId).stream()
+                    .map(PatientCommentDTO::new).sorted(Comparator.comparing(PatientCommentDTO::getId)).collect(Collectors.toList()));
+        }
+        response.setEntityClass("patientComment");
+		return response;
+	}
+
+    @RequestMapping(method = RequestMethod.POST, value = "patientCommentCreate/{patientId}", produces = "application/json")
+    @ResponseBody
+    public Response createPatientComment(@PathVariable("patientId") Long patientId,
+                                         @RequestBody PatientComment patientComment) {
+        logger.info("createPatientComment");
+        Response response = new Response();
+        if (getUser().getUserRole().equals(UserRole.MANAGER)) patientComment= patientCommentsService.createPatientComment(patientComment,patientId);
+        response.setEntity(patientComment);
+        response.setUserRole(getUser().getUserRole().name());
+        response.setEntityClass("patient");
+        return response;
+
+    }
 	@RequestMapping(method = RequestMethod.GET, value = "patientDelete/{id}", produces = "application/json")
 	@ResponseBody
 	public HttpStatus deletePatient(@PathVariable("id") Long id) {
 		logger.info("deletePatient");
-
 		if (getUser().getUserRole().equals(UserRole.MANAGER)) patientService.delete(patientService.findById(id));
 		return HttpStatus.OK;
 	}

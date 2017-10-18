@@ -89,12 +89,12 @@ public class PatientDTO {
 			case MANAGER:
 				break;
 			case CUSTOMER:
-				managerPatientDTO(patient);
+				customerPatientDTO(patient);
 				break;
 		}
 	}
 
-	private void managerPatientDTO(Patient patient) {
+	private void customerPatientDTO(Patient patient) {
 		this.name = null;
 		this.surname = null;
 		this.patronymic = null;
