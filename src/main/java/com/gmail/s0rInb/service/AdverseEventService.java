@@ -8,7 +8,6 @@ import com.gmail.s0rInb.entities.nis.four.Four;
 import com.gmail.s0rInb.entities.nis.seven.Seven;
 import com.gmail.s0rInb.entities.nis.six.Six;
 import com.gmail.s0rInb.repository.AdverseEventRepository;
-import com.gmail.s0rInb.repository.PatientRepository;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.BaseFont;

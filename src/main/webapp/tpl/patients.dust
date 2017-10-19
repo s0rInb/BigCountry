@@ -38,7 +38,7 @@
             <div class="cell-adaptive">Дата обращения на Г.Л.</div>
         </div>
         {#data}
-            <div class="row-adaptive">
+            <div class="row-adaptive" id="row-{id}">
                 <div class="cell-adaptive">{id}</div>
                 <div class="cell-adaptive"><a href="#patient?id={id}">{patientId}</a></div>
                 {@ne key="{userRole}"  value="CUSTOMER"}

@@ -5,7 +5,7 @@
         <div class="cell-adaptive">Сообщение</div>
     </div>
     {#data}
-        <div class="row-adaptive">
+        <div class="row-adaptive" style="background-color: {color}">
             <div class="cell-adaptive">{date.dayOfMonth}.{date.monthValue}.{date.year} <br>{date.hour}:{date.minute}</div>
             <div class="cell-adaptive">{firstName} {lastName}</div>
             <div class="cell-adaptive">{comment}</div>
@@ -13,12 +13,12 @@
     {/data}
     <div class="row-adaptive">
         <div class="cell-adaptive"></div>
-        <div class="cell-adaptive">
+        <div class="cell-adaptive" style="vertical-align: middle">
             <button class="btn btn-success" id="createPatientComment">Отправить сообщение</button>
         </div>
         <div class="cell-adaptive">
                     <textarea style="resize: none" class="form-control" id="patientComment" rows="3"
-                              placeholder="Оставить сообщение"
+                              placeholder="Текст сообщения"
                               name="patientComment"></textarea>
         </div>
     </div>

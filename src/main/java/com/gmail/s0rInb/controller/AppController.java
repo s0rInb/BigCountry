@@ -3,6 +3,7 @@ package com.gmail.s0rInb.controller;
 import com.gmail.s0rInb.DTO.PatientCommentDTO;
 import com.gmail.s0rInb.DTO.PatientDTO;
 import com.gmail.s0rInb.authentication.LoginController;
+import com.gmail.s0rInb.authentication.ScopeComponent;
 import com.gmail.s0rInb.entities.*;
 import com.gmail.s0rInb.entities.dictionary.ConsultationType;
 import com.gmail.s0rInb.entities.dictionary.Dictionary;
@@ -30,6 +31,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -68,13 +70,22 @@ public class AppController extends BaseController {
 			throws IOException {
 		logger.info("getPatients");
 		List<PatientDTO> result = patientService.findAll().stream().map(o -> new PatientDTO(o,getUser().getUserRole())).collect(Collectors.toList());
-		result.sort(Comparator.comparing(PatientDTO::getId));
+//		result.sort(Comparator.comparing(PatientDTO::getId));
 		Response response = new Response();
 		response.setData(result);
 		response.setUserRole(getUser().getUserRole().name());
 		return response;
 	}
-
+    @RequestMapping(method = RequestMethod.GET, value = "/notReadPatient", produces = "application/json")
+    @ResponseBody
+    public Response getNotReadListPatientIdByUserId(HttpServletRequest request)
+            throws IOException {
+        List<Long> result = patientCommentsService.getNotReadListPatientIdByUserId(getUser().getId());
+        Response response = new Response();
+        response.setData(result);
+        response.setUserRole(getUser().getUserRole().name());
+        return response;
+    }
 	@RequestMapping(method = RequestMethod.GET, value = "/patient/{id}", produces = "application/json")
 	@ResponseBody
 	public Response getPatient(@PathVariable("id") Long id) {
@@ -121,6 +132,7 @@ public class AppController extends BaseController {
             response.setData(patientCommentsService.findAllByPatientId(patientId).stream()
                     .map(PatientCommentDTO::new).sorted(Comparator.comparing(PatientCommentDTO::getId)).collect(Collectors.toList()));
         }
+        patientCommentsService.deleteNotReadByPatientIdAndCurrentUserId(patientId);
         response.setEntityClass("patientComment");
 		return response;
 	}

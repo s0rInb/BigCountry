@@ -8,10 +8,12 @@ import com.gmail.s0rInb.Utils.LocalDateDeserializer;
 import com.gmail.s0rInb.Utils.LocalDateSerializer;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "patient_comment")
@@ -34,6 +36,11 @@ public class PatientComment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private LocalDateTime date;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "patientCommentNotRead",
+            joinColumns = @JoinColumn(name = "comment_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    private List<User> notReadManager;
 
+    private LocalDateTime date;
 }

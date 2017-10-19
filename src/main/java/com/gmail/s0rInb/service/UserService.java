@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -28,6 +29,9 @@ public class UserService {
 
     public List<User> findList() {
         return userRepository.findList();
+    }
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     public User findById(Long id) {

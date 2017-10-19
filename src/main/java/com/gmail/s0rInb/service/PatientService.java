@@ -16,7 +16,7 @@ public class PatientService {
 	private PatientRepository patientRepository;
 
 	public List<Patient> findAll() {
-		return patientRepository.findAll();
+		return patientRepository.findAllByOrderByIdDesc();
 	}
 
 	public List<Patient> findListPatientId() {
