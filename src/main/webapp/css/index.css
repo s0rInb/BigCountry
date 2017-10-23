@@ -209,6 +209,14 @@
     }
 }
 
+.header-adaptive {
+    font-weight: 900;
+    color: #ffffff;
+    background: #27ae60;
+}
+.green {
+    background: #27ae60;
+}
 .cell-adaptive {
     border: #27ae60 solid;
     border-width: 1px 1px 0px 0px;
@@ -224,4 +232,7 @@
 .null-padding-l-r{
     padding-left: 0;
     padding-right: 0;
+}
+.cm-search-button{
+    display: none;
 }

@@ -1,74 +1,82 @@
 {@eq key="{userRole}"  value="MANAGER"}
-    <button type="button" class="btn btn-warning btn-lg" style="margin-bottom: 30px;"
-            onclick="window.location.hash='patient'">
-        Новый пациент
-    </button>
-{:else}{/eq}
-<div class="scroll">
-    <div class="table-adaptive" style="margin-bottom: 0;">
-        <div class="row-adaptive header-adaptive green">
-            <div class="cell-adaptive">№</div>
-            <div class="cell-adaptive">ID пациента</div>
-            {@ne key="{userRole}"  value="CUSTOMER"}
-                <div class="cell-adaptive">Фамилия</div>
-                <div class="cell-adaptive">Имя</div>
-                <div class="cell-adaptive">Отчество</div>
-            {:else}{/ne}
-            <div class="cell-adaptive">Статус Федеральной консультации</div>
-            <div class="cell-adaptive">Статус Юридической поддержки</div>
-            <div class="cell-adaptive">Субъект РФ</div>
-            <div class="cell-adaptive">Город</div>
-            <div class="cell-adaptive">Диагноз</div>
-            <div class="cell-adaptive">Пол</div>
-            {@ne key="{userRole}"  value="CUSTOMER"}
-                <div class="cell-adaptive">Дата Рождения</div>
-            {:else}{/ne}
-            <div class="cell-adaptive">Возраст</div>
-            {@ne key="{userRole}"  value="CUSTOMER"}
-                <div class="cell-adaptive">Адрес</div>
-                <div class="cell-adaptive">Телефон</div>
-                <div class="cell-adaptive">Адрес электронной почты</div>
-            {:else}{/ne}
-            <div class="cell-adaptive">Обратившийся</div>
-            {@ne key="{userRole}"  value="CUSTOMER"}
-                <div class="cell-adaptive">Контакты обратившегося</div>
-            {:else}{/ne}
-            <div class="cell-adaptive">Экспертный центр</div>
-            <div class="cell-adaptive">Врач из экспертного центра</div>
-            <div class="cell-adaptive">Дата обращения на Г.Л.</div>
+    <div class="col-md-12">
+        <div class="form-group col-md-12">
+            <button type="button" class="btn btn-warning btn-lg" style="margin-bottom: 30px;"
+                    onclick="window.location.hash='patient'">
+                Новый пациент
+            </button>
         </div>
-        {#data}
-            <div class="row-adaptive" id="row-{id}">
-                <div class="cell-adaptive">{id}</div>
-                <div class="cell-adaptive"><a href="#patient?id={id}">{patientId}</a></div>
-                {@ne key="{userRole}"  value="CUSTOMER"}
-                    <div class="cell-adaptive">{surname}</div>
-                    <div class="cell-adaptive">{name}</div>
-                    <div class="cell-adaptive">{patronymic}</div>
-                {:else}{/ne}
-                <div class="cell-adaptive">{consultation.consultationPatientStatus.name}</div>
-                <div class="cell-adaptive">{legalSupport.legalSupportPatientStatus.name}</div>
-                <div class="cell-adaptive">{subjectRF.name}</div>
-                <div class="cell-adaptive">{city}</div>
-                <div class="cell-adaptive">{diagnosis.name}</div>
-                <div class="cell-adaptive">{rusSex}</div>
-                {@ne key="{userRole}"  value="CUSTOMER"}
-                    <div class="cell-adaptive">{birthday}</div>
-                {:else}{/ne}
-                <div class="cell-adaptive">{age}</div>
-                {@ne key="{userRole}"  value="CUSTOMER"}
-                    <div class="cell-adaptive">{address}</div>
-                    <div class="cell-adaptive">{phone}</div>
-                    <div class="cell-adaptive">{email}</div>
-                {:else}{/ne}
-                <div class="cell-adaptive">{whoCall.name}</div>
-                {@ne key="{userRole}"  value="CUSTOMER"}
-                    <div class="cell-adaptive">{contactInfo}</div>
-                {:else}{/ne}
-                <div class="cell-adaptive">{expertCenter.name}</div>
-                <div class="cell-adaptive">{doctorExpertCenter.surname} {doctorExpertCenter.name} {doctorExpertCenter.patronymic}</div>
-                <div class="cell-adaptive">{hotLineCallDate}</div>
-            </div>
-        {/data}
     </div>
+{:else}{/eq}
+<div class="col-md-12">
+    <table class="table-adaptive"  style="margin-bottom: 0; text-align: center">
+        <thead class="header-adaptive green">
+        <tr>
+            <th class="cell-adaptive">№</th>
+            <th class="cell-adaptive">ID пациента</th>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <th class="cell-adaptive">Фамилия</th>
+                <th class="cell-adaptive">Имя</th>
+                <th class="cell-adaptive">Отчество</th>
+            {:else}{/ne}
+            <th class="cell-adaptive">Статус Федеральной консультации</th>
+            <th class="cell-adaptive">Статус Юридической поддержки</th>
+            <th class="cell-adaptive">Субъект РФ</th>
+            <th class="cell-adaptive">Город</th>
+            <th class="cell-adaptive">Диагноз</th>
+            <th class="cell-adaptive">Пол</th>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <th class="cell-adaptive">Дата Рождения</th>
+            {:else}{/ne}
+            <th class="cell-adaptive">Возраст</th>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <th class="cell-adaptive">Адрес</th>
+                <th class="cell-adaptive">Телефон</th>
+                <th class="cell-adaptive">Адрес электронной почты</th>
+            {:else}{/ne}
+            <th class="cell-adaptive">Обратившийся</th>
+            {@ne key="{userRole}"  value="CUSTOMER"}
+                <th class="cell-adaptive">Контакты обратившегося</th>
+            {:else}{/ne}
+            <th class="cell-adaptive">Экспертный центр</th>
+            <th class="cell-adaptive">Врач из экспертного центра</th>
+            <th class="cell-adaptive">Дата обращения на Г.Л.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#data}
+            <tr class="" id="row-{id}">
+                <td class="cell-adaptive">{id}</td>
+                <td class="cell-adaptive"><a href="#patient?id={id}">{patientId}</a></td>
+                {@ne key="{userRole}"  value="CUSTOMER"}
+                    <td class="cell-adaptive">{surname}</td>
+                    <td class="cell-adaptive">{name}</td>
+                    <td class="cell-adaptive">{patronymic}</td>
+                {:else}{/ne}
+                <td class="cell-adaptive">{consultation.consultationPatientStatus.name}</td>
+                <td class="cell-adaptive">{legalSupport.legalSupportPatientStatus.name}</td>
+                <td class="cell-adaptive">{subjectRF.name}</td>
+                <td class="cell-adaptive">{city}</td>
+                <td class="cell-adaptive">{diagnosis.name}</td>
+                <td class="cell-adaptive">{rusSex}</td>
+                {@ne key="{userRole}"  value="CUSTOMER"}
+                    <td class="cell-adaptive">{birthday}</td>
+                {:else}{/ne}
+                <td class="cell-adaptive">{age}</td>
+                {@ne key="{userRole}"  value="CUSTOMER"}
+                    <td class="cell-adaptive">{address}</td>
+                    <td class="cell-adaptive">{phone}</td>
+                    <td class="cell-adaptive">{email}</td>
+                {:else}{/ne}
+                <td class="cell-adaptive">{whoCall.name}</td>
+                {@ne key="{userRole}"  value="CUSTOMER"}
+                    <td class="cell-adaptive">{contactInfo}</td>
+                {:else}{/ne}
+                <td class="cell-adaptive">{expertCenter.name}</td>
+                <td class="cell-adaptive">{doctorExpertCenter.surname} {doctorExpertCenter.name} {doctorExpertCenter.patronymic}</td>
+                <td class="cell-adaptive">{hotLineCallDate}</td>
+            </tr>
+        {/data}
+        </tbody>
+    </table>
 </div>

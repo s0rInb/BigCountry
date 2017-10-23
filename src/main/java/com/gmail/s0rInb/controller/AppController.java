@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -339,7 +340,7 @@ public class AppController extends BaseController {
 					patientDTO.getConsultation().getConsultationType() != null &&
 					consultationType.getId().equals(patientDTO.getConsultation().getConsultationType().getId())).collect(Collectors.toList());
 		}
-		Response response = getPatients(request);
+		Response response = new Response();
 		response.setEntityClass("consultationsExtramural");
 		response.setData(patientDTOList);
 		response.setUserRole(getUser().getUserRole().name());

@@ -4,4 +4,16 @@ function initForm(entityClass, entityId){
             $("#row-"+id).css("background","#a9dfbf");
         })
     });
+    $('.table-adaptive').DataTable({
+        "paging": false,
+        "info": false,
+        "scrollX": true,
+        "language": {
+            "search": "Найти",
+            "zeroRecords":    "Нет совподающих записей, измените условия поиска",
+            "buttons": {
+                "search": "Click to copy"
+            }
+        }
+    });
 }

@@ -9,7 +9,6 @@ function initForm(entityClass, entityId) {
         }
     }).trigger("change");
     $("#subjectRF").select2(returnSelect2options("/api/subjectRF"));
-    $("#diagnosis").select2(returnSelect2options("/api/diagnosis"));
     $("#whoCall").select2(returnSelect2options("/api/whoCall"));
     $("#consultationPatientStatus").select2(returnSelect2options("/api/consultationPatientStatus"));
     $("#legalSupportPatientStatus").select2(returnSelect2options("/api/legalSupportPatientStatus"));
