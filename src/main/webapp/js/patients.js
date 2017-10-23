@@ -14,6 +14,7 @@ function initForm(entityClass, entityId){
             "buttons": {
                 "search": "Click to copy"
             }
-        }
+        },
+        "order": [[ 0, "desc" ]]
     });
 }

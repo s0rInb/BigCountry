@@ -351,25 +351,25 @@ function initForm(entityClass, entityId) {
     renderPatientComments();
 
 
-    function deletePatient(entityId) {
-        $.ajax({
-            url: "/api/patientDelete/" + entityId,
-            data: null,
-            success: function () {
-                window.location.hash = "patients"
-            }
-        })
-    }
 
     function beckToPatients() {
         window.location.hash = "patients"
     }
 
-    function createAdverseEvent(patientId) {
-        window.location.hash = "adverseEvent?patientId=" + patientId;
-    }
+}
+function createAdverseEvent(patientId) {
+    window.location.hash = "adverseEvent?patientId=" + patientId;
+}
 
-    function getPatientNIS(patientId) {
-        window.location.hash = "adverseEvents?patientId=" + patientId;
-    }
+function getPatientNIS(patientId) {
+    window.location.hash = "adverseEvents?patientId=" + patientId;
+}
+function deletePatient(entityId) {
+    $.ajax({
+        url: "/api/patientDelete/" + entityId,
+        data: null,
+        success: function () {
+            window.location.hash = "patients"
+        }
+    })
 }
