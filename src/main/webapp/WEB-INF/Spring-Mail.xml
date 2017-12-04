@@ -4,7 +4,7 @@
 http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" />
+        <property name="host" value="smtp.office365.com"/>
         <property name="port" value="587" />
         <property name="username" value="${mailUsername}"/>
         <property name="password" value="${mailPassword}"/>
@@ -27,12 +27,12 @@ http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
         <property name="from" value="${mailUsername}" />
         <property name="to" value="${mailTo}" />
-        <property name="subject" value="Testing Subject" />
+        <property name="subject" value="Нежелательное явление проект большая страна" />
         <property name="text">
             <value>
                 <![CDATA[
-			Dear %s,
-			Mail Content : %s
+			Уважаемые коллеги, добрый день.
+			Во вложении новое НЯ по проекту Большая страна.
 		]]>
             </value>
         </property>

@@ -8,6 +8,7 @@ function initForm(entityClass, entityId) {
             $("#circulationChannelTextBody").hide();
         }
     }).trigger("change");
+    $("#diagnosis").select2(returnSelect2options("/api/diagnosis"));
     $("#subjectRF").select2(returnSelect2options("/api/subjectRF"));
     $("#whoCall").select2(returnSelect2options("/api/whoCall"));
     $("#consultationPatientStatus").select2(returnSelect2options("/api/consultationPatientStatus"));

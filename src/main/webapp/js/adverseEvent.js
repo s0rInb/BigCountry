@@ -59,6 +59,18 @@ function initForm(entityClass, entityId){
 	$("#seven_3Date").datepicker();
 
 	$("#lethalDate").datepicker();
+
+    $("#rosheSecurityDate").datepicker();
+
+    $("#rosheDate").datepicker();
+    $("#rosheType").change(function () {
+        if($(this).val()==="another"){
+            $("#rosheAnotherTextBody").show();
+        } else {
+            $("#rosheAnotherTextBody").hide();
+        }
+    }).trigger("change");
+
 	if(entityId!=null){
 		makeReadonly();
 	}

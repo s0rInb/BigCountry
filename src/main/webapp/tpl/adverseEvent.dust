@@ -77,19 +77,33 @@
         <div class="adverseEventMain">
             <div class="form-group col-md-3">
                 <label for="bProgramId">ID программы</label>
-                <input class="form-control" id="bProgramId" placeholder="ID программы" value="{entity.b.programId}"
+                <input class="form-control" id="bProgramId" placeholder="ID программы"
+                    {@eq key="{entity.id}" value=""}
+                       value="MAP-RU-12-977"
+                    {:else}
+                       value="{entity.b.programId}"
+                    {/eq}
+
                        name="b.programId">
             </div>
             <div class="form-group col-md-3">
                 <label for="bProjectName">Название проекта</label>
                 <input class="form-control" id="bProjectName" placeholder="Название проекта"
+                    {@eq key="{entity.id}" value=""}
+                       value="Большая страна"
+                    {:else}
                        value="{entity.b.projectName}"
+                    {/eq}
                        name="b.projectName">
             </div>
             <div class="form-group col-md-3">
                 <label for="bAgentName">Название агентства</label>
                 <input class="form-control" id="bAgentName" placeholder="Название агентства"
+                    {@eq key="{entity.id}" value=""}
+                       value="Здоровое будущее"
+                    {:else}
                        value="{entity.b.agentName}"
+                    {/eq}
                        name="b.agentName">
             </div>
             <div class="form-group col-md-3">
@@ -100,22 +114,42 @@
             </div>
             <div class="form-group col-md-12">
                 <label for="bAddress">Адрес</label>
-                <input class="form-control" id="bAddress" placeholder="Адрес" value="{entity.b.address}"
+                <input class="form-control" id="bAddress" placeholder="Адрес"
+                    {@eq key="{entity.id}" value=""}
+                       value="115162, ул. Шаболовка, д. 31 Г"
+                    {:else}
+                       value="{entity.b.address}"
+                    {/eq}
                        name="b.address">
             </div>
             <div class="form-group col-md-3">
                 <label for="bEmail">E-mail</label>
-                <input class="form-control" id="bEmail" placeholder="E-mail" value="{entity.b.email}"
+                <input class="form-control" id="bEmail" placeholder="E-mail"
+                    {@eq key="{entity.id}" value=""}
+                       value="cons@buduzdorov.org"
+                    {:else}
+                       value="{entity.b.email}"
+                    {/eq}
                        name="b.email">
             </div>
             <div class="form-group col-md-3">
                 <label for="bCountry">Страна</label>
-                <input class="form-control" id="bCountry" placeholder="Страна" value="{entity.b.country}"
+                <input class="form-control" id="bCountry" placeholder="Страна"
+                    {@eq key="{entity.id}" value=""}
+                       value="Россия"
+                    {:else}
+                       value="{entity.b.country}"
+                    {/eq}
                        name="b.country">
             </div>
             <div class="form-group col-md-3">
                 <label for="bPhone">Телефон</label>
-                <input class="form-control" id="bPhone" placeholder="Телефон" value="{entity.b.phone}"
+                <input class="form-control" id="bPhone" placeholder="Телефон"
+                    {@eq key="{entity.id}" value=""}
+                       value="+7 (495) 620 59 63"
+                    {:else}
+                       value="{entity.b.phone}"
+                    {/eq}
                        name="b.phone">
             </div>
             <div class="form-group col-md-3">
@@ -2277,6 +2311,245 @@
                 <textarea class="form-control" id="additionalText" rows="10"
                           placeholder="Дополнительная значимая информация"
                           name="additionalText">{entity.additionalText}</textarea>
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">9. Информация по медицинской ошибке</p>
+            <p>Пожалуйста, заполняйте для всех случаев пресеченной или подтвержденной медицинской ошибки. Пожалуйста, при необходимости, воспользуйтесь разделом 8.</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-4">
+                <label for="nineA">Краткое описание медицинской ошибки</label>
+                <input class="form-control" id="nineA" placeholder="Краткое описание медицинской ошибки" value="{entity.nine.a}"
+                       name="nine.a">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="nineB">На какой стадии впервые выявлена медицинская ошибка</label>
+                <select class="form-control" name="nine.b"
+                        id="nineB">
+                    {@select key=entity.nine.b}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="storage"  {@eq value="storage"}selected="selected"{/eq}>
+                            Хранение
+                        </option>
+                        <option value="doctor" {@eq value="doctor"}selected="selected"{/eq}>
+                            Назначение врачом
+                        </option>
+                        <option value="dose" {@eq value="dose"}selected="selected"{/eq}>
+                            Расчет дозы
+                        </option>
+                        <option value="prepare" {@eq value="prepare"}selected="selected"{/eq}>
+                            Приготовление к введению
+                        </option>
+                        <option value="insert" {@eq value="insert"}selected="selected"{/eq}>
+                            Введение
+                        </option>
+                        <option value="watch" {@eq value="watch"}selected="selected"{/eq}>
+                            Наблюдение после введения
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="nineC">Повлияла ли ошибка на состояние пациента?</label>
+                <select class="form-control" name="nine.c"
+                        id="nineC">
+                    {@select key=entity.nine.c}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="nineOne">Имела ли ошибка клинические последствия?</label>
+                <select class="form-control" name="nine.one"
+                        id="nineOne">
+                    {@select key=entity.nine.one}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="nineTwo">На какой стадии ошибка была предотвращена?</label>
+                <select class="form-control" name="nine.two"
+                        id="nineTwo">
+                    {@select key=entity.nine.two}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="storage"  {@eq value="storage"}selected="selected"{/eq}>
+                            Хранение
+                        </option>
+                        <option value="doctor" {@eq value="doctor"}selected="selected"{/eq}>
+                            Назначение врачом
+                        </option>
+                        <option value="dose" {@eq value="dose"}selected="selected"{/eq}>
+                            Расчет дозы
+                        </option>
+                        <option value="prepare" {@eq value="prepare"}selected="selected"{/eq}>
+                            Приготовление к введению
+                        </option>
+                        <option value="insert" {@eq value="insert"}selected="selected"{/eq}>
+                            Введение
+                        </option>
+                        <option value="watch" {@eq value="watch"}selected="selected"{/eq}>
+                            Наблюдение после введения
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="nineThree">Пожалуйста опишите, какой вред могла бы нанести данная ошибка, если бы она произошла с пациентом</label>
+                <input class="form-control" id="nineThree" placeholder="Пожалуйста опишите, какой вред могла бы нанести данная ошибка, если бы она произошла с пациентом" value="{entity.nine.three}"
+                       name="nine.three">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nineD">Укажите место, где произошла медицинская ошибка</label>
+                <input class="form-control" id="nineD" placeholder="При необходимости перечислите более одного учреждения, например аптека, больница, частный дом" value="{entity.nine.d}"
+                       name="nine.d">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nineE">Сопутствующие факторы и основные причины</label>
+                <input class="form-control" id="nineE" placeholder="Сопутствующие факторы и основные причины" value="{entity.nine.e}"
+                       name="nine.e">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="nineF">Смягчающие обстоятельства, которые помогли предотвратить или уменьшить прогрессирование ошибки относительно вреда для пациента</label>
+                <input class="form-control" id="nineF" placeholder="Смягчающие обстоятельства, которые помогли предотвратить или уменьшить прогрессирование ошибки относительно вреда для пациента" value="{entity.nine.f}" name="nine.f">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="nineG">Корректирующие и/ или профилактические действия, предпринятые в ответ на медицинскую ошибку</label>
+                <input class="form-control" id="nineG" placeholder="Корректирующие и/ или профилактические действия, предпринятые в ответ на медицинскую ошибку" value="{entity.nine.g}"
+                       name="nine.g">
+            </div>
+        </div>
+        <div class="adverseEventMenu">
+            <p style="font-weight: bold;">ПОЛЕ ДЛЯ ЗАПОЛНЕНИЯ компанией ROSHE или вендором от лица ROSHE</p>
+            <p>Пожалуйста, заполняйте для всех случаев пресеченной или подтвержденной медицинской ошибки. Пожалуйста, при необходимости, воспользуйтесь разделом 8.</p>
+        </div>
+        <div class="adverseEventMain">
+            <div class="form-group col-md-6">
+                <label for="rosheLrn">LRN</label>
+                <input class="form-control" id="rosheLrn" placeholder="LRN" value="{entity.roshe.lrn}"
+                       name="roshe.lrn">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="rosheLrn">AER</label>
+                <input class="form-control" id="rosheAer" placeholder="AER" value="{entity.roshe.aer}"
+                       name="roshe.aer">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="rosheSecurityDate">Дата получения группой безопасности Рош</label>
+                <input class="form-control" id="rosheSecurityDate" placeholder="Дата получения группой безопасности Рош"
+                       value="{entity.roshe.securityDate}"
+                       name="roshe.securityDate">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="rosheDate">Дата получения компанией</label>
+                <input class="form-control" id="rosheDate" placeholder="Дата получения компанией"
+                       value="{entity.roshe.date}"
+                       name="roshe.date">
+            </div>
+            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
+                    <label for="rosheType">Тип сообщения</label>
+                <select class="form-control" name="roshe.type"
+                        id="rosheType">
+                    {@select key=entity.roshe.type}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="first"  {@eq value="first"}selected="selected"{/eq}>
+                            Первичное
+                        </option>
+                        <option value="again" {@eq value="again"}selected="selected"{/eq}>
+                            Повторное
+                        </option>
+                        <option value="spontaneous" {@eq value="spontaneous"}selected="selected"{/eq}>
+                            Спонтанное
+                        </option>
+                        <option value="publication" {@eq value="publication"}selected="selected"{/eq}>
+                            Публикация
+                        </option>
+                        <option value="another" {@eq value="another"}selected="selected"{/eq}>
+                            Другое
+                        </option>
+                    {/select}
+                </select>
+            </div>
+                <div class="form-group col-md-6">
+                        <div id="rosheAnotherTextBody" style="display: none">
+                            <label for="rosheAnotherText">Уточните тип сообщения</label>
+                            <input class="form-control" id="rosheAnotherText" placeholder="Уточните тип сообщения"
+                                   value="{entity.roshe.anotherText}" name="roshe.anotherText">
+                        </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="rosheUtility">Вспомогатильная документация прилагается?</label>
+                <select class="form-control" name="roshe.utility"
+                        id="rosheUtility">
+                    {@select key=entity.roshe.utility}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="rosheAdditional">Дополнительная форма прилагается?</label>
+                <select class="form-control" name="roshe.additional"
+                        id="rosheAdditional">
+                    {@select key=entity.roshe.additional}
+                        <option {@eq value=""}{/eq}value="">
+                        </option>
+                        <option value="yes"  {@eq value="yes"}selected="selected"{/eq}>
+                            Да
+                        </option>
+                        <option value="no" {@eq value="no"}selected="selected"{/eq}>
+                            Нет
+                        </option>
+                    {/select}
+                </select>
+            </div>
+            
+            <div class="form-group col-md-3">
+                <label for="rosheNisId">Номер протокола NIS</label>
+                <input class="form-control" id="rosheNisId" placeholder="Номер протокола NIS" value="{entity.roshe.nisId}"
+                       name="roshe.nisId">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="rosheMapId">Номер MAP ID</label>
+                <input class="form-control" id="rosheMapId" placeholder="Номер MAP ID" value="{entity.roshe.mapId}"
+                       name="roshe.mapId">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="rosheCupaa">Номер CU/PAA</label>
+                <input class="form-control" id="rosheCupaa" placeholder="Номер CU/PAA" value="{entity.roshe.cupaa}"
+                       name="roshe.cupaa">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="roshePtap">Номер PTAP</label>
+                <input class="form-control" id="roshePtap" placeholder="Номер PTAP" value="{entity.roshe.ptap}"
+                       name="roshe.ptap">
             </div>
         </div>
         {?entity.id}{:else}<button type="submit" class="btn btn-success">Сохранить и отправить</button>{/entity.id}

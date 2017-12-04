@@ -74,12 +74,14 @@ public class AdverseEventService {
 					o.equals("a_exclude") ||
 					o.equals("one_applicant") || o.equals("one_reg") ||
 					o.equals("two_nis") ||
-					o.equals("three_weight") || o.equals("three_sex") || o.equals("tree_height") || o.equals("three_age") || o.equals("three_ethos") ||
+					o.equals("three_weight") || o.equals("three_sex") || o.equals("three_height") || o.equals("three_age") || o.equals("three_ethos") ||
 					o.equals("four_a_nis") || o.equals("four_b_nis") || o.equals("four_c_nis") || o.equals("four_d_nis") ||
 					o.equals("four_a_again") || o.equals("four_b_again") || o.equals("four_c_again") || o.equals("four_d_again") ||
 					o.equals("four_a_phenomenon") || o.equals("four_b_phenomenon") || o.equals("four_c_phenomenon") || o.equals("four_d_phenomenon") ||
 					o.equals("four_a_again_nis") || o.equals("four_b_again_nis") || o.equals("four_c_again_nis") || o.equals("four_d_again_nis") ||
-					o.equals("seven_1_inWork") || o.equals("seven_2_inWork") || o.equals("seven_3_inWork")) {
+					o.equals("seven_1_inWork") || o.equals("seven_2_inWork") || o.equals("seven_3_inWork") ||
+					o.equals("nine_b") || o.equals("nine_c") || o.equals("nine_one") || o.equals("nine_two") ||
+                    o.equals("roshe_utility") || o.equals("roshe_additional") || o.equals("roshe_type")) {
 				try {
 					form.setField(o + "_" + o2, "On");
 				} catch (IOException | DocumentException e) {
@@ -102,7 +104,7 @@ public class AdverseEventService {
 
 
 	private HashMap prepareAdverseEventToPdf(AdverseEvent adverseEvent) {
-		HashMap result = new HashMap();
+		HashMap<String,String> result = new HashMap<>();
 		result.put("additional_text", adverseEvent.getAdditionalText());
 		if (adverseEvent.getLethalDate() != null)
 			result.put("lethalDate", adverseEvent.getLethalDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
@@ -176,6 +178,41 @@ public class AdverseEventService {
 			result.put(s + "ethos", three.getEthos());
 			result.put(s + "anotherText", three.getAnotherText());
 		}
+		if (adverseEvent.getNine() !=null){
+			String s = "nine_";
+			Nine nine = adverseEvent.getNine();
+			result.put(s+"a",nine.getA());
+			result.put(s+"b",nine.getB());
+			result.put(s+"c",nine.getC());
+			result.put(s+"d",nine.getD());
+			result.put(s+"e",nine.getE());
+			result.put(s+"f",nine.getF());
+			result.put(s+"g",nine.getG());
+			result.put(s+"one",nine.getOne());
+			result.put(s+"two",nine.getTwo());
+			result.put(s+"three",nine.getThree());
+		}
+		if (adverseEvent.getRoshe() !=null) {
+            String s = "roshe_";
+            Roshe roshe = adverseEvent.getRoshe();
+            result.put(s+"lrn",roshe.getLrn());
+            result.put(s+"aer",roshe.getAer());
+            if (roshe.getSecurityDate() != null){
+                result.put(s + "securityDate", roshe.getSecurityDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            }
+            if (roshe.getDate() != null){
+                result.put(s + "date", roshe.getDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            }
+            result.put(s+"type",roshe.getType());
+            result.put(s+"another_text",roshe.getAnotherText());
+            result.put(s+"utility",roshe.getUtility());
+            result.put(s+"additional",roshe.getAdditional());
+
+            result.put(s+"nisId",roshe.getNisId());
+            result.put(s+"mapId",roshe.getMapId());
+            result.put(s+"cupaa",roshe.getCupaa());
+            result.put(s+"ptap",roshe.getPtap());
+        }
 		if (adverseEvent.getFour_a() != null) result.putAll(fourToHashMap(adverseEvent.getFour_a(), "four_a_"));
 		if (adverseEvent.getFour_b() != null) result.putAll(fourToHashMap(adverseEvent.getFour_b(), "four_b_"));
 		if (adverseEvent.getFour_c() != null) result.putAll(fourToHashMap(adverseEvent.getFour_c(), "four_c_"));
@@ -200,8 +237,8 @@ public class AdverseEventService {
 		return result;
 	}
 
-	private HashMap fourToHashMap(Four four, String s) {
-		HashMap result = new HashMap();
+	private HashMap<String,String> fourToHashMap(Four four, String s) {
+        HashMap<String,String> result = new HashMap<>();
 		result.put(s + "name", four.getName());
 		result.put(s + "indications", four.getIndications());
 		result.put(s + "dose", four.getDose());
@@ -219,8 +256,8 @@ public class AdverseEventService {
 		return result;
 	}
 
-	private HashMap fiveToHashMap(Five five, String s) {
-		HashMap result = new HashMap();
+	private HashMap<String,String> fiveToHashMap(Five five, String s) {
+        HashMap<String,String> result = new HashMap<>();
 		result.put(s + "nis", five.getNis());
 		if (five.getStartDate() != null)
 			result.put(s + "startDate", five.getStartDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
@@ -235,8 +272,8 @@ public class AdverseEventService {
 		return result;
 	}
 
-	private HashMap sixToHashMap(Six six, String s) {
-		HashMap result = new HashMap();
+	private HashMap<String,String> sixToHashMap(Six six, String s) {
+        HashMap<String,String> result = new HashMap<>();
 		result.put(s + "drug", six.getDrug());
 		result.put(s + "show", six.getShow());
 		result.put(s + "dose", six.getDose());
@@ -249,8 +286,8 @@ public class AdverseEventService {
 		return result;
 	}
 
-	private HashMap sevenToHashMap(Seven seven, String s) {
-		HashMap result = new HashMap();
+	private HashMap<String,String> sevenToHashMap(Seven seven, String s) {
+        HashMap<String,String> result = new HashMap<>();
 		result.put(s + "analyses", seven.getAnalyses());
 		result.put(s + "result", seven.getResult());
 		result.put(s + "value", seven.getValue());

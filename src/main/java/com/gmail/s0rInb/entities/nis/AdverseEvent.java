@@ -21,6 +21,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,7 @@ public class AdverseEvent {
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate lethalDate;
+	@Size(max = 4096)
 	private String additionalText;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
@@ -73,6 +75,14 @@ public class AdverseEvent {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "three_id")
 	private Three three;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "roshe_id")
+	private Roshe roshe;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "nine_id")
+	private Nine nine;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "four_a_id")
